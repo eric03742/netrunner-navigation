@@ -1,0 +1,111 @@
+// src/layouts/index.jsx
+import { Tabs } from 'antd';
+import { useState, useEffect } from 'react';
+import { Outlet } from 'umi';
+import logo from '@/assets/layout/logo.png';
+import BasicsBg from '@/assets/layout/bgs/Basics-BG.png';
+import CommunityBG from '@/assets/layout/bgs/Community-BG.jpg';
+import EnvironmentBG from '@/assets/layout/bgs/Environment-BG.png';
+import FactionBG from '@/assets/layout/bgs/Faction-BG.jpg';
+import IndexBG from '@/assets/layout/bgs/Index-BG.jpg';
+import RunBG from '@/assets/layout/bgs/Run-BG.jpg';
+import './style.less';
+
+const TAB = [
+  { key: '1', label: '首页', subTitle: 'INDEX', background: IndexBG },
+  { key: '2', label: '派系', subTitle: 'FACTION', background: FactionBG },
+  { key: '3', label: '基础', subTitle: 'BASICS', background: BasicsBg },
+  { key: '4', label: '潜袭', subTitle: 'RUN', background: RunBG },
+  { key: '5', label: '环境', subTitle: 'ENVIRONMENT', background: EnvironmentBG },
+  { key: '6', label: '社群', subTitle: 'COMMUNITY', background: CommunityBG },
+];
+
+const Layout = () => {
+  const [activeKey, setActiveKey] = useState('INDEX');
+  const [prevKey, setPrevKey] = useState('INDEX');
+  const [direction, setDirection] = useState(''); // 'left' or 'right'
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const handleTabChange = (key) => {
+    const currentIndex = TAB.findIndex((item) => item.subTitle === activeKey);
+    const nextIndex = TAB.findIndex((item) => item.subTitle === key);
+
+    setPrevKey(activeKey);
+    setActiveKey(key);
+
+    // Determine direction
+    if (nextIndex > currentIndex) {
+      setDirection('right');
+    } else {
+      setDirection('left');
+    }
+
+    setIsAnimating(true);
+  };
+
+  useEffect(() => {
+    if (isAnimating) {
+      const timer = setTimeout(() => {
+        setIsAnimating(false);
+      }, 500); // Match CSS animation duration
+      return () => clearTimeout(timer);
+    }
+  }, [isAnimating]);
+
+  return (
+    <div className="layout">
+      <div className="layout-header">
+        <img src={logo} className="logo-img" />
+        <Tabs
+          activeKey={activeKey}
+          onChange={handleTabChange}
+          items={TAB.map((item) => ({
+            key: item.subTitle,
+            label: (
+              <div>
+                <div className="layout-tab-title">{item.label}</div>
+                <div className="layout-tab-title">{item.subTitle}</div>
+              </div>
+            ),
+          }))}
+        />
+      </div>
+      <div className="layout-contain">
+        {/* Background container with animation */}
+        <div className="layout-bg">
+          {/* Previous background (fading out) */}
+          <div
+            className={`bg-slide bg-slide-prev ${isAnimating ? 'fade-out' : ''}`}
+            style={{
+              backgroundImage: `url(${TAB.find((item) => item.subTitle === prevKey)?.background})`,
+            }}
+          />
+          {/* Current background (sliding in) */}
+          <div
+            className={`bg-slide bg-slide-current ${isAnimating ? `slide-in-${direction}` : ''}`}
+            style={{
+              backgroundImage: `url(${TAB.find((item) => item.subTitle === activeKey)?.background})`,
+            }}
+          />
+        </div>
+        <div className="layout-inner">
+          <Outlet />
+        </div>
+      </div>
+      <div className="layout-footer">
+        <div className="layout-beian">
+          <a href=" " target="_blank">闽ICP备2025085053号-1</a>
+          <a href="https://beian.mps.gov.cn/#/query/webSearch?code=35060202000609" rel="noreferrer" target="_blank"><img /> 闽公网安备35060202000609号</a>
+        </div>
+        <div>
+          开发者：矩阵潜袭中国-测试暗门委员会
+        </div>
+        <div>
+          当前版本：0.0.1 更新时间：2025/08/26
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Layout;
