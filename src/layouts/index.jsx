@@ -3,12 +3,14 @@ import { Tabs } from 'antd';
 import { useState, useEffect } from 'react';
 import { Outlet } from 'umi';
 import logo from '@/assets/layout/logo.png';
+import logo2 from '@/assets/layout/logo2.png';
 import BasicsBg from '@/assets/layout/bgs/Basics-BG.png';
 import CommunityBG from '@/assets/layout/bgs/Community-BG.jpg';
 import EnvironmentBG from '@/assets/layout/bgs/Environment-BG.png';
 import FactionBG from '@/assets/layout/bgs/Faction-BG.jpg';
 import IndexBG from '@/assets/layout/bgs/Index-BG.jpg';
 import RunBG from '@/assets/layout/bgs/Run-BG.jpg';
+import beian from '@/assets/layout/beian.png'
 import './style.less';
 
 const TAB = [
@@ -93,15 +95,19 @@ const Layout = () => {
         </div>
       </div>
       <div className="layout-footer">
+        <img className="layout-footer-logo" src={logo2} />
         <div className="layout-beian">
-          <a href=" " target="_blank">闽ICP备2025085053号-1</a>
-          <a href="https://beian.mps.gov.cn/#/query/webSearch?code=35060202000609" rel="noreferrer" target="_blank"><img /> 闽公网安备35060202000609号</a>
+          <a href=" " target="_blank" style={{ paddingRight: 20 }}>闽ICP备2025085053号-1</a>
+          <div className="layout-beian-row">
+            <img className="layout-beian-img" src={beian} />
+            <a href="https://beian.mps.gov.cn/#/query/webSearch?code=35060202000609" rel="noreferrer" target="_blank"><img /> 闽公网安备35060202000609号</a>
+          </div>
         </div>
-        <div>
+        <div className="layout-developer">
           开发者：矩阵潜袭中国-测试暗门委员会
         </div>
-        <div>
-          当前版本：0.0.1 更新时间：2025/08/26
+        <div className="layout-version">
+          当前版本：0.0.1 更新时间：2025/08/28
         </div>
       </div>
     </div>

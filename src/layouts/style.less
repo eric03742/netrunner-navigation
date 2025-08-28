@@ -35,8 +35,48 @@
   }
 
   .layout-footer {
+    position: relative;
     background: #141516;
     height: 100px;
+    font-family: 'CommonFont';
+
+    .layout-footer-logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 150px;
+    }
+
+    .layout-beian {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+
+      .layout-beian-row {
+        display: flex;
+        align-items: center;
+
+        .layout-beian-img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      a {
+        color: #fff;
+      }
+    }
+
+    .layout-developer {
+      text-align: center;
+      color: #fff;
+    }
+
+    .layout-version {
+      text-align: center;
+      color: #fff;
+    }
   }
 }
 
