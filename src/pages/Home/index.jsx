@@ -1,15 +1,20 @@
 import styles from './style.less';
 import { useState, useEffect } from 'react';
-import { history, useLocation } from 'umi';
-import IndexPage from '../IndexPage'
+import { useLocation } from 'umi';
+import IndexPage from '../INDEX'
+import FACTIONPage from '../FACTION'
+import BASICSPage from '../BASICS'
+import RUNPage from '../RUN'
+import ENVIRONMENTPage from '../ENVIRONMENT'
+import COMMUNITYPage from '../COMMUNITY'
 
 const Compoents = {
   'INDEX': <IndexPage />,
-  'FACTION': <IndexPage />,
-  'BASICS': <IndexPage />,
-  'RUN': <IndexPage />,
-  'ENVIRONMENT': <IndexPage />,
-  'COMMUNITY': <IndexPage />,
+  'FACTION': <FACTIONPage />,
+  'BASICS': <BASICSPage />,
+  'RUN': <RUNPage />,
+  'ENVIRONMENT': <ENVIRONMENTPage />,
+  'COMMUNITY': <COMMUNITYPage />,
 }
 
 const HomePage = () => {
