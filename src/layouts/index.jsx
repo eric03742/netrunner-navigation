@@ -1,7 +1,7 @@
 // src/layouts/index.jsx
 import { Tabs } from 'antd';
 import { useState, useEffect } from 'react';
-import { Outlet } from 'umi';
+import { Outlet, history, useLocation } from 'umi';
 import logo from '@/assets/layout/logo.png';
 import logo2 from '@/assets/layout/logo2.png';
 import BasicsBg from '@/assets/layout/bgs/Basics-BG.png';
@@ -23,6 +23,7 @@ const TAB = [
 ];
 
 const Layout = () => {
+  const { hash } = useLocation();
   const [activeKey, setActiveKey] = useState('INDEX');
   const [prevKey, setPrevKey] = useState('INDEX');
   const [direction, setDirection] = useState(''); // 'left' or 'right'
@@ -31,19 +32,21 @@ const Layout = () => {
   const handleTabChange = (key) => {
     const currentIndex = TAB.findIndex((item) => item.subTitle === activeKey);
     const nextIndex = TAB.findIndex((item) => item.subTitle === key);
-
     setPrevKey(activeKey);
-    setActiveKey(key);
-
     // Determine direction
     if (nextIndex > currentIndex) {
       setDirection('right');
     } else {
       setDirection('left');
     }
-
     setIsAnimating(true);
+    // 使用 Umi 的 history API 更新 URL
+    history.push(`/#${key}`);
   };
+
+  useEffect(() => {
+    setActiveKey(hash.startsWith('#') ? hash.substring(1) : 'INDEX');
+  }, [hash])
 
   useEffect(() => {
     if (isAnimating) {
