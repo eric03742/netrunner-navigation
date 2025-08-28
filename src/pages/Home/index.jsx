@@ -1,6 +1,16 @@
-import styles from './index.less';
+import styles from './style.less';
 import { useState, useEffect } from 'react';
 import { history, useLocation } from 'umi';
+import IndexPage from '../IndexPage'
+
+const Compoents = {
+  'INDEX': <IndexPage />,
+  'FACTION': <IndexPage />,
+  'BASICS': <IndexPage />,
+  'RUN': <IndexPage />,
+  'ENVIRONMENT': <IndexPage />,
+  'COMMUNITY': <IndexPage />,
+}
 
 const HomePage = () => {
   const { hash } = useLocation();
@@ -12,7 +22,7 @@ const HomePage = () => {
 
   return (
     <div className={styles.container}>
-      首页
+      {Compoents[currentTab]}
     </div>
   );
 };

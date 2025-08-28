@@ -1,0 +1,104 @@
+.IndexPage {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.pageContainer {
+  height: 100%;
+  position: relative;
+}
+
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  pointer-events: none;
+
+  &.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+// 原始欢迎页面样式保持不变
+.welcomePage {
+  .welcome-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .welcome-logo {
+      width: 400px;
+    }
+
+    .welcome-text-top {
+      font-family: XiangSuFont;
+      font-size: 40px;
+      position: absolute;
+      top: 50px;
+      left: -80px;
+    }
+
+    .welcome-text-bottom {
+      font-family: XiangSuFont;
+      font-size: 40px;
+      position: absolute;
+      bottom: 0;
+      right: -100px;
+    }
+  }
+}
+
+// 新增文本内容样式
+.textContent {
+  text-align: center;
+  max-width: 800px;
+  padding: 20px;
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+
+  p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #ddd;
+  }
+}
+
+// 页面指示器
+.indicators {
+  position: fixed;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 100;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &.active {
+    background-color: #fff;
+    transform: scale(1.2);
+  }
+}
