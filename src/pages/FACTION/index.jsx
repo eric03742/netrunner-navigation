@@ -87,6 +87,7 @@ const FactionList = [
 const FACTION = () => {
   const [currentSelected, setCurrentSelected] = useState('WEYLAND CONSORTIUM')
   const [hoveredItem, setHoveredItem] = useState(null)
+  const [hoveredImg, setHoveredImg] = useState(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [animationState, setAnimationState] = useState('enter'); // 'enter' 或 'exit'
   const [selectedFaction, setSelectedFaction] = useState(null)
@@ -109,6 +110,12 @@ const FACTION = () => {
     setMousePosition({ x: e.clientX, y: e.clientY })
   }
 
+  const handleMouseImgEnter = (item, e) => {
+    setHoveredImg(item)
+    setMousePosition({ x: e.clientX, y: e.clientY })
+  }
+
+
   const handleMouseMove = (e) => {
     setMousePosition({ x: e.clientX, y: e.clientY })
   }
@@ -117,6 +124,9 @@ const FACTION = () => {
     setHoveredItem(null)
   }
 
+  const handleMouseImgLeave = () => {
+    setHoveredImg(null)
+  }
   return (
     <div className={styles.faction}>
       <div className={styles.list}>
@@ -179,6 +189,9 @@ const FACTION = () => {
             <div className={styles.cardContent}>
               {selectedFaction.cards.map((card, index) => (
                 <img
+                  onMouseEnter={(e) => handleMouseImgEnter(card, e)}
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseImgLeave}
                   key={index}
                   src={card}
                   alt={`card-${index}`}
@@ -193,6 +206,18 @@ const FACTION = () => {
                 />
               ))}
             </div>
+            {/* 悬浮图片展示 */}
+            {hoveredImg && (
+              <div
+                className={styles.floatingImageCard}
+                style={{
+                  left: mousePosition.x - 100,
+                  top: mousePosition.y - 300,
+                }}
+              >
+                <img src={hoveredImg} />
+              </div>
+            )}
           </div>
         )}
       </div>

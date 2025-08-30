@@ -71,11 +71,23 @@
   }
 }
 
+.floatingImageCard {
+  pointer-events: none; // 防止图片干扰鼠标事件
+  position: fixed;
+  z-index: 1;
+
+  img {
+    width: 300px;
+  }
+}
+
+
 .rightContent {
   width: 70%;
   padding: 20px;
 
   .contentWrapper {
+    position: relative;
     display: contents;
   }
 
