@@ -22,9 +22,10 @@
         width: 450px;
         margin-bottom: 25px;
         border-bottom: 4px solid #fff;
+        cursor: pointer;
 
-        &.item-selected {
-          background-color: #007bff;
+        &:hover {
+          color: #007bff;
           font-weight: bold;
         }
 
@@ -33,16 +34,20 @@
         // }
         .title {
           // 原有样式...
-          transition: color 0.3s ease;
-
-          &.titleHover {
-            color: #007bff; // 高亮颜色，可根据需要调整
-            font-weight: bold;
-          }
+          transform: translateX(0px); // 使用transform实现平滑移动
+          transition: all 0.3s ease;
         }
 
         .subTitle {
           font-size: 24px;
+        }
+      }
+
+      .item-selected {
+        .title {
+          margin-left: 40px;
+          transform: translateX(10px); // 使用transform实现平滑移动
+          transition: all 0.3s ease;
         }
       }
     }
