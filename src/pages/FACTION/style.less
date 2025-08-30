@@ -9,6 +9,7 @@
     align-items: center;
     position: relative;
     z-index: 2;
+    padding: 0 20px;
 
     .listContent {
       display: flex;
@@ -54,7 +55,7 @@
 
   }
 
-  .content {
+  .rightContent {
     flex: 2;
   }
 }
@@ -67,5 +68,107 @@
   img {
     width: 500px;
     height: 500px;
+  }
+}
+
+.rightContent {
+  width: 70%;
+  padding: 20px;
+
+  .contentWrapper {
+    display: contents;
+  }
+
+  .textContent {
+    display: flex;
+    flex-direction: column;
+    font-family: XiangSuFont;
+    width: 90%;
+    margin-top: calc(50vh - 300px);
+    font-size: 24px;
+
+    p {
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateX(50px);
+      animation: textEnter 0.6s forwards;
+      background-color: #3734349e;
+      padding: 5px 10px;
+      border-radius: 4px;
+
+      &.exit {
+        animation: textExit 0.6s forwards;
+      }
+    }
+  }
+
+  .cardContent {
+    width: 90%;
+    padding: 0 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    justify-content: space-between;
+
+    img {
+      width: 150px;
+      height: auto;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: rotate(var(--rotation-angle)) translateY(100px) scale(0.5);
+      animation: cardEnter 0.8s forwards;
+
+      &.exit {
+        animation: cardExit 0.6s forwards;
+      }
+    }
+  }
+}
+
+@keyframes textEnter {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes textExit {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+}
+
+@keyframes cardEnter {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--rotation-angle)) translateY(100px) scale(0.5);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(0deg) translateY(0) scale(1);
+  }
+}
+
+@keyframes cardExit {
+  0% {
+    opacity: 1;
+    transform: rotate(0deg) translateY(0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(calc(var(--rotation-angle) * -1)) translateY(100px) scale(0.5);
   }
 }
