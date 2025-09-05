@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Document } from 'docx';
+import * as mammoth from 'mammoth';
 import Highlighter from 'react-highlight-words';
 import './style.less';
 import rules from './rules.docx'
@@ -18,60 +18,69 @@ const DocPreview = () => {
   useEffect(() => {
     const fetchAndParseDoc = async () => {
       try {
-        // 这里替换为你的DOC文件路径（本地文件需通过input上传，此处模拟远程获取）
+        // 获取文件
         const response = await fetch(rules);
         const arrayBuffer = await response.arrayBuffer();
 
-        // 使用 docx 库解析文件
-        const doc = await Document.load(arrayBuffer);
-        const paragraphs = doc.body.children.filter(
-          (child) => child.type === 'paragraph'
-        );
+        // 使用 mammoth 转换为 HTML 以保留样式
+        const result = await mammoth.convertToHtml({ arrayBuffer });
+        const htmlContent = result.value;
 
-        // 提取标题和内容（基于文档结构识别标题层级）
+        // 创建一个临时的 div 来解析 HTML 内容
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlContent, 'text/html');
+
+        // 提取标题和内容
         const titles = [];
         const sections = [];
-        let currentSection = { title: '', content: [] };
+        let currentSection = null;
 
-        paragraphs.forEach((para) => {
-          const text = para.children
-            .map((run) => run.text || '')
-            .join('')
-            .trim();
+        // 遍历所有节点
+        doc.body.childNodes.forEach((node, index) => {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            // 检查是否为标题元素
+            if (['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(node.tagName)) {
+              // 保存上一个章节
+              if (currentSection) {
+                sections.push(currentSection);
+              }
 
-          if (!text) return;
+              const titleText = node.textContent;
+              const titleLevel = parseInt(node.tagName[1]);
 
-          // 识别标题（基于文档中的#、##等标记）
-          if (text.startsWith('#')) {
-            // 保存上一个章节
-            if (currentSection.title) {
-              sections.push({
-                title: currentSection.title,
-                content: currentSection.content.join('\n'),
-              });
+              titles.push({ text: titleText, level: titleLevel });
+
+              // 初始化新章节
+              currentSection = {
+                title: titleText,
+                level: titleLevel,
+                content: ''
+              };
+            } else {
+              // 普通内容，添加到当前章节
+              if (currentSection) {
+                currentSection.content += node.outerHTML || node.textContent;
+              } else {
+                // 如果还没有标题，创建一个默认章节
+                if (sections.length === 0) {
+                  currentSection = {
+                    title: '文档开始',
+                    level: 1,
+                    content: ''
+                  };
+                  titles.push({ text: '文档开始', level: 1 });
+                }
+                currentSection.content += node.outerHTML || node.textContent;
+              }
             }
-
-            // 提取标题文本（去除#标记）
-            const titleText = text.replace(/#+/g, '').trim();
-            const titleLevel = text.match(/#+/)[0].length; // 标题层级
-            titles.push({ text: titleText, level: titleLevel });
-
-            // 初始化新章节
-            currentSection = { title: titleText, content: [] };
-          } else {
-            // 普通内容，添加到当前章节
-            currentSection.content.push(text);
           }
         });
 
         // 保存最后一个章节
-        if (currentSection.title) {
-          sections.push({
-            title: currentSection.title,
-            content: currentSection.content.join('\n'),
-          });
+        if (currentSection) {
+          sections.push(currentSection);
         }
-        console.log('setDocContent', titles, sections)
+
         setDocContent({ titles, sections });
         // 初始化内容区域引用
         sectionRefs.current = sections.map(() => React.createRef());
@@ -86,11 +95,19 @@ const DocPreview = () => {
   // 处理标题点击：跳转到对应内容
   const handleTitleClick = (index) => {
     setActiveTitleIndex(index);
-    // 滚动到对应内容区域
-    if (sectionRefs.current[index]) {
-      sectionRefs.current[index].current?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
+    // 滚动到对应内容区域，但只在内容区域内滚动
+    const contentWrapper = document.querySelector('.content-wrapper');
+    const targetSection = sectionRefs.current[index]?.current;
+
+    if (contentWrapper && targetSection) {
+      // 计算目标章节相对于内容包装器的偏移量
+      const wrapperRect = contentWrapper.getBoundingClientRect();
+      const sectionRect = targetSection.getBoundingClientRect();
+      const offsetTop = sectionRect.top - wrapperRect.top + contentWrapper.scrollTop;
+
+      contentWrapper.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
       });
     }
     // 重置搜索结果索引
@@ -132,10 +149,20 @@ const DocPreview = () => {
     if (results.length > 0) {
       const firstResult = results[0];
       setActiveTitleIndex(firstResult.sectionIndex);
-      if (sectionRefs.current[firstResult.sectionIndex]) {
-        sectionRefs.current[firstResult.sectionIndex].current?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
+
+      // 滚动到第一个搜索结果，使用与handleTitleClick一致的逻辑
+      const contentWrapper = document.querySelector('.content-wrapper');
+      const targetSection = sectionRefs.current[firstResult.sectionIndex]?.current;
+
+      if (contentWrapper && targetSection) {
+        // 计算目标章节相对于内容包装器的偏移量
+        const wrapperRect = contentWrapper.getBoundingClientRect();
+        const sectionRect = targetSection.getBoundingClientRect();
+        const offsetTop = sectionRect.top - wrapperRect.top + contentWrapper.scrollTop;
+
+        contentWrapper.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
         });
       }
     }
@@ -156,11 +183,19 @@ const DocPreview = () => {
     const targetResult = searchResults[newIndex];
     setActiveTitleIndex(targetResult.sectionIndex);
 
-    // 滚动到对应内容区域
-    if (sectionRefs.current[targetResult.sectionIndex]) {
-      sectionRefs.current[targetResult.sectionIndex].current?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
+    // 滚动到对应内容区域，使用与handleTitleClick一致的逻辑
+    const contentWrapper = document.querySelector('.content-wrapper');
+    const targetSection = sectionRefs.current[targetResult.sectionIndex]?.current;
+
+    if (contentWrapper && targetSection) {
+      // 计算目标章节相对于内容包装器的偏移量
+      const wrapperRect = contentWrapper.getBoundingClientRect();
+      const sectionRect = targetSection.getBoundingClientRect();
+      const offsetTop = sectionRect.top - wrapperRect.top + contentWrapper.scrollTop;
+
+      contentWrapper.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
       });
     }
   };
@@ -214,42 +249,23 @@ const DocPreview = () => {
             >
               <h2 className="section-title">{section.title}</h2>
               <div className="section-body">
-                {/* 搜索高亮渲染 */}
-                <Highlighter
-                  highlightClassName={
-                    currentResultIndex >= 0
-                      ? 'search-highlight active-highlight'
-                      : 'search-highlight'
-                  }
-                  searchWords={[searchText]}
-                  autoEscape={true}
-                  textToHighlight={section.content}
-                  // 自定义高亮逻辑：只高亮当前激活的搜索结果
-                  highlightTag={(props) => {
-                    if (!searchText) return <span {...props} />;
-
-                    // 检查当前高亮位置是否为激活的搜索结果
-                    const textLower = section.content.toLowerCase();
-                    const searchLower = searchText.toLowerCase();
-                    const startIndex = textLower.indexOf(searchLower, props.startIndex);
-
-                    if (startIndex === -1) return <span {...props} />;
-
-                    const resultIndex = searchResults.findIndex(
-                      (res) =>
-                        res.sectionIndex === sectionIndex &&
-                        res.start === startIndex
-                    );
-
-                    const isActive = resultIndex === currentResultIndex;
-                    return (
-                      <span
-                        {...props}
-                        className={`search-highlight ${isActive ? 'active-highlight' : ''}`}
-                      />
-                    );
-                  }}
-                />
+                {/* 渲染带样式的 HTML 内容 */}
+                {searchText ? (
+                  // 如果有搜索文本，使用 Highlighter 组件
+                  <Highlighter
+                    highlightClassName={
+                      currentResultIndex >= 0
+                        ? 'search-highlight active-highlight'
+                        : 'search-highlight'
+                    }
+                    searchWords={[searchText]}
+                    autoEscape={true}
+                    textToHighlight={section.content.replace(/<[^>]*>/g, '')} // 去除 HTML 标签进行搜索
+                  />
+                ) : (
+                  // 否则直接渲染 HTML 内容
+                  <div dangerouslySetInnerHTML={{ __html: section.content }} />
+                )}
               </div>
             </div>
           );
