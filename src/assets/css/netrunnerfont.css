@@ -1,16 +1,8 @@
 @font-face {
-  font-family: 'CommonFont';
-  src: url('./assets/font/kehuan.ttf');
-}
-
-@font-face {
-  font-family: 'XiangSuFont';
-  src: url('./assets/font/xiangsu.ttf');
-}
-
-@font-face {
   font-family: 'netrunner';
-  src: url('./assets/font/netrunner.ttf');
+  src: url('fonts/netrunner.ttf?cmdd12') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 .icon {

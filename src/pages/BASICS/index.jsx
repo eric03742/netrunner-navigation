@@ -3,6 +3,7 @@ import * as mammoth from 'mammoth';
 import Highlighter from 'react-highlight-words';
 import './style.less';
 import rules from './rules.docx'
+import { formatContent } from './utils';
 
 // 文档预览组件
 const DocPreview = () => {
@@ -59,7 +60,10 @@ const DocPreview = () => {
             } else {
               // 普通内容，添加到当前章节
               if (currentSection) {
-                currentSection.content += node.outerHTML || node.textContent;
+                // 处理内容：删除&nbsp;并替换{credit}为图标
+                let content = node.outerHTML || node.textContent;
+                content = formatContent(content);
+                currentSection.content += content;
               } else {
                 // 如果还没有标题，创建一个默认章节
                 if (sections.length === 0) {
@@ -70,7 +74,10 @@ const DocPreview = () => {
                   };
                   titles.push({ text: '文档开始', level: 1 });
                 }
-                currentSection.content += node.outerHTML || node.textContent;
+                // 处理内容：删除&nbsp;并替换{credit}为图标
+                let content = node.outerHTML || node.textContent;
+                content = formatContent(content);
+                currentSection.content += content;
               }
             }
           }
