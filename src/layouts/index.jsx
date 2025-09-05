@@ -1,6 +1,6 @@
 // src/layouts/index.jsx
 import { Tabs } from 'antd';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Outlet, history, useLocation } from 'umi';
 import logo from '@/assets/layout/logo.png';
 import logo2 from '@/assets/layout/logo2.png';
@@ -29,6 +29,14 @@ const Layout = () => {
   const [direction, setDirection] = useState(''); // 'left' or 'right'
   const [isAnimating, setIsAnimating] = useState(false);
 
+  useEffect(() => {
+    // 预加载所有背景图片
+    TAB.forEach(item => {
+      const img = new Image();
+      img.src = item.background;
+    });
+  }, []);
+
   const handleTabChange = (key) => {
     const currentIndex = TAB.findIndex((item) => item.subTitle === activeKey);
     const nextIndex = TAB.findIndex((item) => item.subTitle === key);
@@ -56,6 +64,48 @@ const Layout = () => {
       return () => clearTimeout(timer);
     }
   }, [isAnimating]);
+
+  // 添加滚轮切换 tab 的功能
+  const handleWheel = useCallback((e) => {
+    // 阻止默认滚动行为
+    e.preventDefault();
+
+    // 防止在动画过程中切换
+    if (isAnimating) return;
+
+    const currentIndex = TAB.findIndex((item) => item.subTitle === activeKey);
+
+    // 根据滚轮方向确定下一个 tab
+    let nextIndex;
+    if (e.deltaY > 0) {
+      // 向下滚动，切换到下一个 tab
+      nextIndex = (currentIndex + 1) % TAB.length;
+      setDirection('right');
+    } else {
+      // 向上滚动，切换到上一个 tab
+      nextIndex = (currentIndex - 1 + TAB.length) % TAB.length;
+      setDirection('left');
+    }
+
+    setPrevKey(activeKey);
+    setIsAnimating(true);
+
+    // 更新 URL 和 activeKey
+    const nextTab = TAB[nextIndex];
+    history.push(`/#${nextTab.subTitle}`);
+  }, [activeKey, isAnimating]);
+
+  // 添加和移除滚轮事件监听器
+  useEffect(() => {
+    const layoutElement = document.querySelector('.layout-contain');
+    if (layoutElement) {
+      layoutElement.addEventListener('wheel', handleWheel, { passive: false });
+
+      return () => {
+        layoutElement.removeEventListener('wheel', handleWheel);
+      };
+    }
+  }, [handleWheel]);
 
   return (
     <div className="layout">

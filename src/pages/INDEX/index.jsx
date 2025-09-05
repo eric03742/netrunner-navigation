@@ -5,11 +5,11 @@ import introduction1 from '@/assets/IndexPage/introduction1.jpg'
 import introduction2 from '@/assets/IndexPage/introduction2.jpg'
 import introduction3 from '@/assets/IndexPage/introduction3.jpg'
 import introduction4 from '@/assets/IndexPage/introduction4.jpg'
-
+import introduction5 from '@/assets/IndexPage/introduction5.jpg'
 const INDEX = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
-  const totalPages = 5;
+  const totalPages = 6;
 
   // 节流控制函数
   const handleScroll = useCallback((direction) => {
@@ -35,58 +35,63 @@ const INDEX = () => {
     }, 500);
   }, [isScrolling, currentPage, totalPages]);
 
-  // 处理鼠标滚轮事件
-  const handleWheel = useCallback((e) => {
-    e.preventDefault();
-    if (e.deltaY > 0) {
-      // 向下滚动
-      handleScroll('down');
-    } else {
-      // 向上滚动
-      handleScroll('up');
-    }
-  }, [handleScroll]);
+  // // 处理鼠标滚轮事件
+  // const handleWheel = useCallback((e) => {
+  //   e.preventDefault();
+  //   if (e.deltaY > 0) {
+  //     // 向下滚动
+  //     handleScroll('down');
+  //   } else {
+  //     // 向上滚动
+  //     handleScroll('up');
+  //   }
+  // }, [handleScroll]);
 
-  // 添加键盘支持（可选）
-  const handleKeyDown = useCallback((e) => {
-    if (e.key === 'ArrowDown') {
-      handleScroll('down');
-    } else if (e.key === 'ArrowUp') {
-      handleScroll('up');
-    }
-  }, [handleScroll]);
+  // // 添加键盘支持（可选）
+  // const handleKeyDown = useCallback((e) => {
+  //   if (e.key === 'ArrowDown') {
+  //     handleScroll('down');
+  //   } else if (e.key === 'ArrowUp') {
+  //     handleScroll('up');
+  //   }
+  // }, [handleScroll]);
 
-  useEffect(() => {
-    // 添加事件监听器
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    window.addEventListener('keydown', handleKeyDown);
+  // useEffect(() => {
+  //   // 添加事件监听器
+  //   window.addEventListener('wheel', handleWheel, { passive: false });
+  //   window.addEventListener('keydown', handleKeyDown);
 
-    return () => {
-      // 清理事件监听器
-      window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [handleWheel, handleKeyDown]);
+  //   return () => {
+  //     // 清理事件监听器
+  //     window.removeEventListener('wheel', handleWheel);
+  //     window.removeEventListener('keydown', handleKeyDown);
+  //   };
+  // }, [handleWheel, handleKeyDown]);
 
   // 页面内容数据
   const pageContents = [
     {
-      title: "在未来纪元",
+      title: "未来已至",
       text: "人类已经通过不同的方式，成功扩张到太阳系中。月球和火星已经变为殖民地。一项改造红色星球的计划正在进行中，唯一的阻碍是内战的爆发使火星上众多拱顶所被封锁。地球上，一台巨大的太空电梯，建立在名为新洛杉矶的庞大城邦中心附近，连接至低空轨道。这里是太阳系内的贸易枢纽站，大部分人称其为“豆茎”。",
       img: introduction1
     },
     {
-      title: "计算机技术持续发展",
-      text: "最终诞生了“脑内映射”，这种技术可以将人类意识以电子化的方式，存储在复杂而精密的具有脑机接口的设备中。实体的鼠标和键盘成为了古董，手势接口和虚拟显示变得普及。精英级用户可将电脑直接连通至大脑来进行“接入”。被大众称为“公司”的超巨型企业集团，掌控着日常生活的方方面面：食物、3D娱乐、影音以及就业机会。人间会社和哈斯生化改写了生命的定义，致力于创造具有脑波记忆的人工智能意识克隆体和生化人。威兰财团控制着豆茎上下运作的一切资源。而网际传媒牢牢控制着地球上有史以来最广博的媒体网络，塑造着你的梦想与思维方式。",
+      title: "脑内映射",
+      text: "最终诞生了“脑内映射”，这种技术可以将人类意识以电子化的方式，存储在复杂而精密的具有脑机接口的设备中。实体的鼠标和键盘成为了古董，手势接口和虚拟显示变得普及。精英级用户可将电脑直接连通至大脑来进行“接入”。",
       img: introduction2
     },
     {
-      title: "所有人都依赖着网络",
+      title: "巨型公司",
+      text: "被大众称为“公司”的超巨型企业集团，掌控着日常生活的方方面面：食物、3D娱乐、影音以及就业机会。人间会社和哈斯生化改写了生命的定义，致力于创造具有脑波记忆的人工智能意识克隆体和生化人。威兰财团控制着豆茎上下运作的一切资源。而网际传媒牢牢控制着地球上有史以来最广博的媒体网络，塑造着你的梦想与思维方式。",
+      img: introduction5
+    },
+    {
+      title: "网络之变",
       text: "这些俯瞰一切，倾听一切的数字矩阵环绕着地球，并直达太阳系深处。每一秒在网络中奔腾的数据流，其数据量就已超过曾经五千年的书面文字总和。这是一个监视网，一个金融体系，一个大图书馆——它是现代文明的脊柱。但这也是公司们唯一的弱点。",
       img: introduction3
     },
     {
-      title: "网络永远在不停进化和变动",
+      title: "潜袭者志",
       text: "绝不可能被精确定位或锁定。游侠黑客们——拥有硬件、软件和具有足以挑战系统技巧的电脑专家，利用网络的延伸建立自己的优势。其中有些人决心揭露系统核心背后隐藏的腐败，将数亿民众从公司主宰者们的伪善中唤醒。其他人只打算赚取一些私利，或在最终的平台上展现一下自己的价值。但无论动机为何，这些个体行为有一个共同的交集目标：数字世界的独立。他们的名字叫作潜袭者。",
       img: introduction4
     },
@@ -98,17 +103,6 @@ const INDEX = () => {
 
   return (
     <div className={styles.IndexPage}>
-      {/* 页面指示器 */}
-      <div className={styles.indicators}>
-        {Array.from({ length: totalPages }).map((_, index) => (
-          <div
-            key={index}
-            className={`${styles.indicator} ${index === currentPage ? styles.active : ''}`}
-            onClick={() => !isScrolling && setCurrentPage(index)}
-          />
-        ))}
-      </div>
-
       {/* 页面内容容器 */}
       <div className={styles.pageContainer}>
         {/* 原始欢迎页面 */}
@@ -142,6 +136,16 @@ const INDEX = () => {
           </div>
           // )
         ))}
+        {/* 页面指示器 - 移到页面底部 */}
+        <div className={styles.indicators}>
+          {Array.from({ length: totalPages }).map((_, index) => (
+            <div
+              key={index}
+              className={`${styles.indicator} ${index === currentPage ? styles.active : ''}`}
+              onClick={() => !isScrolling && setCurrentPage(index)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

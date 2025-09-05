@@ -1,5 +1,5 @@
 .IndexPage {
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
   position: relative;
 }
@@ -37,7 +37,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    top: -100px;
 
     .welcome-logo {
       width: 400px;
@@ -117,30 +116,28 @@
   }
 }
 
-// 页面指示器
 .indicators {
-  position: fixed;
-  right: 30px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  position: absolute;
+  bottom: 50px; // 定位到底部
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex; // 水平排列
+  flex-direction: row;
+  gap: 10px; // 指示器之间的间距
   z-index: 100;
 }
 
 .indicator {
-  width: 12px;
-  height: 12px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease;
+}
 
-  &.active {
-    background-color: #fff;
-    transform: scale(1.2);
-  }
+.indicator.active {
+  background-color: white;
 }
 
 // 响应式调整
