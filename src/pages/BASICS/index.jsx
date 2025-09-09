@@ -3,7 +3,7 @@ import * as mammoth from 'mammoth';
 import Highlighter from 'react-highlight-words';
 import './style.less';
 import rules from './rules.docx'
-import { formatContent } from './utils';
+import { formatContent, iconNames } from './utils';
 
 // 文档预览组件
 const DocPreview = () => {
@@ -47,6 +47,7 @@ const DocPreview = () => {
               }
 
               const titleText = node.textContent;
+              // iconNames?.map(items => `{${items}} `)
               const titleLevel = parseInt(node.tagName[1]);
 
               titles.push({ text: titleText, level: titleLevel });
