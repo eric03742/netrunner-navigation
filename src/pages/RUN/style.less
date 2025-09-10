@@ -1,0 +1,238 @@
+/* src/pages/RUN/style.less */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.header {
+  flex: 0 0 auto;
+  text-align: center;
+
+  .headerText {
+    margin: 0;
+    font-size: 48px;
+    color: #fff;
+    font-weight: 800;
+
+    span {
+      font-family: 'CommonFont';
+    }
+  }
+}
+
+.carouselContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  position: relative;
+}
+
+.navButton {
+  background: rgb(59 59 59 / 70%);
+  border: none;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 0 15px;
+  z-index: 10;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: scale(1.1);
+  }
+}
+
+.slideWrapper {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.slides {
+  display: flex;
+  width: 200%;
+  /* 4 slides * 50% each */
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  width: 50%;
+  /* 100% / 2 */
+  padding: 15px;
+}
+
+.slideContent {
+  display: flex;
+  gap: 20px;
+  border-radius: 8px;
+}
+
+.imageContainer {
+  flex: 0 0 820px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 10px 9px 6px #171616;
+}
+
+.textContainer {
+  flex: 1;
+  width: 200px;
+  height: 400px;
+  padding: 15px;
+  padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  background: rgb(59 59 59 / 70%);
+  box-shadow: 10px 9px 6px #171616;
+
+  h2 {
+    font-family: 'CommonFont';
+    color: white;
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-family: 'XiangSuFont';
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+}
+
+.indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  gap: 15px;
+}
+
+.indicator {
+  width: 40px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 0;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.indicator.active {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: white;
+  width: 0;
+  transition: width 0.1s linear;
+}
+
+.footer {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.startButton {
+  padding: 15px 50px;
+  font-size: 20px;
+  background: linear-gradient(72deg, #efefef, #9d5e5e);
+  border: none;
+  border-radius: 50px;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  // 添加科技感的伪元素
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: 0.5s;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+
+    // 添加发光效果
+    box-shadow: 0 0 20px #00eeff, 0 0 40px #008cff, 0 6px 20px rgba(0, 0, 0, 0.3);
+
+    // 移动渐变条
+    &::before {
+      left: 100%;
+    }
+
+    // 背景动画
+    background: linear-gradient(72deg, #00eeff, #008cff, #9d5e5e);
+    background-size: 200% 200%;
+    animation: gradientShift 2s ease infinite;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+// 添加背景渐变动画
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .slideContent {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .imageContainer {
+    flex: 0 0 auto;
+    height: 300px;
+  }
+
+  .textContainer {
+    flex: 1;
+  }
+}
