@@ -1,256 +1,360 @@
-// 基础变量（便于统一修改）
-@bg-primary: #121212; // 页面主背景
-@bg-secondary: #1e1e1e; // 导航/内容区背景
-@bg-tertiary: #2d2d2d; // 输入框/hover背景
-@bg-highlight: #3a3a3a; // 激活态背景
-@text-primary: #e0e0e0; // 普通文本
-@text-secondary: #aaa; // 次要文本
-@text-white: #ffffff; // 白色文本
-@border-color: #333; // 边框颜色
-@shadow: 0 2px 8px rgba(0, 0, 0, 0.3); // 阴影效果
-@radius: 8px; // 圆角大小
-@transition: all 0.3s; // 过渡效果
-
-// 基础样式重置
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-// 页面容器
 .doc-preview-container {
-  height:100%;
-  width: 100vw;
-  background-color: @bg-primary;
-  color: @text-primary;
-  padding: 20px;
-}
-
-// 搜索栏样式
-.search-bar {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  background-color: @bg-secondary;
-  padding: 12px 20px;
-  border-radius: @radius;
-  margin-bottom: 20px;
-  box-shadow: @shadow;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #1e1e1e;
+  color: #ffffff;
 
-  .search-input {
-    flex: 1;
-    background-color: @bg-tertiary;
-    border: none;
-    outline: none;
-    color: @text-primary;
-    padding: 10px 16px;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: @transition;
-
-    &:focus {
-      background-color: #383838;
-    }
-  }
-
-  .search-controls {
+  .search-bar {
     display: flex;
     align-items: center;
-    gap: 8px;
-  }
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #2d2d30;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 
-  .search-btn {
-    background-color: @bg-tertiary;
-    border: none;
-    color: @text-primary;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: @transition;
-    font-size: 13px;
+    .search-input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid #3c3c3c;
+      border-radius: 4px;
+      font-size: 16px;
+      background-color: #3c3c3c;
+      color: #ffffff;
 
-    &:hover {
-      background-color: @bg-highlight;
+      &:focus {
+        outline: none;
+        border-color: #007acc;
+        box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.3);
+      }
+
+      &::placeholder {
+        color: #a0a0a0;
+      }
     }
 
-    &:disabled {
-      background-color: @bg-tertiary;
-      color: @text-secondary;
-      cursor: not-allowed;
+    .search-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .search-btn {
+        padding: 8px 15px;
+        background: #007acc;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s;
+
+        &:hover {
+          background: #005a9e;
+        }
+
+        &:disabled {
+          background: #3c3c3c;
+          cursor: not-allowed;
+        }
+      }
+
+      .search-count {
+        font-size: 14px;
+        color: #cccccc;
+      }
     }
   }
 
-  .search-count {
-    font-size: 13px;
-    color: @text-secondary;
-  }
-}
-
-// 主体内容布局（左侧导航 + 右侧内容）
-.doc-main {
-  display: flex;
-  gap: 20px;
-  height: calc(100vh - 120px); // 减去搜索栏高度
-}
-
-// 左侧导航样式
-.doc-nav {
-  width: 320px; // 适配游戏规则目录长度
-  background-color: @bg-secondary;
-  border-radius: @radius;
-  padding: 20px;
-  overflow-y: auto;
-  box-shadow: @shadow;
-
-  .nav-title {
-    color: @text-white;
-    font-size: 18px;
-    margin-bottom: 16px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid @border-color;
-  }
-
-  .title-list {
-    list-style: none;
-  }
-
-  .title-item {
-    padding: 8px 12px;
-    margin-bottom: 4px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: @transition;
-    font-size: 14px;
-    white-space: nowrap;
+  .doc-main {
+    display: flex;
+    flex: 1;
+    gap: 20px;
     overflow: hidden;
-    text-overflow: ellipsis;
 
-    // 标题层级缩进（匹配游戏规则的4级标题）
-    &.level-1 {
-      padding-left: 12px;
-      font-weight: 600;
-      color: @text-white;
-    }
-
-    &.level-2 {
-      padding-left: 24px;
-      color: @text-primary;
-    }
-
-    &.level-3 {
-      padding-left: 36px;
-      color: @text-secondary;
-    }
-
-    &.level-4 {
-      padding-left: 48px;
-      color: #999;
-    }
-
-    // 激活态
-    &.active {
-      background-color: @bg-highlight;
-      color: @text-white;
-    }
-
-    //  hover态
-    &:hover:not(.active) {
-      background-color: @bg-tertiary;
-      color: @text-white;
-    }
-  }
-}
-
-// 右侧内容区样式
-.content-wrapper {
-  flex: 1;
-  background-color: @bg-secondary;
-  border-radius: @radius;
-  padding: 30px;
-  overflow-y: auto;
-  box-shadow: @shadow;
-
-  .doc-content {
-    line-height: 1.8; // 提高游戏规则可读性
-  }
-
-  .content-section {
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid @border-color;
-
-    // 激活章节高亮
-    &.active-section {
-      background-color: rgba(58, 58, 58, 0.2);
+    .doc-nav {
+      width: 250px;
+      background: #2d2d30;
+      border-radius: 8px;
       padding: 20px;
-      border-radius: @radius;
-      margin: 0 -20px 40px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      overflow-y: auto;
+      max-height: calc(100vh - 180px);
+
+      .nav-title {
+        margin-top: 0;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #3c3c3c;
+        color: #ffffff;
+      }
+
+      .title-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        .title-item {
+          padding: 8px 12px;
+          margin-bottom: 5px;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: all 0.3s;
+          font-size: 14px;
+          color: #cccccc;
+
+          &:hover {
+            background-color: #3c3c3c;
+          }
+
+          &.active {
+            background-color: #007acc;
+            color: white;
+          }
+
+          &.level-1 {
+            font-size: 16px;
+            font-weight: bold;
+            padding-left: 10px;
+          }
+
+          &.level-2 {
+            font-size: 15px;
+            padding-left: 25px;
+          }
+
+          &.level-3 {
+            font-size: 14px;
+            padding-left: 40px;
+          }
+
+          &.level-4 {
+            font-size: 13px;
+            padding-left: 55px;
+          }
+
+          &.level-5 {
+            font-size: 12px;
+            padding-left: 70px;
+          }
+
+          &.level-6 {
+            font-size: 11px;
+            padding-left: 85px;
+          }
+        }
+      }
     }
 
-    // 搜索结果章节高亮
-    &.highlight-section {
-      background-color: rgba(68, 68, 180, 0.1);
+    .content-wrapper {
+      flex: 1;
+      overflow-y: auto;
+      background: #2d2d30;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      max-height: calc(100vh - 180px);
+
+      .loading {
+        text-align: center;
+        padding: 50px;
+        color: #a0a0a0;
+        font-size: 16px;
+      }
+
+      .doc-content {
+        .content-section {
+          margin-bottom: 30px;
+          padding: 20px 0;
+          border-bottom: 1px solid #3c3c3c;
+
+          &.active-section {
+            background-color: #3c3c3c;
+          }
+
+          &.highlight-section {
+            border-left: 3px solid #007acc;
+            padding-left: 17px;
+          }
+
+          .section-title {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #ffffff;
+          }
+
+          .section-body {
+            line-height: 1.6;
+            color: #cccccc;
+
+            // 保留 HTML 样式
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+              margin-top: 24px;
+              margin-bottom: 16px;
+              font-weight: 600;
+              line-height: 1.25;
+              color: #ffffff;
+            }
+
+            h1 {
+              font-size: 2em;
+              padding-bottom: 0.3em;
+              border-bottom: 1px solid #3c3c3c;
+            }
+
+            h2 {
+              font-size: 1.5em;
+              padding-bottom: 0.3em;
+              border-bottom: 1px solid #3c3c3c;
+            }
+
+            h3 {
+              font-size: 1.25em;
+            }
+
+            h4 {
+              font-size: 1em;
+            }
+
+            h5 {
+              font-size: 0.875em;
+            }
+
+            h6 {
+              font-size: 0.85em;
+              color: #a0a0a0;
+            }
+
+            p {
+              margin-top: 0;
+              margin-bottom: 16px;
+            }
+
+            ul,
+            ol {
+              padding-left: 2em;
+              margin-top: 0;
+              margin-bottom: 16px;
+
+              li {
+                margin-bottom: 4px;
+              }
+            }
+
+            ul {
+              list-style-type: disc;
+            }
+
+            ol {
+              list-style-type: decimal;
+            }
+
+            strong {
+              font-weight: 600;
+            }
+
+            em {
+              font-style: italic;
+            }
+
+            code {
+              padding: 0.2em 0.4em;
+              margin: 0;
+              font-size: 85%;
+              background-color: rgba(255, 255, 255, 0.1);
+              border-radius: 3px;
+              font-family: monospace;
+              color: #ffffff;
+            }
+
+            pre {
+              padding: 16px;
+              overflow: auto;
+              font-size: 85%;
+              line-height: 1.45;
+              background-color: #1e1e1e;
+              border-radius: 3px;
+              font-family: monospace;
+
+              code {
+                padding: 0;
+                margin: 0;
+                font-size: 100%;
+                background: transparent;
+                color: #cccccc;
+              }
+            }
+
+            blockquote {
+              margin: 0;
+              padding: 0 1em;
+              color: #a0a0a0;
+              border-left: 0.25em solid #3c3c3c;
+            }
+
+            table {
+              width: 100%;
+              overflow: auto;
+              margin-bottom: 16px;
+              border-collapse: collapse;
+
+              th {
+                font-weight: 600;
+                color: #ffffff;
+                background-color: #3c3c3c;
+              }
+
+              th,
+              td {
+                padding: 6px 13px;
+                border: 1px solid #3c3c3c;
+              }
+
+              tr {
+                background-color: #2d2d30;
+                border-top: 1px solid #3c3c3c;
+
+                &:nth-child(2n) {
+                  background-color: #3c3c3c;
+                }
+              }
+            }
+
+            img {
+              max-width: 100%;
+              box-sizing: content-box;
+            }
+
+            a {
+              color: #3794ff;
+
+              &:hover {
+                color: #75baff;
+              }
+            }
+
+            .search-highlight {
+              background-color: #d5b754;
+              color: #1e1e1e;
+              padding: 1px 2px;
+              border-radius: 2px;
+
+              &.active-highlight {
+                background-color: #ffca28;
+                font-weight: bold;
+                color: #1e1e1e;
+              }
+            }
+          }
+        }
+      }
     }
-
-    .section-title {
-      color: @text-white;
-      font-size: 22px;
-      margin-bottom: 16px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid #444;
-    }
-
-    .section-body {
-      font-size: 15px;
-      color: @text-primary;
-      white-space: pre-line; // 保留游戏规则中的换行格式
-    }
-  }
-}
-
-// 搜索高亮样式
-.search-highlight {
-  background-color: #ffeb3b;
-  color: @bg-primary;
-  font-weight: 600;
-  padding: 0 2px;
-  border-radius: 2px;
-}
-
-// 当前激活的搜索结果高亮
-.active-highlight {
-  background-color: #ff9800;
-  color: @text-white;
-}
-
-// 加载状态
-.loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  font-size: 16px;
-  color: @text-secondary;
-}
-
-// 滚动条样式（黑色风格统一）
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: @bg-tertiary;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #444;
-  border-radius: 4px;
-
-  &:hover {
-    background: #555;
   }
 }

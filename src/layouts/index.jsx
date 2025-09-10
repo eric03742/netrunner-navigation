@@ -67,6 +67,9 @@ const Layout = () => {
 
   // 添加滚轮切换 tab 的功能
   const handleWheel = useCallback((e) => {
+    if (activeKey === 'BASICS') {
+      return;
+    }
     // 阻止默认滚动行为
     e.preventDefault();
 
