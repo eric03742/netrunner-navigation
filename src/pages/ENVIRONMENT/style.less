@@ -30,16 +30,97 @@
 }
 
 .pageHeader {
-  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  h2 {
+    font-family: 'XiangSuFont';
+  }
 
   .backButton {
-    padding: 8px 16px;
-    background-color: #6e8efb;
-    color: white;
-    border: none;
-    border-radius: 4px;
+    position: absolute;
+    left: 20px;
+  }
+
+  // 添加右箭头按钮样式
+  .nextButton {
+    position: absolute;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    margin-bottom: 15px;
+    transition: all 0.3s ease;
+
+    .arrowIcon {
+      width: 24px;
+      height: 24px;
+      fill: white;
+      transition: all 0.3s ease;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.6);
+      transform: translateX(5px);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+
+      .arrowIcon {
+        transform: scale(1.2);
+      }
+    }
+
+    &:active {
+      transform: translateX(3px);
+    }
+  }
+
+  // 添加右箭头按钮样式
+  .nextLeftButton {
+    position: absolute;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    .arrowIcon {
+      width: 24px;
+      height: 24px;
+      fill: white;
+      transition: all 0.3s ease;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.6);
+      transform: translateX(-5px);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+
+      .arrowIcon {
+        transform: scale(1.2);
+      }
+    }
+
+    &:active {
+      transform: translateX(-3px);
+    }
   }
 }
 
@@ -168,10 +249,9 @@
 
 .cycleButtons {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 10px;
   width: 100%;
-  max-width: 200px;
 }
 
 .techButton {
@@ -230,4 +310,170 @@
   &:nth-child(2):hover {
     box-shadow: 0 0 15px rgba(229, 92, 180, 0.7);
   }
+}
+
+.cycleButton {
+  height: 100px;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 40px;
+  width: 200px;
+
+  .cycleLogo {
+    width: 30px;
+    height: 30px;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgb(221 9 27);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.5s;
+      z-index: 1;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+      transform: scale(0);
+      transition: transform 0.5s ease;
+      z-index: 0;
+    }
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+
+  &:hover::after {
+    transform: scale(1);
+  }
+
+  // 定制颜色
+  &:nth-child(2):hover {
+    box-shadow: 0 0 15px rgb(29 181 217);
+  }
+
+  &:nth-child(3):hover {
+    box-shadow: 0 0 15px rgb(245 128 25);
+  }
+
+  &:nth-child(4):hover {
+    box-shadow: 0 0 15px rgb(203 203 203);
+  }
+
+  &:nth-child(5):hover {
+    box-shadow: 0 0 15px rgb(128 128 237);
+  }
+}
+
+.cycleContent {
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  font-family: 'CommonFont';
+
+  &.fadeIn {
+    opacity: 1;
+  }
+}
+
+.cycleLogos {
+  display: block;
+  margin: 0 auto 20px;
+  margin-bottom: 0;
+  max-width: 150px;
+  height: auto;
+}
+
+.cycleSubTitle {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.cycleTime {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+.cycleText {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.4;
+  margin: 0 100px;
+}
+
+.cycleCards {
+  display: block;
+  max-width: 400px;
+  width: 400px;
+  height: fit-content;
+}
+
+.cycleCardContent {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 30px;
+  color: #ccc;
+  font-family: 'XiangSuFont';
+  line-height: 20px;
+}
+
+.cycleCoverContent {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+
+  img {
+    width: 190px;
+    height: fit-content;
+  }
+}
+
+.cycleCover {
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.cycleBottom {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 100px;
 }

@@ -2,12 +2,16 @@ import styles from './style.less';
 import { useState } from 'react';
 import environmentImg from '@/assets/Environment/environmentImg.png'
 import { Image } from "antd"
+import { cycleText } from './content'
 
 const ENVIRONMENT = () => {
   const [currentView, setCurrentView] = useState('main'); // 'main', 'banlist', 'cycle'
   const [transitionClass, setTransitionClass] = useState(''); // 控制过渡动画类
   const [banList, setBanList] = useState([]); // 禁卡表
+  const [cycleData, setCycleData] = useState({}); // 循环信息
   const [currentBan, setCurrentBan] = useState('stardard'); // 禁卡表
+  const [isFading, setIsFading] = useState(false); // 控制淡入淡出动画
+
   const showBanlist = (type) => {
     // 根据type设置禁卡表
     if (type === 'standard') {
@@ -38,11 +42,13 @@ const ENVIRONMENT = () => {
     }, 150);
   };
 
-  const showCycle = () => {
+  const showCycle = (key) => {
+    setCycleData(cycleText?.find(item => item.key === key))
     setTransitionClass(styles.slideOutToLeft);
     setTimeout(() => {
       setCurrentView('cycle');
       setTransitionClass('');
+      setIsFading(true);
     }, 150);
   };
 
@@ -55,11 +61,14 @@ const ENVIRONMENT = () => {
   };
 
   const showMainFromCycle = () => {
-    setTransitionClass(styles.slideOutToRight);
+    setIsFading(false);
     setTimeout(() => {
-      setCurrentView('main');
-      setTransitionClass('');
-    }, 150);
+      setTransitionClass(styles.slideOutToRight);
+      setTimeout(() => {
+        setCurrentView('main');
+        setTransitionClass('');
+      }, 150);
+    }, 300); // 等待淡出动画完成
   };
 
   return (
@@ -95,23 +104,10 @@ const ENVIRONMENT = () => {
 
           {/* 右侧按钮 - 循环区 */}
           <div className={styles.rightButtons}>
-            <h3>循环区</h3>
             <div className={styles.cycleButtons}>
-              <button className={styles.techButton} onClick={showCycle}>
-                循环按钮1
-              </button>
-              <button className={styles.techButton} onClick={showCycle}>
-                循环按钮2
-              </button>
-              <button className={styles.techButton} onClick={showCycle}>
-                循环按钮3
-              </button>
-              <button className={styles.techButton} onClick={showCycle}>
-                循环按钮4
-              </button>
-              <button className={styles.techButton} onClick={showCycle}>
-                循环按钮5
-              </button>
+              {cycleText?.map(item => <button className={styles.cycleButton} style={{ background: `linear-gradient(135deg, ${item.color}, #ffffff00)` }} onClick={() => showCycle(item.key)}>
+                <img src={item.logo} className={styles.cycleLogo} />  {item.title}
+              </button>)}
             </div>
           </div>
         </div>
@@ -125,7 +121,6 @@ const ENVIRONMENT = () => {
           }`}
       >
         <div className={styles.pageHeader}>
-          <button className={styles.backButton} onClick={showMainFromBanlist}>返回</button>
           {currentBan === 'standard' && <>
             <h2>标准禁卡表25.08</h2>
             <h2>生效日期：2025年8月1日</h2>
@@ -134,6 +129,17 @@ const ENVIRONMENT = () => {
             <h2>新启禁卡表25.04</h2>
             <h2>生效日期：2025年4月27日</h2>
           </>}
+          {/* 添加右箭头按钮 */}
+          <button className={styles.nextButton} onClick={showMainFromBanlist}>
+            <svg className={styles.arrowIcon} viewBox="0 0 24 24">
+              <path
+                d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"
+                strokeWidth="2"
+                stroke="#fff"
+                fill="none"
+              />
+            </svg>
+          </button>
         </div>
         <div className={styles.banListContent}>
           {banList.map((image) => (
@@ -142,7 +148,6 @@ const ENVIRONMENT = () => {
               width={150}
               src={image}
             />
-
           ))}
         </div>
       </div>
@@ -155,11 +160,49 @@ const ENVIRONMENT = () => {
           }`}
       >
         <div className={styles.pageHeader}>
-          <button className={styles.backButton} onClick={showMainFromCycle}>返回</button>
-          <h2>循环区内容</h2>
+          {/* 添加左侧返回按钮，箭头向左 */}
+          <button className={styles.nextLeftButton} onClick={showMainFromCycle}>
+            <svg className={styles.arrowIcon} viewBox="0 0 24 24">
+              <path
+                d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"
+                strokeWidth="2"
+                stroke="#fff"
+                fill="none"
+              />
+            </svg>
+          </button>
+          {/* 标题 */}
+          <h2 style={{ color: cycleData.color }}>{cycleData?.title}</h2>
         </div>
-        <div className={styles.pageContent}>
-          <p>这里是循环区的详细内容</p>
+        <div className={`${styles.cycleContent} ${isFading ? styles.fadeIn : ''}`}>
+          {/* logo居中 */}
+          {cycleData.logo && <img src={cycleData.logo} className={styles.cycleLogos} />}
+
+          {/* logo可能会出现的副标题 */}
+          {cycleData.subTitle && <div className={styles.cycleSubTitle}>{cycleData?.subTitle}</div>}
+
+          {/* logo下方时间 */}
+          {cycleData.time && <div className={styles.cycleTime}>{cycleData?.time}</div>}
+
+          {/* logo下方说明文字 */}
+          {cycleData.text && <div className={styles.cycleText}>{cycleData?.text}</div>}
+
+          <div className={styles.cycleBottom}>
+            {/*该循环的卡牌图片*/}
+            {cycleData.cards && <img src={cycleData.cards} className={styles.cycleCards} />}
+
+            {/*卡牌图片下的数量文字*/}
+            {cycleData.content && <div className={styles.cycleCardContent}>{cycleData?.content}</div>}
+
+            {/*封面，1~2张*/}
+            {cycleData.covers && (
+              <div className={styles.cycleCoverContent}>
+                {cycleData?.covers?.map((item, index) => (
+                  <img key={index} src={item} className={styles.cycleCover} />
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
