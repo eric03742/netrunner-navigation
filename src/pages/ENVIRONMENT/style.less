@@ -47,6 +47,16 @@
   padding: 20px;
 }
 
+.banListContent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  .image {
+    width: 150px;
+  }
+}
+
 /* 初始状态 - 主页面显示 */
 .mainPage.active {
   transform: translateX(0);
@@ -117,16 +127,17 @@
 
 /* 主页面内容样式 */
 .descriptionSection {
-  padding: 20px;
+  padding: 100px;
+  padding-top: 40px;
+  padding-bottom: 0;
   text-align: center;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 20px;
+  font-size: 32px;
+  font-family: 'CommonFont';
 }
 
 .buttonSection {
   display: flex;
   justify-content: space-between;
-  padding: 20px 0;
   flex: 1;
 }
 
@@ -142,10 +153,13 @@
   }
 }
 
-.middle {}
+.middle {
+  height: fit-content;
+}
 
 .buttonGrid {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
   width: 100%;
@@ -161,6 +175,7 @@
 }
 
 .techButton {
+  height: 100px;
   padding: 15px 20px;
   background: linear-gradient(135deg, #6e8efb, #a777e3);
   color: white;
@@ -170,13 +185,49 @@
   font-weight: bold;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 15px rgba(76, 235, 39, 0.7);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.5s;
+      z-index: 1;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+      transform: scale(0);
+      transition: transform 0.5s ease;
+      z-index: 0;
+    }
   }
 
-  &:active {
-    transform: translateY(0);
+  &:hover::before {
+    left: 100%;
+  }
+
+  &:hover::after {
+    transform: scale(1);
+  }
+
+  // 为新启禁卡表按钮定制颜色
+  &:nth-child(2):hover {
+    box-shadow: 0 0 15px rgba(229, 92, 180, 0.7);
   }
 }
