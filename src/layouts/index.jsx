@@ -16,7 +16,7 @@ import './style.less';
 const TAB = [
   { key: '1', label: '首页', subTitle: 'INDEX', background: IndexBG },
   { key: '2', label: '派系', subTitle: 'FACTION', background: FactionBG },
-  { key: '3', label: '基础', subTitle: 'BASICS', background: BasicsBg },
+  { key: '3', label: '基础', subTitle: 'BASICS', background: null },
   { key: '4', label: '潜袭', subTitle: 'RUN', background: RunBG },
   { key: '5', label: '环境', subTitle: 'ENVIRONMENT', background: EnvironmentBG },
   { key: '6', label: '社群', subTitle: 'COMMUNITY', background: CommunityBG },
@@ -143,6 +143,7 @@ const Layout = () => {
             className={`bg-slide bg-slide-current ${isAnimating ? `slide-in-${direction}` : ''}`}
             style={{
               backgroundImage: `url(${TAB.find((item) => item.subTitle === activeKey)?.background})`,
+              filter: activeKey === 'INDEX' ? 'none' : 'blur(5px)'
             }}
           />
         </div>
