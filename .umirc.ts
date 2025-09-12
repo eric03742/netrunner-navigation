@@ -11,6 +11,7 @@ export default defineConfig({
       path: '/',
       exact: true,
       component: '@/pages/Home',
+      title: '测试暗门',
     },
   ],
   npmClient: 'yarn',

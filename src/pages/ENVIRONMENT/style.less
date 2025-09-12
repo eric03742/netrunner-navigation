@@ -1,0 +1,182 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.mainPage {
+  // background-color: #f5f5f5;
+}
+
+.banlistPage {
+  // background-color: #e3f2fd;
+}
+
+.cyclePage {
+  // background-color: #f1f8e9;
+}
+
+.pageHeader {
+  margin-bottom: 20px;
+
+  .backButton {
+    padding: 8px 16px;
+    background-color: #6e8efb;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 15px;
+  }
+}
+
+.pageContent {
+  padding: 20px;
+}
+
+/* 初始状态 - 主页面显示 */
+.mainPage.active {
+  transform: translateX(0);
+  opacity: 1;
+  z-index: 2;
+}
+
+.mainPage.hidden {
+  opacity: 0;
+  z-index: 1;
+}
+
+.mainPage.slideOutToLeft {
+  transform: translateX(0);
+  opacity: 0;
+}
+
+.mainPage.slideOutToRight {
+  transform: translateX(0);
+  opacity: 0;
+}
+
+/* 禁卡区页面状态 */
+.banlistPage.active {
+  transform: translateX(0);
+  opacity: 1;
+  z-index: 2;
+}
+
+.banlistPage.hidden {
+  transform: translateX(-100%);
+  opacity: 1;
+  z-index: 1;
+}
+
+.banlistPage.enterFromRight {
+  transform: translateX(100%);
+  opacity: 1;
+}
+
+.banlistPage.enterFromLeft {
+  transform: translateX(-100%);
+  opacity: 1;
+}
+
+/* 循环区页面状态 */
+.cyclePage.active {
+  transform: translateX(0);
+  opacity: 1;
+  z-index: 2;
+}
+
+.cyclePage.hidden {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 1;
+}
+
+.cyclePage.enterFromLeft {
+  transform: translateX(-100%);
+  opacity: 1;
+}
+
+.cyclePage.enterFromRight {
+  transform: translateX(100%);
+  opacity: 1;
+}
+
+/* 主页面内容样式 */
+.descriptionSection {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.buttonSection {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  flex: 1;
+}
+
+.leftButtons,
+.rightButtons {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h3 {
+    margin-bottom: 15px;
+  }
+}
+
+.middle {}
+
+.buttonGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.cycleButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.techButton {
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
