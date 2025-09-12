@@ -103,7 +103,7 @@ const ENVIRONMENT = () => {
           <img className={styles.middle} src={environmentImg} />
 
           {/* 右侧按钮 - 循环区 */}
-          <div className={styles.rightButtons}>
+          <div className={styles.rightButtons} style={{ minWidth: '420px' }}>
             <div className={styles.cycleButtons}>
               {cycleText?.map(item => <button className={styles.cycleButton} style={{ background: `linear-gradient(135deg, ${item.color}, #ffffff00)` }} onClick={() => showCycle(item.key)}>
                 <img src={item.logo} className={styles.cycleLogo} />  {item.title}
@@ -159,7 +159,7 @@ const ENVIRONMENT = () => {
           : (currentView === 'main' ? `${styles.enterFromRight}` : `${styles.hidden}`)
           }`}
       >
-        <div className={styles.pageHeader}>
+        <div className={styles.pageHeader} style={{ paddingBottom: 0 }}>
           {/* 添加左侧返回按钮，箭头向左 */}
           <button className={styles.nextLeftButton} onClick={showMainFromCycle}>
             <svg className={styles.arrowIcon} viewBox="0 0 24 24">
@@ -174,7 +174,7 @@ const ENVIRONMENT = () => {
           {/* 标题 */}
           <h2 style={{ color: cycleData.color }}>{cycleData?.title}</h2>
         </div>
-        <div className={`${styles.cycleContent} ${isFading ? styles.fadeIn : ''}`}>
+        <div className={`${styles.cycleContent} ${isFading ? styles.fadeIn : ''}`} style={{ paddingTop: 0 }}>
           {/* logo居中 */}
           {cycleData.logo && <img src={cycleData.logo} className={styles.cycleLogos} />}
 
