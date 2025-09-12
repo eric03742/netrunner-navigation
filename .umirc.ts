@@ -1,6 +1,7 @@
 import { defineConfig } from '@umijs/max';
 
 export default defineConfig({
+  title: '测试暗门',
   antd: {},
   access: {},
   model: {},
@@ -11,7 +12,6 @@ export default defineConfig({
       path: '/',
       exact: true,
       component: '@/pages/Home',
-      title: '测试暗门',
     },
   ],
   npmClient: 'yarn',

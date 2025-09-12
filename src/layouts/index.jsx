@@ -53,7 +53,9 @@ const Layout = () => {
   };
 
   useEffect(() => {
-    setActiveKey(hash.startsWith('#') ? hash.substring(1) : 'INDEX');
+    const newKey = hash.startsWith('#') ? hash.substring(1) : 'INDEX'
+    setActiveKey(newKey);
+    document.title = newKey === 'INDEX' ? '测试暗门' : `测试暗门-${TAB.find(item => item.subTitle === newKey).label}`;
   }, [hash])
 
   useEffect(() => {
