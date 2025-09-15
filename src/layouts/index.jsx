@@ -13,7 +13,7 @@ import RunBG from '@/assets/layout/bgs/Run-BG.jpg';
 import beian from '@/assets/layout/beian.png'
 import './style.less';
 
-const preLoadImg = [
+const TAB = [
   { key: '1', label: '首页', subTitle: 'INDEX', background: IndexBG },
   { key: '2', label: '派系', subTitle: 'FACTION', background: FactionBG },
   { key: '3', label: '基础', subTitle: 'BASICS', background: null },
@@ -31,7 +31,7 @@ const Layout = () => {
 
   useEffect(() => {
     // 预加载所有背景图片
-    preLoadImg.forEach(item => {
+    TAB.forEach(item => {
       const img = new Image();
       img.src = item.background;
     });
