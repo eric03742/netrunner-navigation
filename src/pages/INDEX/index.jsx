@@ -35,38 +35,27 @@ const INDEX = () => {
     }, 500);
   }, [isScrolling, currentPage, totalPages]);
 
-  // // 处理鼠标滚轮事件
-  // const handleWheel = useCallback((e) => {
-  //   e.preventDefault();
-  //   if (e.deltaY > 0) {
-  //     // 向下滚动
-  //     handleScroll('down');
-  //   } else {
-  //     // 向上滚动
-  //     handleScroll('up');
-  //   }
-  // }, [handleScroll]);
+  // 处理鼠标滚轮事件
+  const handleWheel = useCallback((e) => {
+    e.preventDefault();
+    if (e.deltaY > 0) {
+      // 向下滚动
+      handleScroll('down');
+    } else {
+      // 向上滚动
+      handleScroll('up');
+    }
+  }, [handleScroll]);
 
-  // // 添加键盘支持（可选）
-  // const handleKeyDown = useCallback((e) => {
-  //   if (e.key === 'ArrowDown') {
-  //     handleScroll('down');
-  //   } else if (e.key === 'ArrowUp') {
-  //     handleScroll('up');
-  //   }
-  // }, [handleScroll]);
+  useEffect(() => {
+    // 添加事件监听器
+    window.addEventListener('wheel', handleWheel, { passive: false });
 
-  // useEffect(() => {
-  //   // 添加事件监听器
-  //   window.addEventListener('wheel', handleWheel, { passive: false });
-  //   window.addEventListener('keydown', handleKeyDown);
-
-  //   return () => {
-  //     // 清理事件监听器
-  //     window.removeEventListener('wheel', handleWheel);
-  //     window.removeEventListener('keydown', handleKeyDown);
-  //   };
-  // }, [handleWheel, handleKeyDown]);
+    return () => {
+      // 清理事件监听器
+      window.removeEventListener('wheel', handleWheel);
+    };
+  }, [handleWheel]);
 
   // 页面内容数据
   const pageContents = [
@@ -111,7 +100,7 @@ const INDEX = () => {
         >
           <div className={styles['welcome-content']}>
             <img className={styles['welcome-logo']} src={netRunner} />
-            <div className={styles['welcome-text-top']}><span style={{ color: 'rgb(84 83 83)', backgroundColor: '#e6d8d896', fontSize: 40 }}>欢迎</span>来到</div>
+            <div className={styles['welcome-text-top']}><span style={{ color: 'rgb(84 83 83)', backgroundColor: '#e6d8d896', fontSize: 40 }}>欢迎来到</span></div>
             <div className={styles['welcome-text-bottom']}>矩阵潜袭的<span style={{ color: '#cacacaff' }}>世界</span></div>
           </div>
         </div>

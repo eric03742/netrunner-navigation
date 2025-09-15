@@ -13,7 +13,7 @@ import RunBG from '@/assets/layout/bgs/Run-BG.jpg';
 import beian from '@/assets/layout/beian.png'
 import './style.less';
 
-const TAB = [
+const preLoadImg = [
   { key: '1', label: '首页', subTitle: 'INDEX', background: IndexBG },
   { key: '2', label: '派系', subTitle: 'FACTION', background: FactionBG },
   { key: '3', label: '基础', subTitle: 'BASICS', background: null },
@@ -31,7 +31,7 @@ const Layout = () => {
 
   useEffect(() => {
     // 预加载所有背景图片
-    TAB.forEach(item => {
+    preLoadImg.forEach(item => {
       const img = new Image();
       img.src = item.background;
     });
@@ -66,51 +66,6 @@ const Layout = () => {
       return () => clearTimeout(timer);
     }
   }, [isAnimating]);
-
-  // 添加滚轮切换 tab 的功能
-  const handleWheel = useCallback((e) => {
-    if (activeKey === 'BASICS') {
-      return;
-    }
-    // 阻止默认滚动行为
-    e.preventDefault();
-
-    // 防止在动画过程中切换
-    if (isAnimating) return;
-
-    const currentIndex = TAB.findIndex((item) => item.subTitle === activeKey);
-
-    // 根据滚轮方向确定下一个 tab
-    let nextIndex;
-    if (e.deltaY > 0) {
-      // 向下滚动，切换到下一个 tab
-      nextIndex = (currentIndex + 1) % TAB.length;
-      setDirection('right');
-    } else {
-      // 向上滚动，切换到上一个 tab
-      nextIndex = (currentIndex - 1 + TAB.length) % TAB.length;
-      setDirection('left');
-    }
-
-    setPrevKey(activeKey);
-    setIsAnimating(true);
-
-    // 更新 URL 和 activeKey
-    const nextTab = TAB[nextIndex];
-    history.push(`/#${nextTab.subTitle}`);
-  }, [activeKey, isAnimating]);
-
-  // 添加和移除滚轮事件监听器
-  useEffect(() => {
-    const layoutElement = document.querySelector('.layout-contain');
-    if (layoutElement) {
-      layoutElement.addEventListener('wheel', handleWheel, { passive: false });
-
-      return () => {
-        layoutElement.removeEventListener('wheel', handleWheel);
-      };
-    }
-  }, [handleWheel]);
 
   return (
     <div className="layout">
