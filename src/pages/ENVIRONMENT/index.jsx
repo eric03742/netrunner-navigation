@@ -1,6 +1,6 @@
 import styles from './style.less';
 import { useState } from 'react';
-import environmentImg from '@/assets/Environment/environmentImg.png'
+import environmentImg from '@/assets/Environment/environmentImg.webp'
 import { Image } from "antd"
 import { cycleText } from './content'
 

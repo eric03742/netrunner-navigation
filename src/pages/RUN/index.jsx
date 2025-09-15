@@ -3,10 +3,10 @@ import styles from './style.less';
 import { useState, useEffect } from 'react';
 
 // 图片导入（需要您提供这些图片文件）
-import buildImg from '@/assets/Run/build.png';
-import cardListImg from '@/assets/Run/cardList.png';
-import gameImg from '@/assets/Run/game.png';
-import statistics from '@/assets/Run/statistics.png';
+import buildImg from '@/assets/Run/build.webp';
+import cardListImg from '@/assets/Run/cardList.webp';
+import gameImg from '@/assets/Run/game.webp';
+import statistics from '@/assets/Run/statistics.webp';
 
 
 const slides = [

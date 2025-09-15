@@ -4,7 +4,7 @@ import weyland from '@/assets/Faction/NISEI_WEYLAND.svg';
 import nbn from '@/assets/Faction/NISEI_NBN.svg';
 import hassBioroid from '@/assets/Faction/NISEI_HB.svg';
 // import jinteki from '@/assets/Faction/NISEI_JINTEKI.svg';
-import jinteki from '@/assets/Faction/NISEI_JINTEKI.png';
+import jinteki from '@/assets/Faction/NISEI_JINTEKI.webp';
 import anarch from '@/assets/Faction/NISEI_ANARCH.svg';
 import shaper from '@/assets/Faction/NISEI_SHAPER.svg';
 import criminal from '@/assets/Faction/NISEI_CRIMINAL.svg';

@@ -2,15 +2,14 @@
 import { Tabs } from 'antd';
 import { useState, useEffect, useCallback } from 'react';
 import { Outlet, history, useLocation } from 'umi';
-import logo from '@/assets/layout/logo.png';
-import logo2 from '@/assets/layout/logo2.png';
-import BasicsBg from '@/assets/layout/bgs/Basics-BG.png';
-import CommunityBG from '@/assets/layout/bgs/Community-BG.jpg';
-import EnvironmentBG from '@/assets/layout/bgs/Environment-BG.png';
-import FactionBG from '@/assets/layout/bgs/Faction-BG.jpg';
-import IndexBG from '@/assets/layout/bgs/Index-BG.jpg';
-import RunBG from '@/assets/layout/bgs/Run-BG.jpg';
-import beian from '@/assets/layout/beian.png'
+import logo from '@/assets/layout/logo.webp';
+import logo2 from '@/assets/layout/logo2.webp';
+import CommunityBG from '@/assets/layout/bgs/Community-BG.webp';
+import EnvironmentBG from '@/assets/layout/bgs/Environment-BG.webp';
+import FactionBG from '@/assets/layout/bgs/Faction-BG.webp';
+import IndexBG from '@/assets/layout/bgs/Index-BG.webp';
+import RunBG from '@/assets/layout/bgs/Run-BG.webp';
+import beian from '@/assets/layout/beian.webp'
 import './style.less';
 
 const TAB = [

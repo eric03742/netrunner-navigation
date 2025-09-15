@@ -3,7 +3,7 @@ import * as mammoth from 'mammoth';
 import Highlighter from 'react-highlight-words';
 import './style.less';
 import rules from './rules.docx'
-import { formatContent, iconNames } from './utils';
+import { formatContent } from './utils';
 
 // 文档预览组件
 const DocPreview = () => {

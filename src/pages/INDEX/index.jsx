@@ -1,11 +1,11 @@
 import styles from './style.less';
 import { useState, useEffect, useCallback } from 'react';
-import netRunner from '@/assets/netRunner.png'
-import introduction1 from '@/assets/IndexPage/introduction1.jpg'
-import introduction2 from '@/assets/IndexPage/introduction2.jpg'
-import introduction3 from '@/assets/IndexPage/introduction3.jpg'
-import introduction4 from '@/assets/IndexPage/introduction4.jpg'
-import introduction5 from '@/assets/IndexPage/introduction5.jpg'
+import netRunner from '@/assets/netRunner.webp'
+import introduction1 from '@/assets/IndexPage/introduction1.webp'
+import introduction2 from '@/assets/IndexPage/introduction2.webp'
+import introduction3 from '@/assets/IndexPage/introduction3.webp'
+import introduction4 from '@/assets/IndexPage/introduction4.webp'
+import introduction5 from '@/assets/IndexPage/introduction5.webp'
 const INDEX = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
