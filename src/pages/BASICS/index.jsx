@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import * as mammoth from 'mammoth';
 import Highlighter from 'react-highlight-words';
 import './style.less';
-import rules from './rules.docx'
-import { formatContent } from './utils';
+import { titles, sections } from './const'
+
+// import * as mammoth from 'mammoth';
+// import rules from './rules.docx'
+// import { formatContent } from './utils';
 
 // 文档预览组件
 const DocPreview = () => {
@@ -19,77 +21,79 @@ const DocPreview = () => {
   useEffect(() => {
     const fetchAndParseDoc = async () => {
       try {
-        // 获取文件
-        const response = await fetch(rules);
-        const arrayBuffer = await response.arrayBuffer();
+        // // 获取文件
+        // const response = await fetch(rules);
+        // const arrayBuffer = await response.arrayBuffer();
 
-        // 使用 mammoth 转换为 HTML 以保留样式
-        const result = await mammoth.convertToHtml({ arrayBuffer });
-        const htmlContent = result.value;
+        // // 使用 mammoth 转换为 HTML 以保留样式
+        // const result = await mammoth.convertToHtml({ arrayBuffer });
+        // const htmlContent = result.value;
 
-        // 创建一个临时的 div 来解析 HTML 内容
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(htmlContent, 'text/html');
+        // // 创建一个临时的 div 来解析 HTML 内容
+        // const parser = new DOMParser();
+        // const doc = parser.parseFromString(htmlContent, 'text/html');
 
-        // 提取标题和内容
-        const titles = [];
-        const sections = [];
-        let currentSection = null;
+        // // 提取标题和内容
+        // const titles = [];
+        // const sections = [];
+        // let currentSection = null;
 
-        // 遍历所有节点
-        doc.body.childNodes.forEach((node, index) => {
-          if (node.nodeType === Node.ELEMENT_NODE) {
-            // 检查是否为标题元素
-            if (['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(node.tagName)) {
-              // 保存上一个章节
-              if (currentSection) {
-                sections.push(currentSection);
-              }
+        // // 遍历所有节点
+        // doc.body.childNodes.forEach((node, index) => {
+        //   if (node.nodeType === Node.ELEMENT_NODE) {
+        //     // 检查是否为标题元素
+        //     if (['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(node.tagName)) {
+        //       // 保存上一个章节
+        //       if (currentSection) {
+        //         sections.push(currentSection);
+        //       }
 
-              const titleText = node.textContent;
-              // iconNames?.map(items => `{${items}} `)
-              const titleLevel = parseInt(node.tagName[1]);
+        //       const titleText = node.textContent;
+        //       // iconNames?.map(items => `{${items}} `)
+        //       const titleLevel = parseInt(node.tagName[1]);
 
-              titles.push({ text: titleText, level: titleLevel });
+        //       titles.push({ text: titleText, level: titleLevel });
 
-              // 初始化新章节
-              currentSection = {
-                title: titleText,
-                level: titleLevel,
-                content: ''
-              };
-            } else {
-              // 普通内容，添加到当前章节
-              if (currentSection) {
-                // 处理内容：删除&nbsp;并替换{credit}为图标
-                let content = node.outerHTML || node.textContent;
-                content = formatContent(content);
-                currentSection.content += content;
-              } else {
-                // 如果还没有标题，创建一个默认章节
-                if (sections.length === 0) {
-                  currentSection = {
-                    title: '文档开始',
-                    level: 1,
-                    content: ''
-                  };
-                  titles.push({ text: '文档开始', level: 1 });
-                }
-                // 处理内容：删除&nbsp;并替换{credit}为图标
-                let content = node.outerHTML || node.textContent;
-                content = formatContent(content);
-                currentSection.content += content;
-              }
-            }
-          }
-        });
+        //       // 初始化新章节
+        //       currentSection = {
+        //         title: titleText,
+        //         level: titleLevel,
+        //         content: ''
+        //       };
+        //     } else {
+        //       // 普通内容，添加到当前章节
+        //       if (currentSection) {
+        //         // 处理内容：删除&nbsp;并替换{credit}为图标
+        //         let content = node.outerHTML || node.textContent;
+        //         content = formatContent(content);
+        //         currentSection.content += content;
+        //       } else {
+        //         // 如果还没有标题，创建一个默认章节
+        //         if (sections.length === 0) {
+        //           currentSection = {
+        //             title: '文档开始',
+        //             level: 1,
+        //             content: ''
+        //           };
+        //           titles.push({ text: '文档开始', level: 1 });
+        //         }
+        //         // 处理内容：删除&nbsp;并替换{credit}为图标
+        //         let content = node.outerHTML || node.textContent;
+        //         content = formatContent(content);
+        //         currentSection.content += content;
+        //       }
+        //     }
+        //   }
+        // });
 
-        // 保存最后一个章节
-        if (currentSection) {
-          sections.push(currentSection);
-        }
+        // // 保存最后一个章节
+        // if (currentSection) {
+        //   sections.push(currentSection);
+        // }
 
         setDocContent({ titles, sections });
+        console.log('文档内容1:', titles);
+        console.log('文档内容2:', sections);
         // 初始化内容区域引用
         sectionRefs.current = sections.map(() => React.createRef());
       } catch (error) {
