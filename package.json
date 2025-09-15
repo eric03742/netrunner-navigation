@@ -22,7 +22,8 @@
     "docx-preview": "^0.3.6",
     "lodash": "^4.17.21",
     "mammoth": "^1.10.0",
-    "react-highlight-words": "^0.21.0"
+    "react-highlight-words": "^0.21.0",
+    "sharp": "^0.34.3"
   },
   "devDependencies": {
     "@types/react": "^18.0.33",
