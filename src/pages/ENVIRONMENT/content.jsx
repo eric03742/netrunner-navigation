@@ -143,3 +143,198 @@ export const cycleText = [
     color: 'rgb(128 128 237)'
   }
 ]
+
+export const banTextStandard = <div class="ban-list">
+  <h3>公司</h3>
+  <ul>
+    <li>
+      <span class="cycle">《核心网关》</span>
+      <span class="number">No.51：</span>
+      <span class="cn">网际传媒：身临其境</span>
+      <span class="en">NBN: Reality Plus</span>
+    </li>
+    <li>
+      <span class="cycle">《余烬》</span>
+      <span class="number">No.97：</span>
+      <span class="cn">瓦隆什计划</span>
+      <span class="en">Project Vacheron</span>
+    </li>
+    <li>
+      <span class="cycle">《余烬》</span>
+      <span class="number">No.108：</span>
+      <span class="cn">记忆冲净</span>
+      <span class="en">Engram Flush</span>
+    </li>
+    <li>
+      <span class="cycle">《余烬》</span>
+      <span class="number">No.114：</span>
+      <span class="cn">贝罗娜</span>
+      <span class="en">Bellona</span>
+    </li>
+    <li>
+      <span class="cycle">《余烬》</span>
+      <span class="number">No.116：</span>
+      <span class="cn">打钱工作室</span>
+      <span class="en">Gold Farmer</span>
+    </li>
+    <li>
+      <span class="cycle">《余烬》</span>
+      <span class="number">No.127：</span>
+      <span class="cn">卡扬贝网阵</span>
+      <span class="en">Cayambe Grid</span>
+    </li>
+    <li>
+      <span class="cycle">《余烬》</span>
+      <span class="number">No.128：</span>
+      <span class="cn">赛博杀毒剂沙盒</span>
+      <span class="en">Cyberdex Sandbox</span>
+    </li>
+    <li>
+      <span class="cycle">《北极光》</span>
+      <span class="number">No.51：</span>
+      <span class="cn">德拉戈•伊万诺夫</span>
+      <span class="en">Drago Ivanov</span>
+    </li>
+    <li>
+      <span class="cycle">《北极光》</span>
+      <span class="number">No.106：</span>
+      <span class="cn">万象·基林博士</span>
+      <span class="en">Dr. Vientiane Keeling</span>
+    </li>
+    <li>
+      <span class="cycle">《北极光》</span>
+      <span class="number">No.111：</span>
+      <span class="cn">纳尼西维克网阵</span>
+      <span class="en">Nanisivik Grid</span>
+    </li>
+    <li>
+      <span class="cycle">《解放》</span>
+      <span class="number">No.111：</span>
+      <span class="cn">支流</span>
+      <span class="en">Tributary</span>
+    </li>
+  </ul>
+
+  <h3>潜袭者</h3>
+  <ul>
+    <li>
+      <span class="cycle">《核心网关》</span>
+      <span class="number">No.6：</span>
+      <span class="cn">剁肉刀</span>
+      <span class="en">Cleaver</span>
+    </li>
+    <li>
+      <span class="cycle">《核心网关》</span>
+      <span class="number">No.20：</span>
+      <span class="cn">创作委托</span>
+      <span class="en">Creative Commission</span>
+    </li>
+    <li>
+      <span class="cycle">《余烬》</span>
+      <span class="number">No.16：</span>
+      <span class="cn">会计师</span>
+      <span class="en">Bukhgalter</span>
+    </li>
+    <li>
+      <span class="cycle">《余烬》</span>
+      <span class="number">No.26：</span>
+      <span class="cn">粮食</span>
+      <span class="en">Rezeki</span>
+    </li>
+    <li>
+      <span class="cycle">《余烬》</span>
+      <span class="number">No.67：</span>
+      <span class="cn">狂舞</span>
+      <span class="en">Moshing</span>
+    </li>
+    <li>
+      <span class="cycle">《余烬》</span>
+      <span class="number">No.94：</span>
+      <span class="cn">每日播报</span>
+      <span class="en">Daily Casts</span>
+    </li>
+    <li>
+      <span class="cycle">《余烬》</span>
+      <span class="number">No.95：</span>
+      <span class="cn">梦网</span>
+      <span class="en">DreamNet</span>
+    </li>
+    <li>
+      <span class="cycle">《北极光》</span>
+      <span class="number">No.22：</span>
+      <span class="cn">深潜</span>
+      <span class="en">Deep Dive</span>
+    </li>
+    <li>
+      <span class="cycle">《北极光》</span>
+      <span class="number">No.25：</span>
+      <span class="cn">坚忍号</span>
+      <span class="en">Endurance</span>
+    </li>
+    <li>
+      <span class="cycle">《北极光》</span>
+      <span class="number">No.74：</span>
+      <span class="cn">查希亚·"蒙獒"·钢图拉嘎</span>
+      <span class="en">Tsakhia "Bankhar" Gantulga</span>
+    </li>
+    <li>
+      <span class="cycle">《北极光》</span>
+      <span class="number">No.83：</span>
+      <span class="cn">信息赏金</span>
+      <span class="en">Info Bounty</span>
+    </li>
+    <li>
+      <span class="cycle">《北极光》</span>
+      <span class="number">No.90：</span>
+      <span class="cn">K2CP涡轮机</span>
+      <span class="en">K2CP Turbine</span>
+    </li>
+    <li>
+      <span class="cycle">《北极光》</span>
+      <span class="number">No.91：</span>
+      <span class="cn">世界树</span>
+      <span class="en">World Tree</span>
+    </li>
+    <li>
+      <span class="cycle">《解放》</span>
+      <span class="number">No.87：</span>
+      <span class="cn">特技球</span>
+      <span class="en">Trick Shot</span>
+    </li>
+  </ul>
+</div>
+
+export const banTextStarter = <div class="ban-list">
+  <h3>公司</h3>
+  <ul>
+    <li>
+      <span class="cycle">《核心网关》</span>
+      <span class="number">No.51：</span>
+      <span class="cn">网际传媒：身临其境</span>
+      <span class="en">禁用</span>
+    </li>
+    <li>
+      <span class="cycle">《核心网关》</span>
+      <span class="number">No.63：</span>
+      <span class="cn">大灯塔</span>
+      <span class="en">禁用</span>
+    </li>
+    <li>
+      <span class="cycle">《解放》</span>
+      <span class="number">No.111：</span>
+      <span class="cn">支流</span>
+      <span class="en">禁用</span>
+    </li>
+  </ul>
+  <p>此外，公司牌组中3分或更多议案不得超过4张。</p>
+
+  <h3>潜袭者</h3>
+  <ul>
+    <li>
+      <span class="cycle">《核心网关》</span>
+      <span class="number">No.6：</span>
+      <span class="cn">剁肉刀</span>
+      <span class="en">禁用</span>
+    </li>
+  </ul>
+</div>

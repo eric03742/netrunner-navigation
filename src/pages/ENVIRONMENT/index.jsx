@@ -1,15 +1,16 @@
 import styles from './style.less';
+import './index.less';
 import { useState } from 'react';
 import environmentImg from '@/assets/Environment/environmentImg.webp'
 import { Image } from "antd"
-import { cycleText } from './content'
+import { cycleText, banTextStandard, banTextStarter } from './content'
 
 const ENVIRONMENT = () => {
   const [currentView, setCurrentView] = useState('main'); // 'main', 'banlist', 'cycle'
   const [transitionClass, setTransitionClass] = useState(''); // 控制过渡动画类
   const [banList, setBanList] = useState([]); // 禁卡表
   const [cycleData, setCycleData] = useState({}); // 循环信息
-  const [currentBan, setCurrentBan] = useState('stardard'); // 禁卡表
+  const [currentBan, setCurrentBan] = useState('standard'); // 禁卡表
   const [isFading, setIsFading] = useState(false); // 控制淡入淡出动画
 
   const showBanlist = (type) => {
@@ -20,8 +21,6 @@ const ENVIRONMENT = () => {
         const images = require.context('@/assets/Environment/standardBanList', false, /\.(webp)$/);
         const imageArray = images.keys().map(image => images(image));
         setBanList(imageArray);
-        console.log('images', images)
-        console.log('imageArray', imageArray)
       } catch (error) {
         console.error('Failed to import ban list images:', error);
       }
@@ -94,7 +93,7 @@ const ENVIRONMENT = () => {
               <button className={styles.techButton} style={{ background: 'linear-gradient(135deg, rgb(76, 235, 39), #ffffff00)' }} onClick={() => showBanlist('standard')}>
                 查看标准禁卡表
               </button>
-              <button className={styles.techButton} style={{ background: 'linear-gradient(135deg, #e55cb4, #ffffff00)' }} onClick={() => showBanlist('start')}>新启（Startup）
+              <button className={styles.techButton} style={{ background: 'linear-gradient(135deg, #e55cb4, #ffffff00)' }} onClick={() => showBanlist('starter')}>
                 查看新启禁卡表
               </button>
             </div>
@@ -123,11 +122,11 @@ const ENVIRONMENT = () => {
         <div className={styles.pageHeader}>
           {currentBan === 'standard' && <>
             <h2>标准禁卡表25.08</h2>
-            <h2>生效日期：2025年8月1日</h2>
+            <h3>生效日期：2025年8月1日</h3>
           </>}
           {currentBan === 'starter' && <>
             <h2>新启禁卡表25.04</h2>
-            <h2>生效日期：2025年4月27日</h2>
+            <h3>生效日期：2025年4月27日</h3>
           </>}
           {/* 添加右箭头按钮 */}
           <button className={styles.nextButton} onClick={showMainFromBanlist}>
@@ -142,13 +141,21 @@ const ENVIRONMENT = () => {
           </button>
         </div>
         <div className={styles.banListContent}>
-          {banList.map((image) => (
-            <Image
-              className={styles.image}
-              width={150}
-              src={image}
-            />
-          ))}
+          {/* 左侧禁卡列表文本 */}
+          <div className={styles.banListText}>
+            {currentBan === 'standard' ? banTextStandard : banTextStarter}
+          </div>
+
+          {/* 右侧图片内容 */}
+          <div className={styles.banListImages}>
+            {banList.map((image) => (
+              <Image
+                className={styles.image}
+                width={150}
+                src={image}
+              />
+            ))}
+          </div>
         </div>
       </div>
 

@@ -71,6 +71,7 @@ const Layout = () => {
       <div className="layout-header">
         <img src={logo} className="logo-img" />
         <Tabs
+          style={{ paddingTop: 20 }}
           activeKey={activeKey}
           onChange={handleTabChange}
           items={TAB.map((item) => ({
