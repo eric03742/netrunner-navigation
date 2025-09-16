@@ -137,7 +137,6 @@ const FACTION = () => {
                 color: (hoveredItem === item || currentSelected === item.subTitle) ? item.color : '#fff'
               }}
               className={classNames(styles.item, currentSelected === item.subTitle ? styles['item-selected'] : '')}
-              key={item.subTitle}
               onMouseEnter={(e) => handleMouseEnter(item, e)}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
@@ -171,7 +170,6 @@ const FACTION = () => {
             <div className={styles.textContent}>
               {selectedFaction.content.map((text, index) => (
                 <p
-                  key={index}
                   className={classNames(styles.animatedText, {
                     [styles.exit]: animationState === 'exit'
                   })}
@@ -192,7 +190,6 @@ const FACTION = () => {
                   onMouseEnter={(e) => handleMouseImgEnter(card, e)}
                   onMouseMove={handleMouseMove}
                   onMouseLeave={handleMouseImgLeave}
-                  key={index}
                   src={card}
                   alt={`card-${index}`}
                   className={classNames(styles.animatedCard, {

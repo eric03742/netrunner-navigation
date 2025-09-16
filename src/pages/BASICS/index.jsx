@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Highlighter from 'react-highlight-words';
+import Spin from '@/component/spin'
 import './style.less';
 import { titles, sections } from './const'
 
@@ -12,6 +13,7 @@ const DocPreview = () => {
   // 状态管理
   const [docContent, setDocContent] = useState({ titles: [], sections: [] }); // 标题和内容
   const [searchText, setSearchText] = useState(''); // 搜索文本
+  const [loading, setLoading] = useState(false); // 加载中
   const [activeTitleIndex, setActiveTitleIndex] = useState(0); // 当前激活的标题索引
   const [searchResults, setSearchResults] = useState([]); // 搜索结果
   const [currentResultIndex, setCurrentResultIndex] = useState(-1); // 当前高亮的搜索结果索引
@@ -19,6 +21,7 @@ const DocPreview = () => {
 
   // 解析DOCX文件内容
   useEffect(() => {
+    setLoading(true)
     const fetchAndParseDoc = async () => {
       try {
         // // 获取文件
@@ -92,12 +95,13 @@ const DocPreview = () => {
         // }
 
         setDocContent({ titles, sections });
-        console.log('文档内容1:', titles);
-        console.log('文档内容2:', sections);
         // 初始化内容区域引用
         sectionRefs.current = sections.map(() => React.createRef());
       } catch (error) {
         console.error('解析DOC文件失败:', error);
+      } finally {
+        // 无论是否出错都会执行
+        setLoading(false)
       }
     };
 
@@ -289,6 +293,7 @@ const DocPreview = () => {
   return (
     <div className="doc-preview-container">
       {/* 搜索栏 */}
+      {(loading || docContent.sections.length === 0) && <Spin />}
       <div className="search-bar">
         <input
           type="text"
