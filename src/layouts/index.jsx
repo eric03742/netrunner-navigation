@@ -1,5 +1,5 @@
 // src/layouts/index.jsx
-import { Tabs } from 'antd';
+import { Tabs, Dropdown } from 'antd';
 import { useState, useEffect, useCallback } from 'react';
 import { Outlet, history, useLocation } from 'umi';
 import logo from '@/assets/layout/logo.webp';
@@ -19,6 +19,13 @@ const TAB = [
   { key: '4', label: '潜袭', subTitle: 'RUN', background: RunBG },
   { key: '5', label: '环境', subTitle: 'ENVIRONMENT', background: EnvironmentBG },
   { key: '6', label: '社群', subTitle: 'COMMUNITY', background: CommunityBG },
+];
+
+const runSubMenuItems = [
+  { key: 'pve', label: '人机对战' },
+  { key: 'beginner', label: '新手指南' },
+  { key: 'tutorial', label: '教学剧本' },
+  { key: 'time', label: '时序图' },
 ];
 
 const Layout = () => {
@@ -48,11 +55,35 @@ const Layout = () => {
     }
     setIsAnimating(true);
     // 使用 Umi 的 history API 更新 URL
-    history.push(`/#${key}`);
+    // 基础不改动
+    if (key !== 'BASICS') {
+      history.push(`/#${key}`);
+    }
+  };
+
+  const handleRunSubMenuClick = ({ key }) => {
+    // 根据点击的子菜单项跳转到相应页面
+    switch (key) {
+      case 'pve':
+        window.open('https://tutorial.sneakdoorbeta.net/', '_blank')
+        break;
+      case 'beginner':
+        history.push(`/#BASICS`);
+        break;
+      case 'tutorial':
+        history.push('/#TUTORIAL');
+        break;
+      case 'time':
+        history.push('/#TIME');
+        break;
+      default:
+        history.push('/#BASICS');
+    }
+    setActiveKey('RUN');
   };
 
   useEffect(() => {
-    const newKey = hash.startsWith('#') ? hash.substring(1) : 'INDEX'
+    const newKey = hash.startsWith('#') ? hash.substring(1).split('/')[0] : 'INDEX'
     setActiveKey(newKey);
     document.title = newKey === 'INDEX' ? '测试暗门' : `测试暗门-${TAB.find(item => item.subTitle === newKey).label}`;
   }, [hash])
@@ -66,6 +97,33 @@ const Layout = () => {
     }
   }, [isAnimating]);
 
+  const renderTabLabel = (item) => {
+    if (item.subTitle === 'BASICS') {
+      // 为RUN标签添加下拉菜单
+      return (
+        <Dropdown
+          menu={{
+            items: runSubMenuItems,
+            onClick: handleRunSubMenuClick,
+          }}
+          trigger={['hover']}
+        >
+          <div>
+            <div className="layout-tab-title">{item.label}</div>
+            <div className="layout-tab-title">{item.subTitle}</div>
+          </div>
+        </Dropdown>
+      );
+    }
+
+    return (
+      <div>
+        <div className="layout-tab-title">{item.label}</div>
+        <div className="layout-tab-title">{item.subTitle}</div>
+      </div>
+    );
+  };
+
   return (
     <div className="layout">
       <div className="layout-header">
@@ -76,12 +134,7 @@ const Layout = () => {
           onChange={handleTabChange}
           items={TAB.map((item) => ({
             key: item.subTitle,
-            label: (
-              <div>
-                <div className="layout-tab-title">{item.label}</div>
-                <div className="layout-tab-title">{item.subTitle}</div>
-              </div>
-            ),
+            label: renderTabLabel(item),
           }))}
         />
       </div>
