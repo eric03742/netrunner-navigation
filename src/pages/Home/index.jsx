@@ -6,7 +6,7 @@ import Spin from '@/component/spin'
 // 使用 lazy 动态导入组件
 const IndexPage = lazy(() => import('../INDEX'));
 const FACTIONPage = lazy(() => import('../FACTION'));
-const BASICSPage = lazy(() => import('../BASICS'));
+const BEGINNERPage = lazy(() => import('../BASICS'));
 const RUNPage = lazy(() => import('../RUN'));
 const ENVIRONMENTPage = lazy(() => import('../ENVIRONMENT'));
 const COMMUNITYPage = lazy(() => import('../COMMUNITY'));
@@ -14,7 +14,7 @@ const COMMUNITYPage = lazy(() => import('../COMMUNITY'));
 const Components = {
   'INDEX': IndexPage,
   'FACTION': FACTIONPage,
-  'BASICS': BASICSPage,
+  'BEGINNER': BEGINNERPage,
   'RUN': RUNPage,
   'ENVIRONMENT': ENVIRONMENTPage,
   'COMMUNITY': COMMUNITYPage,
@@ -28,7 +28,7 @@ const HomePage = () => {
     setCurrentTab(hash.startsWith('#') ? hash.substring(1) : 'INDEX');
   }, [hash]);
 
-  const CurrentComponent = Components[currentTab];
+  const CurrentComponent = Components[currentTab] || null;
 
   return (
     <div className={styles.container}>

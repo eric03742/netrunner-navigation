@@ -15,10 +15,14 @@ import './style.less';
 const TAB = [
   { key: '1', label: '首页', subTitle: 'INDEX', background: IndexBG },
   { key: '2', label: '派系', subTitle: 'FACTION', background: FactionBG },
-  { key: '3', label: '基础', subTitle: 'BASICS', background: null },
+  { key: '3', label: '基础', subTitle: 'BASICS', background: FactionBG },
   { key: '4', label: '潜袭', subTitle: 'RUN', background: RunBG },
   { key: '5', label: '环境', subTitle: 'ENVIRONMENT', background: EnvironmentBG },
   { key: '6', label: '社群', subTitle: 'COMMUNITY', background: CommunityBG },
+
+  { key: '7', label: '新手指南', subTitle: 'BEGINNER', background: FactionBG, hidden: true },
+  { key: '8', label: '教学剧本', subTitle: 'TUTORIAL', background: FactionBG, hidden: true },
+  { key: '9', label: '时序图', subTitle: 'TIME', background: FactionBG, hidden: true },
 ];
 
 const runSubMenuItems = [
@@ -55,37 +59,43 @@ const Layout = () => {
     }
     setIsAnimating(true);
     // 使用 Umi 的 history API 更新 URL
-    // 基础不改动
-    if (key !== 'BASICS') {
-      history.push(`/#${key}`);
-    }
+    history.push(`/#${key}`);
   };
 
   const handleRunSubMenuClick = ({ key }) => {
-    // 根据点击的子菜单项跳转到相应页面
-    switch (key) {
-      case 'pve':
-        window.open('https://tutorial.sneakdoorbeta.net/', '_blank')
-        break;
-      case 'beginner':
-        history.push(`/#BASICS`);
-        break;
-      case 'tutorial':
-        history.push('/#TUTORIAL');
-        break;
-      case 'time':
-        history.push('/#TIME');
-        break;
-      default:
-        history.push('/#BASICS');
-    }
-    setActiveKey('RUN');
+    console.log('key', key)
+    setTimeout(() => {
+      // 根据点击的子菜单项跳转到相应页面
+      switch (key) {
+        case 'pve':
+          window.open('https://tutorial.sneakdoorbeta.net/', '_blank')
+          break;
+        case 'beginner':
+          history.push(`/#BEGINNER`);
+          break;
+        case 'tutorial':
+          console.log('这里', key)
+          history.push('/#TUTORIAL');
+          break;
+        case 'time':
+          history.push('/#TIME');
+          break;
+        default:
+          history.push('/#BEGINNER');
+      }
+    }, 0)
   };
 
   useEffect(() => {
     const newKey = hash.startsWith('#') ? hash.substring(1).split('/')[0] : 'INDEX'
-    setActiveKey(newKey);
-    document.title = newKey === 'INDEX' ? '测试暗门' : `测试暗门-${TAB.find(item => item.subTitle === newKey).label}`;
+    if (['BEGINNER', 'TUTORIAL', 'TIME']?.includes(newKey)) {
+      setActiveKey('BASICS');
+    } else {
+      setActiveKey(newKey);
+    }
+    if (TAB.find(item => item.subTitle === newKey)?.label) {
+      document.title = newKey === 'INDEX' ? '测试暗门' : `测试暗门-${TAB.find(item => item.subTitle === newKey)?.label}`;
+    }
   }, [hash])
 
   useEffect(() => {
@@ -102,6 +112,7 @@ const Layout = () => {
       // 为RUN标签添加下拉菜单
       return (
         <Dropdown
+          overlayClassName='layout-dropdown'
           menu={{
             items: runSubMenuItems,
             onClick: handleRunSubMenuClick,
@@ -132,7 +143,7 @@ const Layout = () => {
           style={{ paddingTop: 20 }}
           activeKey={activeKey}
           onChange={handleTabChange}
-          items={TAB.map((item) => ({
+          items={TAB?.filter(item => !item.hidden)?.map((item) => ({
             key: item.subTitle,
             label: renderTabLabel(item),
           }))}
