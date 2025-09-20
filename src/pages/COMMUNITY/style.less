@@ -147,6 +147,30 @@
   }
 }
 
+.competition-content {
+  margin-top: 20px;
+  max-height: 600px;
+  overflow-y: auto;
+
+  // 自定义滚动条样式
+  &::-webkit-scrollbar {
+    width: 8px; // 滚动条宽度
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent; // 滚动条背景透明
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: white; // 滚动条滑块白色
+    border-radius: 4px; // 滚动条圆角
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #e0e0e0; // 滚动条悬停时的颜色
+  }
+}
+
 
 /* 响应式设计 */
 @media (max-width: 1200px) {

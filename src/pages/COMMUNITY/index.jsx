@@ -10,6 +10,7 @@ import favicon4 from '@/assets/Community/favicon4.ico'
 import favicon5 from '@/assets/Community/favicon5.ico'
 import QQQrcode from '@/assets/Community/QQQrcode.jpg'
 import weixinQrcode from '@/assets/Community/weixinQrcode.jpg'
+import { competitions, behavior } from './const'
 
 const iconStyle = { fontSize: 64 }
 
@@ -93,14 +94,26 @@ const COMMUNITY = () => {
         setModalContent({
           title: sciFiButtons.find(item => item.id === id).label,
           content: <>
-            <div className='modal-text'>请添加客服微信获取入群链接： <a onClick={() => copyToClipboard('kainveus')}>kainveus</a></div>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <img style={{ width: 400 }} src={weixinQrcode} /></div></>
+            <div className="competition-content">
+              {competitions.map((item) => (
+                <div dangerouslySetInnerHTML={{ __html: item.content }} />
+              ))}
+            </div>
+          </>
         })
         break;
       case 12:
         setVisible(true)
-        setModalContent(12)
+        setModalContent({
+          title: sciFiButtons.find(item => item.id === id).label,
+          content: <>
+            <div className="competition-content">
+              {behavior.map((item) => (
+                <div dangerouslySetInnerHTML={{ __html: item.content }} />
+              ))}
+            </div>
+          </>
+        })
         break;
       default:
         return
@@ -136,7 +149,7 @@ const COMMUNITY = () => {
   return (
     <div className="doc-preview-container">
       <Modal
-        width={500}
+        width={['组织比赛原则', '社群行为准则'].includes(modalContent?.title) ? 1000 : 500}
         getContainer={() => document.getElementById('root')}
         title={modalContent.title}
         closable={{ 'aria-label': 'Custom Close Button' }}
