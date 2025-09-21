@@ -150,6 +150,7 @@ const ENVIRONMENT = () => {
           <div className={styles.banListImages}>
             {banList.map((image) => (
               <Image
+                preview={{ getContainer: () => document.getElementById('root') }}
                 className={styles.image}
                 width={150}
                 src={image}

@@ -155,6 +155,12 @@ export const banTextStandard = <div class="ban-list">
     </li>
     <li>
       <span class="cycle">《余烬》</span>
+      <span class="number">No.41：</span>
+      <span class="cn">蜇！</span>
+      <span class="en">sting!</span>
+    </li>
+    <li>
+      <span class="cycle">《余烬》</span>
       <span class="number">No.97：</span>
       <span class="cn">瓦隆什计划</span>
       <span class="en">Project Vacheron</span>
@@ -209,9 +215,21 @@ export const banTextStandard = <div class="ban-list">
     </li>
     <li>
       <span class="cycle">《解放》</span>
+      <span class="number">No.58：</span>
+      <span class="cn">赛博砂采集者</span>
+      <span class="en">Cybersand Harvester</span>
+    </li>
+    <li>
+      <span class="cycle">《解放》</span>
       <span class="number">No.111：</span>
       <span class="cn">支流</span>
       <span class="en">Tributary</span>
+    </li>
+    <li>
+      <span class="cycle">仰望</span>
+      <span class="number">No.67：</span>
+      <span class="cn">润色</span>
+      <span class="en">Touch-ups</span>
     </li>
   </ul>
 
@@ -222,12 +240,6 @@ export const banTextStandard = <div class="ban-list">
       <span class="number">No.6：</span>
       <span class="cn">剁肉刀</span>
       <span class="en">Cleaver</span>
-    </li>
-    <li>
-      <span class="cycle">《核心网关》</span>
-      <span class="number">No.20：</span>
-      <span class="cn">创作委托</span>
-      <span class="en">Creative Commission</span>
     </li>
     <li>
       <span class="cycle">《余烬》</span>
