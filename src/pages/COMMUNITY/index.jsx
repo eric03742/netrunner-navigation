@@ -10,6 +10,8 @@ import favicon4 from '@/assets/Community/favicon4.ico'
 import favicon5 from '@/assets/Community/favicon5.ico'
 import QQQrcode from '@/assets/Community/QQQrcode.jpg'
 import weixinQrcode from '@/assets/Community/weixinQrcode.jpg'
+import shenwang from '@/assets/Community/shenwang.jpg'
+import mini from '@/assets/Community/mini.jpg'
 import { competitions, behavior } from './const'
 
 const iconStyle = { fontSize: 64 }
@@ -24,7 +26,7 @@ const sciFiButtons = [
   { id: 6, label: `The Maker's Eye`, icon: favicon5, isImg: true, color: '#ff3864' },
   { id: 7, label: '矩阵潜袭QQ群', icon: <QqOutlined style={iconStyle} />, color: '#00aaff' },
   { id: 8, label: '矩阵潜袭微信群', icon: <WechatOutlined style={iconStyle} />, color: '#00ff6a' },
-  { id: 9, label: '组卡微信小程序', icon: <WechatOutlined style={iconStyle} />, color: '#ffcc00' },
+  { id: 9, label: '微信小程序', icon: <WechatOutlined style={iconStyle} />, color: '#ffcc00' },
   { id: 10, label: '深网补给池', icon: <RadarChartOutlined style={iconStyle} />, color: '#ff0058' },
   { id: 11, label: '组织比赛原则', icon: <WalletOutlined style={iconStyle} />, color: '#58ff00' },
   { id: 12, label: '社群行为准则', icon: <FileDoneOutlined style={iconStyle} />, color: '#aa00ff' },
@@ -83,11 +85,22 @@ const COMMUNITY = () => {
         break;
       case 9:
         setVisible(true)
-        setModalContent(9)
+        setModalContent({
+          title: sciFiButtons.find(item => item.id === id).label,
+          content: <>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <img style={{ width: 400 }} src={mini} /></div></>
+        })
         break;
       case 10:
         setVisible(true)
-        setModalContent(10)
+        setModalContent({
+          title: sciFiButtons.find(item => item.id === id).label,
+          content: <>
+            <div className='modal-text'>访问： <a onClick={() => window.open('https://docs.qq.com/sheet/DVVp1VmtkVUVQckh1?tab=a0a0bu', '_blank')}>深网补给池</a></div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <img style={{ width: 400 }} src={shenwang} /></div></>
+        })
         break;
       case 11:
         setVisible(true)
