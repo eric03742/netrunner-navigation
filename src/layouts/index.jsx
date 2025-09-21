@@ -74,7 +74,6 @@ const Layout = () => {
           history.push(`/#BEGINNER`);
           break;
         case 'tutorial':
-          console.log('这里', key)
           history.push('/#TUTORIAL');
           break;
         case 'time':
