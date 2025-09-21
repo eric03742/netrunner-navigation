@@ -1,0 +1,245 @@
+// src/pages/TUTORIAL/style.less
+.docPreviewContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #1e1e1e;
+  color: #ffffff;
+
+  .header {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #2d2d30;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #ffffff;
+    }
+  }
+
+  .tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+
+    .tab {
+      padding: 10px 20px;
+      background: #2d2d30;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 14px;
+      color: #cccccc;
+      border: 1px solid #3c3c3c;
+
+      &:hover {
+        background-color: #3c3c3c;
+      }
+
+      &.active {
+        background-color: #007acc;
+        color: white;
+        border-color: #007acc;
+      }
+    }
+  }
+
+  .contentWrapper {
+    flex: 1;
+    overflow-y: auto;
+    background: #2d2d30;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    max-height: calc(100vh - 180px);
+
+    .loading {
+      text-align: center;
+      padding: 50px;
+      color: #a0a0a0;
+      font-size: 16px;
+    }
+
+    .docContent {
+      line-height: 1.6;
+      color: #cccccc;
+
+      // 保留 HTML 样式
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin-top: 24px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        line-height: 1.25;
+        color: #ffffff;
+      }
+
+      h1 {
+        font-size: 2em;
+        padding-bottom: 0.3em;
+        border-bottom: 1px solid #3c3c3c;
+      }
+
+      h2 {
+        font-size: 1.5em;
+        padding-bottom: 0.3em;
+        border-bottom: 1px solid #3c3c3c;
+      }
+
+      h3 {
+        font-size: 1.25em;
+      }
+
+      h4 {
+        font-size: 1em;
+      }
+
+      h5 {
+        font-size: 0.875em;
+      }
+
+      h6 {
+        font-size: 0.85em;
+        color: #a0a0a0;
+      }
+
+      p {
+        margin-top: 0;
+        margin-bottom: 16px;
+      }
+
+      ul,
+      ol {
+        padding-left: 2em;
+        margin-top: 0;
+        margin-bottom: 16px;
+
+        li {
+          margin-bottom: 4px;
+        }
+      }
+
+      ul {
+        list-style-type: disc;
+      }
+
+      ol {
+        list-style-type: decimal;
+      }
+
+      strong {
+        font-weight: 600;
+      }
+
+      em {
+        font-style: italic;
+      }
+
+      code {
+        padding: 0.2em 0.4em;
+        margin: 0;
+        font-size: 85%;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+        font-family: monospace;
+        color: #ffffff;
+      }
+
+      pre {
+        padding: 16px;
+        overflow: auto;
+        font-size: 85%;
+        line-height: 1.45;
+        background-color: #1e1e1e;
+        border-radius: 3px;
+        font-family: monospace;
+
+        code {
+          padding: 0;
+          margin: 0;
+          font-size: 100%;
+          background: transparent;
+          color: #cccccc;
+        }
+      }
+
+      blockquote {
+        margin: 0;
+        padding: 0 1em;
+        color: #a0a0a0;
+        border-left: 0.25em solid #3c3c3c;
+      }
+
+      table {
+        width: 100%;
+        overflow: auto;
+        margin-bottom: 16px;
+        border-collapse: collapse;
+
+        th {
+          font-weight: 600;
+          color: #ffffff;
+          background-color: #3c3c3c;
+        }
+
+        th,
+        td {
+          padding: 6px 13px;
+          border: 1px solid #3c3c3c;
+        }
+
+        tr {
+          background-color: #2d2d30;
+          border-top: 1px solid #3c3c3c;
+
+          &:nth-child(2n) {
+            background-color: #3c3c3c;
+          }
+        }
+      }
+
+      img {
+        max-width: 100%;
+        box-sizing: content-box;
+      }
+
+      a {
+        color: #3794ff;
+
+        &:hover {
+          color: #75baff;
+        }
+      }
+    }
+
+    // 自定义滚动条样式 - 透明背景，白色方形滚动条
+    &::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: white;
+      border-radius: 0; // 方形滚动条
+      border: 2px solid transparent;
+      background-clip: padding-box;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+  }
+}

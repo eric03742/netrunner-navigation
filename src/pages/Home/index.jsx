@@ -8,6 +8,7 @@ const IndexPage = lazy(() => import('../INDEX'));
 const FACTIONPage = lazy(() => import('../FACTION'));
 const BEGINNERPage = lazy(() => import('../BASICS'));
 const TIME = lazy(() => import('../TIME'));
+const TUTORIAL = lazy(() => import('../TUTORIAL'));
 const RUNPage = lazy(() => import('../RUN'));
 const ENVIRONMENTPage = lazy(() => import('../ENVIRONMENT'));
 const COMMUNITYPage = lazy(() => import('../COMMUNITY'));
@@ -17,6 +18,7 @@ const Components = {
   'FACTION': FACTIONPage,
   'BEGINNER': BEGINNERPage,
   'TIME': TIME,
+  'TUTORIAL': TUTORIAL,
   'RUN': RUNPage,
   'ENVIRONMENT': ENVIRONMENTPage,
   'COMMUNITY': COMMUNITYPage,
