@@ -3,9 +3,17 @@
   justify-content: space-between;
   height: 100%;
   overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none; // 隐藏 Webkit 浏览器的滚动条
+  }
+
+  -ms-overflow-style: none; // 隐藏 IE 浏览器的滚动条
+  scrollbar-width: none; // 隐藏 Firefox 浏览器的滚动条
 }
 
 .imageWrapper {
+  height: fit-content;
   width: 48%;
   transition: all 0.3s ease;
   border: 2px solid transparent;
