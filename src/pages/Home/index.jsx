@@ -7,6 +7,7 @@ import Spin from '@/component/spin'
 const IndexPage = lazy(() => import('../INDEX'));
 const FACTIONPage = lazy(() => import('../FACTION'));
 const BEGINNERPage = lazy(() => import('../BASICS'));
+const BASICS = lazy(() => import('../BASICSLANDING'));
 const TIME = lazy(() => import('../TIME'));
 const TUTORIAL = lazy(() => import('../TUTORIAL'));
 const RUNPage = lazy(() => import('../RUN'));
@@ -18,6 +19,7 @@ const Components = {
   'FACTION': FACTIONPage,
   'BEGINNER': BEGINNERPage,
   'TIME': TIME,
+  'BASICS': BASICS,
   'TUTORIAL': TUTORIAL,
   'RUN': RUNPage,
   'ENVIRONMENT': ENVIRONMENTPage,

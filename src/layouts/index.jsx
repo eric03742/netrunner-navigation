@@ -7,6 +7,7 @@ import logo2 from '@/assets/layout/logo2.webp';
 import CommunityBG from '@/assets/layout/bgs/Community-BG.webp';
 import EnvironmentBG from '@/assets/layout/bgs/Environment-BG.webp';
 import FactionBG from '@/assets/layout/bgs/Faction-BG.webp';
+import BasicBG from '@/assets/layout/bgs/Basics-BG.webp';
 import IndexBG from '@/assets/layout/bgs/Index-BG.webp';
 import RunBG from '@/assets/layout/bgs/Run-BG.webp';
 import beian from '@/assets/layout/beian.webp'
@@ -15,9 +16,9 @@ import './style.less';
 const TAB = [
   { key: '1', label: '首页', subTitle: 'INDEX', background: IndexBG },
   { key: '2', label: '派系', subTitle: 'FACTION', background: FactionBG },
-  { key: '3', label: '基础', subTitle: 'BASICS', background: FactionBG },
-  { key: '4', label: '潜袭', subTitle: 'RUN', background: RunBG },
-  { key: '5', label: '环境', subTitle: 'ENVIRONMENT', background: EnvironmentBG },
+  { key: '3', label: '基础', subTitle: 'BASICS', background: BasicBG },
+  { key: '4', label: '潜袭', subTitle: 'RUN', background: EnvironmentBG },
+  { key: '5', label: '环境', subTitle: 'ENVIRONMENT', background: RunBG },
   { key: '6', label: '社群', subTitle: 'COMMUNITY', background: CommunityBG },
 
   { key: '7', label: '新手指南', subTitle: 'BEGINNER', background: FactionBG, hidden: true },
@@ -181,10 +182,13 @@ const Layout = () => {
           </div>
         </div>
         <div className="layout-developer">
+          网站主理人&首席设计师：赵小回
+        </div>
+        <div className="layout-developer">
           开发者：矩阵潜袭中国-测试暗门委员会
         </div>
         <div className="layout-version">
-          当前版本：0.0.1 更新时间：2025/08/28
+          当前版本：1.0.0 更新时间：2025/09/24
         </div>
       </div>
     </div>

@@ -14,6 +14,9 @@ const SUPPORTED_FORMATS = ['jpg', 'jpeg', 'png'];
  */
 function isSupportedImage(filename) {
   const ext = filename.split('.').pop().toLowerCase();
+  if (filename.includes('favicon')) {
+    return false;
+  }
   return SUPPORTED_FORMATS.includes(ext);
 }
 
