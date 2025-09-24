@@ -160,12 +160,11 @@ const COMMUNITY = () => {
   };
 
   return (
-    <div className="doc-preview-container">
+    <div className="COMMUNITY">
       <Modal
         width={['组织比赛原则', '社群行为准则'].includes(modalContent?.title) ? 1000 : 500}
         getContainer={() => document.getElementById('root')}
         title={modalContent.title}
-        closable={{ 'aria-label': 'Custom Close Button' }}
         open={visible}
         wrapClassName="community-modal"
         onCancel={() => setVisible(false)}

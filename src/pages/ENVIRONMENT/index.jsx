@@ -2,11 +2,13 @@ import styles from './style.less';
 import './index.less';
 import { useState } from 'react';
 import environmentImg from '@/assets/Environment/environmentImg.webp'
-import { Image } from "antd"
+import buyQrcode from '@/assets/Environment/buyQrcode.webp'
+import { Image, Modal } from "antd"
 import { cycleText, banTextStandard, banTextStarter } from './content'
 
 const ENVIRONMENT = () => {
   const [currentView, setCurrentView] = useState('main'); // 'main', 'banlist', 'cycle'
+  const [visible, setVisible] = useState(false)
   const [transitionClass, setTransitionClass] = useState(''); // 控制过渡动画类
   const [banList, setBanList] = useState([]); // 禁卡表
   const [cycleData, setCycleData] = useState({}); // 循环信息
@@ -72,6 +74,19 @@ const ENVIRONMENT = () => {
 
   return (
     <div className={styles.container}>
+      <Modal
+        width={500}
+        getContainer={() => document.getElementById('root')}
+        title={'实体卡购买链接'}
+        open={visible}
+        wrapClassName="community-modal"
+        onCancel={() => setVisible(false)}
+        footer={null}
+      >
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <img style={{ width: 400 }} src={buyQrcode} />
+        </div>
+      </Modal>
       {/* 主页面内容 */}
       <div
         className={`${styles.page} ${styles.mainPage} ${currentView === 'main'
@@ -95,6 +110,9 @@ const ENVIRONMENT = () => {
               </button>
               <button className={styles.techButton} style={{ background: 'linear-gradient(135deg, #e55cb4, #ffffff00)' }} onClick={() => showBanlist('starter')}>
                 查看新启禁卡表
+              </button>
+              <button className={styles.techButton} style={{ background: 'linear-gradient(135deg, rgb(106,127,243), #ffffff00)' }} onClick={() => setVisible(true)}>
+                实体卡购买链接
               </button>
             </div>
           </div>
@@ -121,8 +139,8 @@ const ENVIRONMENT = () => {
       >
         <div className={styles.pageHeader}>
           {currentBan === 'standard' && <>
-            <h2>标准禁卡表25.08</h2>
-            <h3>生效日期：2025年8月1日</h3>
+            <h2>标准禁卡表25.10</h2>
+            <h3>生效日期：2025年10月3日</h3>
           </>}
           {currentBan === 'starter' && <>
             <h2>新启禁卡表25.04</h2>

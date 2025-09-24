@@ -239,14 +239,14 @@
 }
 
 .middle {
-  height: fit-content;
+  height: 300px;
 }
 
 .buttonGrid {
   display: flex;
   flex-direction: column;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  gap: 10px;
   width: 100%;
   max-width: 300px;
 }
@@ -313,6 +313,10 @@
   // 为新启禁卡表按钮定制颜色
   &:nth-child(2):hover {
     box-shadow: 0 0 15px rgba(229, 92, 180, 0.7);
+  }
+
+  &:nth-child(3):hover {
+    box-shadow: 0 0 15px rgba(106, 127, 243, 0.7);
   }
 }
 
@@ -455,7 +459,7 @@
   font-size: 16px;
   font-weight: 800;
   margin-bottom: 30px;
-  color: #ccc;
+  color: #fff;
   font-family: 'XiangSuFont';
   line-height: 20px;
 }
@@ -511,5 +515,26 @@
     gap: 10px;
     flex-wrap: wrap;
     justify-content: center;
+  }
+}
+
+.community-modal {
+  .ant-modal-content {
+    background: #ffffffbf;
+    border-radius: 0;
+
+    .ant-modal-header {
+      background: unset;
+
+      .ant-modal-title {
+        font-size: 24px;
+        font-family: 'CommonFont';
+      }
+    }
+  }
+
+  .modal-text {
+    font-size: 20px;
+    font-family: 'CommonFont';
   }
 }
