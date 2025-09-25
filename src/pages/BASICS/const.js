@@ -114,7 +114,7 @@ export const titles = [
     "level": 5
   },
   {
-    "text": "研发中心(Research and Development，简称R&D)",
+    "text": "研发中心(R&D)",
     "level": 5
   },
   {
@@ -782,7 +782,7 @@ export const titles = [
     "level": 3
   },
   {
-    "text": "研发中心(Research and Development，简称R&D)",
+    "text": "研发中心(R&D)",
     "level": 4
   },
   {
@@ -842,7 +842,7 @@ export const titles = [
     "level": 4
   },
   {
-    "text": "总部（Headquaters,简称HQ）",
+    "text": "总部（HQ）",
     "level": 4
   }
 ]
@@ -920,7 +920,7 @@ export const sections = [
   {
     "title": "游戏区域",
     "level": 2,
-    "content": "<p> </p><p>在《矩阵潜袭》中，公司和潜袭者的游戏区域有显著的不同。但双方玩家均有一个信用池、一张特性牌、一个分数区和一张时点记录卡。</p><p><img alt=\"descript\" src=\"/static/basic1.b7f270f4.webp\"></p>"
+    "content": "<p> </p><p>在《矩阵潜袭》中，公司和潜袭者的游戏区域有显著的不同。但双方玩家均有一个信用池、一张特性牌、一个分数区和一张时点记录卡。</p><p><img class='bigImg' alt=\"descript\" src=\"/static/basic1.b7f270f4.webp\"></p>"
   },
   {
     "title": "信用池（Credit Pool）",
@@ -948,12 +948,12 @@ export const sections = [
     "content": "<p>公司共有三台中央服务器：总部、研发中心和档案库。</p>"
   },
   {
-    "title": "总部(Headquarters，简称HQ)",
+    "title": "总部(HQ)",
     "level": 5,
     "content": "<p>这是公司的手牌。在游戏开始时公司有达到手牌上限的5张卡牌。游戏过程中，公司的特性卡牌代表了总部的位置。</p>"
   },
   {
-    "title": "研发中心(Research and Development，简称R&D)",
+    "title": "研发中心(R&D)",
     "level": 5,
     "content": "<p>这是公司的牌组。研发中心的卡牌面朝下，放置在特性卡牌旁边，公司方便拿取的位置。</p>"
   },
@@ -1788,7 +1788,7 @@ export const sections = [
     "content": ""
   },
   {
-    "title": "研发中心(Research and Development，简称R&D)",
+    "title": "研发中心(R&D)",
     "level": 4,
     "content": "<p>公司的牌组。研发中心的卡牌面朝下，放置在特性卡牌旁边，公司方便拿取的位置。</p>"
   },
@@ -1863,7 +1863,7 @@ export const sections = [
     "content": "<p>“追踪{N}”表示一次追踪尝试，其基础追踪强度为N。</p><p>进行一次追踪尝试的流程如下:首先公司公开花费任意数量的信用点，将该数量与N相加，即为追踪强度。然后潜袭者公开花费任意数量的信用点，将该数量与其中转强度相加。如果公司方的总和更高，则追踪成功。如果潜袭者方的总和更高，或两者相等则追踪失败。</p>"
   },
   {
-    "title": "总部（Headquaters,简称HQ）",
+    "title": "总部（HQ）",
     "level": 4,
     "content": "<p>公司的手牌。游戏过程中，公司的特性卡牌代表了总部的位置。</p>"
   }

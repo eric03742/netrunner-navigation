@@ -82,13 +82,40 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       overflow-y: auto;
       max-height: calc(100vh - 180px);
+      transition: all 0.3s ease;
 
-      .nav-title {
-        margin-top: 0;
+      &.collapsed {
+        width: 80px;
+        padding: 10px;
+      }
+
+      .nav-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-bottom: 15px;
         padding-bottom: 10px;
         border-bottom: 1px solid #3c3c3c;
-        color: #ffffff;
+
+        .nav-title {
+          margin: 0;
+          color: #ffffff;
+          font-size: 16px;
+        }
+
+        .toggle-nav-btn {
+          background: none;
+          border: none;
+          color: #ffffff;
+          font-size: 16px;
+          cursor: pointer;
+          padding: 5px;
+          border-radius: 3px;
+
+          &:hover {
+            background-color: #3c3c3c;
+          }
+        }
       }
 
       .title-list {
@@ -199,6 +226,7 @@
           }
 
           .section-title {
+            // ... existing code ...
             margin-top: 0;
             margin-bottom: 15px;
             color: #ffffff;
@@ -349,6 +377,11 @@
             img {
               max-width: 100%;
               box-sizing: content-box;
+              max-height: 600px;
+            }
+
+            .bigImg {
+              max-height: unset;
             }
 
             a {

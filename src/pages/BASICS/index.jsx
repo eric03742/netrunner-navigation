@@ -17,6 +17,7 @@ const DocPreview = () => {
   const [activeTitleIndex, setActiveTitleIndex] = useState(0); // 当前激活的标题索引
   const [searchResults, setSearchResults] = useState([]); // 搜索结果
   const [currentResultIndex, setCurrentResultIndex] = useState(-1); // 当前高亮的搜索结果索引
+  const [isNavCollapsed, setIsNavCollapsed] = useState(false); // 控制目录是否折叠
   const sectionRefs = useRef([]); // 内容区域引用，用于锚点跳转
 
   // 解析DOCX文件内容
@@ -149,20 +150,30 @@ const DocPreview = () => {
   // 渲染标题导航（左侧）
   const renderTitleNav = () => {
     return (
-      <div className="doc-nav">
-        <h3 className="nav-title">文档目录</h3>
-        <ul className="title-list">
-          {docContent.titles.map((title, index) => (
-            <li
-              key={index}
-              className={`title-item level-${title.level} ${activeTitleIndex === index ? 'active' : ''
-                }`}
-              onClick={() => handleTitleClick(index)}
-            >
-              {title.text}
-            </li>
-          ))}
-        </ul>
+      <div className={`doc-nav ${isNavCollapsed ? 'collapsed' : ''}`}>
+        <div className="nav-header">
+          <h3 className="nav-title">文档目录</h3>
+          <button
+            className="toggle-nav-btn"
+            onClick={() => setIsNavCollapsed(!isNavCollapsed)}
+          >
+            {isNavCollapsed ? '▶' : '◀'}
+          </button>
+        </div>
+        {!isNavCollapsed && (
+          <ul className="title-list">
+            {docContent.titles.map((title, index) => (
+              <li
+                key={index}
+                className={`title-item level-${title.level} ${activeTitleIndex === index ? 'active' : ''
+                  }`}
+                onClick={() => handleTitleClick(index)}
+              >
+                {title.text}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     );
   };
