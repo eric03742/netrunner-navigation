@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Highlighter from 'react-highlight-words';
+import { useModel } from 'umi'
 import Spin from '@/component/spin'
 import './style.less';
 import { titles, sections } from './const'
@@ -18,7 +19,12 @@ const DocPreview = () => {
   const [searchResults, setSearchResults] = useState([]); // 搜索结果
   const [currentResultIndex, setCurrentResultIndex] = useState(-1); // 当前高亮的搜索结果索引
   const [isNavCollapsed, setIsNavCollapsed] = useState(false); // 控制目录是否折叠
+  const { isSmallScreen } = useModel('mobile');
   const sectionRefs = useRef([]); // 内容区域引用，用于锚点跳转
+
+  useEffect(() => {
+    setIsNavCollapsed(isSmallScreen)
+  }, [isSmallScreen])
 
   // 解析DOCX文件内容
   useEffect(() => {

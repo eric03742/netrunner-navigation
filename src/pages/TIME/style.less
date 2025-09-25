@@ -26,3 +26,14 @@
   box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3);
   transform: translateY(-2px);
 }
+
+// 移动端适配样式
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+
+    .imageWrapper {
+      width: auto
+    }
+  }
+}

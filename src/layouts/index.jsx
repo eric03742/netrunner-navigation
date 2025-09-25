@@ -65,7 +65,6 @@ const Layout = () => {
   };
 
   const handleRunSubMenuClick = ({ key }) => {
-    console.log('key', key)
     setTimeout(() => {
       // 根据点击的子菜单项跳转到相应页面
       switch (key) {
@@ -130,7 +129,7 @@ const Layout = () => {
 
     return (
       <div>
-        <div className="layout-tab-title">{item.label}</div>
+        <div className="layout-tab-title" onClick={() => isSmallScreen && item.subTitle === 'BASICS' && history.push('/#BASICS')}>{item.label}</div>
         {!isSmallScreen && <div className="layout-tab-title">{item.subTitle}</div>}
       </div>
     );

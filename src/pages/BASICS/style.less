@@ -73,6 +73,7 @@
     flex: 1;
     gap: 20px;
     overflow: hidden;
+    position: relative;
 
     .doc-nav-wrapper {
       position: relative;
@@ -441,6 +442,46 @@
 
       &::-webkit-scrollbar-thumb:hover {
         background-color: rgba(255, 255, 255, 0.8);
+      }
+    }
+  }
+}
+
+// 移动端适配样式
+@media (max-width: 768px) {
+  .doc-preview-container {
+    .search-bar {
+      flex-direction: column;
+
+      .search-input {
+        width: 100%;
+      }
+    }
+
+    .doc-main {
+      .doc-nav-wrapper {
+        width: 100%;
+        position: absolute;
+
+        &.collapsed {
+          width: 20px;
+        }
+
+        .doc-nav {
+          padding: 0;
+
+          .nav-header {
+            .nav-title {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .content-wrapper {
+        padding: 5px;
+        overflow-x: hidden;
+        margin-left: 30px;
       }
     }
   }
