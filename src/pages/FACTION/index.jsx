@@ -1,5 +1,6 @@
 import styles from './style.less';
 import { useState, useEffect } from 'react';
+import { useModel } from 'umi'
 import weyland from '@/assets/Faction/NISEI_WEYLAND.svg';
 import nbn from '@/assets/Faction/NISEI_NBN.svg';
 import hassBioroid from '@/assets/Faction/NISEI_HB.svg';
@@ -91,6 +92,7 @@ const FACTION = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [animationState, setAnimationState] = useState('enter'); // 'enter' 或 'exit'
   const [selectedFaction, setSelectedFaction] = useState(null)
+  const { isSmallScreen } = useModel('mobile');
 
   // 当 currentSelected 改变时，先播放退出动画，再播放进入动画
   useEffect(() => {
@@ -137,7 +139,7 @@ const FACTION = () => {
                 color: (hoveredItem === item || currentSelected === item.subTitle) ? item.color : '#fff'
               }}
               className={classNames(styles.item, currentSelected === item.subTitle ? styles['item-selected'] : '')}
-              onMouseEnter={(e) => handleMouseEnter(item, e)}
+              onMouseEnter={(e) => !isSmallScreen && handleMouseEnter(item, e)}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
               onClick={() => setCurrentSelected(item.subTitle)}
@@ -190,6 +192,7 @@ const FACTION = () => {
                   onMouseEnter={(e) => handleMouseImgEnter(card, e)}
                   onMouseMove={handleMouseMove}
                   onMouseLeave={handleMouseImgLeave}
+                  onClick={() => setHoveredImg(card)}
                   src={card}
                   alt={`card-${index}`}
                   className={classNames(styles.animatedCard, {

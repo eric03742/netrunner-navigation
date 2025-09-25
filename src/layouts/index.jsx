@@ -1,7 +1,7 @@
 // src/layouts/index.jsx
 import { Tabs, Dropdown } from 'antd';
-import { useState, useEffect, useCallback } from 'react';
-import { Outlet, history, useLocation } from 'umi';
+import { useState, useEffect } from 'react';
+import { Outlet, history, useLocation, useModel } from 'umi';
 import logo from '@/assets/layout/logo.webp';
 import logo2 from '@/assets/layout/logo2.webp';
 import CommunityBG from '@/assets/layout/bgs/Community-BG.webp';
@@ -39,6 +39,7 @@ const Layout = () => {
   const [prevKey, setPrevKey] = useState('INDEX');
   const [direction, setDirection] = useState(''); // 'left' or 'right'
   const [isAnimating, setIsAnimating] = useState(false);
+  const { isSmallScreen } = useModel('mobile');
 
   useEffect(() => {
     // 预加载所有背景图片
@@ -108,7 +109,7 @@ const Layout = () => {
   }, [isAnimating]);
 
   const renderTabLabel = (item) => {
-    if (item.subTitle === 'BASICS') {
+    if (item.subTitle === 'BASICS' && !isSmallScreen) {
       // 为RUN标签添加下拉菜单
       return (
         <Dropdown
@@ -130,7 +131,7 @@ const Layout = () => {
     return (
       <div>
         <div className="layout-tab-title">{item.label}</div>
-        <div className="layout-tab-title">{item.subTitle}</div>
+        {!isSmallScreen && <div className="layout-tab-title">{item.subTitle}</div>}
       </div>
     );
   };
@@ -140,7 +141,7 @@ const Layout = () => {
       <div className="layout-header">
         <img src={logo} className="logo-img" />
         <Tabs
-          style={{ paddingTop: 20 }}
+          className='layout-tab'
           activeKey={activeKey}
           onChange={handleTabChange}
           items={TAB?.filter(item => !item.hidden)?.map((item) => ({
@@ -174,21 +175,23 @@ const Layout = () => {
       </div>
       <div className="layout-footer">
         <img className="layout-footer-logo" src={logo2} />
-        <div className="layout-beian">
-          <a href=" " target="_blank" style={{ paddingRight: 20 }}>闽ICP备2025085053号-1</a>
-          <div className="layout-beian-row">
-            <img className="layout-beian-img" src={beian} />
-            <a href="https://beian.mps.gov.cn/#/query/webSearch?code=35060202000609" rel="noreferrer" target="_blank"><img /> 闽公网安备35060202000609号</a>
+        <div className="layout-text">
+          <div className="layout-beian">
+            <a href=" " target="_blank" style={{ paddingRight: 20 }}>闽ICP备2025085053号-1</a>
+            <div className="layout-beian-row">
+              <img className="layout-beian-img" src={beian} />
+              <a href="https://beian.mps.gov.cn/#/query/webSearch?code=35060202000609" rel="noreferrer" target="_blank"><img /> 闽公网安备35060202000609号</a>
+            </div>
           </div>
-        </div>
-        <div className="layout-developer">
-          网站主理人&首席设计师：风筝
-        </div>
-        <div className="layout-developer">
-          开发者：皮皮-矩阵潜袭中国测试暗门委员会
-        </div>
-        <div className="layout-version">
-          当前版本：1.0.0 更新时间：2025/09/24
+          <div className="layout-developer">
+            网站主理人&首席设计师：风筝
+          </div>
+          <div className="layout-developer">
+            开发者：皮皮-矩阵潜袭中国测试暗门委员会
+          </div>
+          <div className="layout-version">
+            当前版本：1.0.0 更新时间：2025/09/24
+          </div>
         </div>
       </div>
     </div>

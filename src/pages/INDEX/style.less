@@ -140,28 +140,40 @@
   background-color: white;
 }
 
-// 响应式调整
+// 移动端适配样式
 @media (max-width: 768px) {
-  .animatedPage {
-    flex-direction: column;
-    padding: 20px;
-  }
+  .IndexPage {
+    .welcome-content {
+      transform: scale(0.5);
+    }
 
-  .animatedText {
-    width: 100%;
-    padding: 20px 0;
-  }
+    .animatedPage {
+      margin-top: 10px;
+      display: block;
 
-  .animatedImage {
-    width: 100%;
-    margin-top: 20px;
-  }
+      .animatedText {
+        width: unset;
+        padding: 10px;
 
-  .animatedText h2 {
-    font-size: 2rem;
-  }
+        h2 {
+          font-size: 20px;
+          margin-bottom: 10px;
+        }
 
-  .animatedText p {
-    font-size: 1rem;
+        p {
+          font-size: 14px;
+        }
+      }
+
+      .animatedImage {
+        width: unset;
+        top: 30px;
+        position: relative;
+
+        img {
+          max-height: 200px;
+        }
+      }
+    }
   }
 }

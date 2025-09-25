@@ -184,3 +184,53 @@
     transform: rotate(calc(var(--rotation-angle) * -1)) translateY(100px) scale(0.5);
   }
 }
+
+// 移动端适配样式
+@media (max-width: 768px) {
+  .faction {
+    .list {
+      flex: auto;
+      align-items: start;
+      margin-top: 20px;
+      padding: 0;
+
+      .listContent {
+        .item {
+          width: 120px;
+          min-width: 120px;
+          display: flex;
+          flex-direction: column;
+          font-size: 16px;
+
+          .subTitle {
+            font-size: 16px;
+          }
+        }
+
+        .item-selected {
+          .title {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+
+    .rightContent {
+      width: calc(100vw - 150px);
+      max-width: calc(100vw - 150px);
+      padding: 10px 0;
+      overflow-y: auto;
+      flex: auto;
+
+      .contentWrapper {
+        .textContent {
+          margin-top: 0;
+        }
+      }
+
+      .cardContent {
+        flex-direction: column;
+      }
+    }
+  }
+}

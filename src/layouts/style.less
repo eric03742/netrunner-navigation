@@ -28,6 +28,10 @@
       height: 60px;
     }
 
+    .layout-tab {
+      padding-top: 20px;
+    }
+
     .layout-tab-title {
       font-family: 'CommonFont';
       color: #fff;
@@ -170,5 +174,60 @@
   to {
     transform: translateX(0);
     opacity: 1;
+  }
+}
+
+// 移动端适配样式
+@media (max-width: 768px) {
+  .layout {
+    .ant-tabs {
+      align-items: center;
+    }
+
+    .layout-header {
+      flex-direction: column;
+
+      .logo-img {
+        height: 50px;
+      }
+
+      .layout-tab {
+        padding-top: 0;
+
+        .ant-tabs-tab {
+          padding: 4px 0;
+        }
+      }
+    }
+
+    .layout-contain {
+      min-height: unset;
+      height: calc(100vh - 170px);
+
+      .layout-bg {
+        min-height: unset;
+        height: calc(100vh - 170px);
+      }
+    }
+
+    .layout-footer {
+      height: 85px;
+      font-size: 12px;
+
+      .layout-footer-logo {
+        top: 10px;
+        left: 0;
+      }
+
+      .layout-text {
+        margin-left: 120px;
+        padding-top: 5px;
+      }
+
+      .layout-beian {
+        flex-direction: column;
+        padding: 0;
+      }
+    }
   }
 }

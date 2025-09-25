@@ -9,6 +9,7 @@ import introduction5 from '@/assets/IndexPage/introduction5.webp'
 const INDEX = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [touchStartY, setTouchStartY] = useState(0);
   const totalPages = 6;
 
   // 节流控制函数
@@ -47,15 +48,45 @@ const INDEX = () => {
     }
   }, [handleScroll]);
 
+  // 处理触摸开始事件
+  const handleTouchStart = useCallback((e) => {
+    setTouchStartY(e.touches[0].clientY);
+  }, []);
+
+  // 处理触摸结束事件
+  const handleTouchEnd = useCallback((e) => {
+    if (!touchStartY) return;
+
+    const touchEndY = e.changedTouches[0].clientY;
+    const diffY = touchStartY - touchEndY;
+
+    // 判断滑动距离是否足够触发翻页
+    if (Math.abs(diffY) > 50) {
+      if (diffY > 0) {
+        // 向上滑动，相当于鼠标滚轮向下滚动
+        handleScroll('down');
+      } else {
+        // 向下滑动，相当于鼠标滚轮向上滚动
+        handleScroll('up');
+      }
+    }
+
+    setTouchStartY(0);
+  }, [touchStartY, handleScroll]);
+
   useEffect(() => {
     // 添加事件监听器
     window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
 
     return () => {
       // 清理事件监听器
       window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [handleWheel]);
+  }, [handleWheel, handleTouchStart, handleTouchEnd]);
 
   // 页面内容数据
   const pageContents = [
