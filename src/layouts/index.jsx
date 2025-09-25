@@ -182,10 +182,10 @@ const Layout = () => {
           </div>
         </div>
         <div className="layout-developer">
-          网站主理人&首席设计师：赵小回
+          网站主理人&首席设计师：风筝
         </div>
         <div className="layout-developer">
-          开发者：矩阵潜袭中国-测试暗门委员会
+          开发者：皮皮-矩阵潜袭中国测试暗门委员会
         </div>
         <div className="layout-version">
           当前版本：1.0.0 更新时间：2025/09/24

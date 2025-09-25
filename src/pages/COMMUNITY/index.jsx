@@ -1,6 +1,6 @@
 import './style.less';
 import { QqOutlined, WechatOutlined, RadarChartOutlined, FileDoneOutlined, WalletOutlined } from '@ant-design/icons'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Modal, message } from 'antd'
 import favicon0 from '@/assets/Community/favicon0.png'
 import favicon1 from '@/assets/Community/favicon1.png'
@@ -11,6 +11,8 @@ import favicon5 from '@/assets/Community/favicon5.ico'
 import QQQrcode from '@/assets/Community/QQQrcode.webp'
 import weixinQrcode from '@/assets/Community/weixinQrcode.webp'
 import shenwang from '@/assets/Community/shenwang.webp'
+import weixinMiniProgram from '@/assets/Community/weixinMiniProgram.webp';
+import shenwangIcon from '@/assets/Community/shenwangIcon.webp';
 import mini from '@/assets/Community/mini.webp'
 import { competitions, behavior } from './const'
 
@@ -26,8 +28,8 @@ const sciFiButtons = [
   { id: 6, label: `The Maker's Eye`, icon: favicon5, isImg: true, color: '#ff3864' },
   { id: 7, label: '矩阵潜袭QQ群', icon: <QqOutlined style={iconStyle} />, color: '#00aaff' },
   { id: 8, label: '矩阵潜袭微信群', icon: <WechatOutlined style={iconStyle} />, color: '#00ff6a' },
-  { id: 9, label: '微信小程序', icon: <WechatOutlined style={iconStyle} />, color: '#ffcc00' },
-  { id: 10, label: '深网补给池', icon: <RadarChartOutlined style={iconStyle} />, color: '#ff0058' },
+  { id: 9, label: '微信小程序', icon: <img src={weixinMiniProgram} style={iconStyle} />, color: '#ffcc00' },
+  { id: 10, label: '深网补给池', icon: <img src={shenwangIcon} style={iconStyle} />, color: '#ff0058' },
   { id: 11, label: '组织比赛原则', icon: <WalletOutlined style={iconStyle} />, color: '#58ff00' },
   { id: 12, label: '社群行为准则', icon: <FileDoneOutlined style={iconStyle} />, color: '#aa00ff' },
 ];

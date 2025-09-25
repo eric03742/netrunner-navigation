@@ -48,7 +48,7 @@ import classNames from 'classnames';
 
 const FactionList = [
   {
-    name: '哈斯生化', subTitle: 'HASS-BIOROID', img: hassBioroid, color: '#7E489C',
+    name: '哈斯生化', subTitle: 'HAAS-BIOROID', img: hassBioroid, color: '#7E489C',
     content: ['哈斯生化在义体与人工智能方面世界领先，其最知名的产品如同其名所示便是生化人——义体构成的安卓人，由脑录技术驱动。制造生化人的流程，已经先进到这些类人型的“劳动力解决方案”外表与人类几乎无异。', '生化人的出现永久地改变了世界。公司和富人争先恐后地替换掉手下的劳工，工薪阶级纷纷失业。不但如此，生化人还能超越人类的身体能力，可以在人类无法承受的恶劣条件下工作。哈斯生化金技体育分部的人造运动员，向大众展示了生化人优秀的反应速度、敏捷与力量。脑扫描图在网络空间同样可以使用。哈斯生化用与生化人大脑相同的软件，造出了能够自学习，自适应，智取入侵者的防火墙。', '除生化人外，哈斯生化在神经元通道与义体方面的专利，使其在义肢设计与工业制造领域也占据着主导地位。依靠超人的效率与精密工程，他们无论在地球还是月球都能保持价格优势。'],
     cards: [HB, liao, nike]
   },
@@ -73,7 +73,7 @@ const FactionList = [
     cards: [yelang, tuopan, roudu]
   },
   {
-    name: '逆法者', subTitle: 'CRIMINAL', img: criminal, color: '#060607ff',
+    name: '逆法者', subTitle: 'CRIMINAL', img: criminal, color: '#194C9B',
     content: ['一些潜袭者发现，唯一在体制内出人头地的方法就是绕过体制。', '这些逆法者知道引起别人的注意并非明智之举，因此他们隐藏踪迹，偷偷潜入公司帐户，或是混入人群，假装是一位可信的朋友，以获得他们不应拥有的权限。逆法者潜袭是因为有利可图，无论是通过吸走资金还是通过将公司机密卖给最高出价者。', '只要还有办法从潜袭中获利，逆法者就会继续潜袭。'],
     cards: [sadiya, yingxiao, caifuzhuanyi]
   },
@@ -85,7 +85,7 @@ const FactionList = [
 ]
 
 const FACTION = () => {
-  const [currentSelected, setCurrentSelected] = useState('HASS-BIOROID')
+  const [currentSelected, setCurrentSelected] = useState('HAAS-BIOROID')
   const [hoveredItem, setHoveredItem] = useState(null)
   const [hoveredImg, setHoveredImg] = useState(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
