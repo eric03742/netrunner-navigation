@@ -150,19 +150,13 @@ const DocPreview = () => {
   // 渲染标题导航（左侧）
   const renderTitleNav = () => {
     return (
-      <div className={`doc-nav ${isNavCollapsed ? 'collapsed' : ''}`}>
-        <div className="nav-header">
-          <h3 className="nav-title">文档目录</h3>
-          <button
-            className="toggle-nav-btn"
-            onClick={() => setIsNavCollapsed(!isNavCollapsed)}
-          >
-            {isNavCollapsed ? '▶' : '◀'}
-          </button>
-        </div>
-        {!isNavCollapsed && (
+      <div className={`doc-nav-wrapper ${isNavCollapsed ? 'collapsed' : ''}`}>
+        <div className="doc-nav">
+          <div className="nav-header">
+            <h3 className="nav-title">文档目录</h3>
+          </div>
           <ul className="title-list">
-            {docContent.titles.map((title, index) => (
+            {!isNavCollapsed && docContent.titles.map((title, index) => (
               <li
                 key={index}
                 className={`title-item level-${title.level} ${activeTitleIndex === index ? 'active' : ''
@@ -173,7 +167,13 @@ const DocPreview = () => {
               </li>
             ))}
           </ul>
-        )}
+        </div>
+        <button
+          className="toggle-nav-btn"
+          onClick={() => setIsNavCollapsed(!isNavCollapsed)}
+        >
+          {!isNavCollapsed ? '◀' : '▶'}
+        </button>
       </div>
     );
   };
