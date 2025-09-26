@@ -1,6 +1,7 @@
 // src/pages/RUN/index.jsx
 import styles from './style.less';
 import { useState, useEffect } from 'react';
+import { useModel } from 'umi'
 
 // 图片导入（需要您提供这些图片文件）
 import buildImg from '@/assets/Run/build.webp';
@@ -35,6 +36,7 @@ const slides = [
 const RUN = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
+  const { isSmallScreen } = useModel('mobile');
 
   // 自动轮播
   useEffect(() => {
@@ -44,12 +46,12 @@ const RUN = () => {
           setCurrentIndex(prevIndex => (prevIndex + 1) % slides.length);
           return 0;
         }
-        return prev + 100 / 50; // 5s = 50个100ms
+        return prev + 100 / (isSmallScreen ? 25 : 50); // 5s = 50个100ms
       });
     }, 100);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isSmallScreen]);
 
   // 切换幻灯片
   const goToSlide = (index) => {
@@ -73,7 +75,7 @@ const RUN = () => {
     <div className={styles.container}>
       {/* 顶部标题 */}
       <div className={styles.header}>
-        <div className={styles.headerText}><span style={{ color: '#000' }}>想尝试潜袭吗？</span><span>来矩阵潜袭国服！</span></div>
+        <div className={styles.headerText}><span style={{ color: '#000' }}>想尝试潜袭吗？</span><span>来矩阵潜袭国服!</span></div>
       </div>
 
       {/* 中间轮播区域 */}
@@ -86,7 +88,7 @@ const RUN = () => {
           <div className={styles.slideWrapper}>
             <div
               className={styles.slides}
-              style={{ transform: `translateX(-${currentIndex * 50}%)` }}
+              style={isSmallScreen ? { transform: `translateX(-${currentIndex * 25}%)` } : { transform: `translateX(-${currentIndex * 50}%)` }}
             >
               {slides.map((slide, index) => (
                 <div key={index} className={styles.slide}>

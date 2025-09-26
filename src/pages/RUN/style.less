@@ -222,18 +222,62 @@
   }
 }
 
-@media (max-width: 1200px) {
-  .slideContent {
-    flex-direction: column;
-    height: auto;
-  }
+// 移动端适配样式
+@media (max-width: 768px) {
+  .container {
+    justify-content: space-around;
+    overflow-y: auto;
 
-  .imageContainer {
-    flex: 0 0 auto;
-    height: 300px;
-  }
+    .header {
+      .headerText {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-weight: 600;
+        padding-top: 0;
+      }
+    }
 
-  .textContainer {
-    flex: 1;
+    .carouselContainer {
+      .carousel {
+        .navButton {
+          display: none;
+        }
+
+        .slideWrapper {
+          .slides {
+            width: 400%;
+
+            .slide {
+              width: 100%;
+
+              .slideContent {
+                display: block;
+
+                .imageContainer {
+                  height: unset;
+                  width: 100%;
+                }
+
+                .textContainer {
+                  width: 100%;
+                  height: fit-content;
+                  margin-top: 20px;
+                  padding: 5;
+
+                  p {
+                    margin-bottom: 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .footer {
+      padding: 10px 0
+    }
   }
 }
