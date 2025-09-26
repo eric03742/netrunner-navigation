@@ -2,6 +2,7 @@ import './style.less';
 import { QqOutlined, WechatOutlined, RadarChartOutlined, FileDoneOutlined, WalletOutlined } from '@ant-design/icons'
 import { useState } from 'react';
 import { Modal, message } from 'antd'
+import { useModel } from 'umi'
 import favicon0 from '@/assets/Community/favicon0.png'
 import favicon1 from '@/assets/Community/favicon1.png'
 import favicon2 from '@/assets/Community/favicon2.png'
@@ -18,22 +19,6 @@ import { competitions, behavior } from './const'
 
 const iconStyle = { fontSize: 64 }
 
-// 按钮配置数据
-const sciFiButtons = [
-  { id: 1, label: 'Null Signal Games', icon: favicon0, isImg: true, color: '#00f3ff' },
-  { id: 2, label: 'NetrunnerDB', icon: favicon1, isImg: true, color: '#ff00c8' },
-  { id: 3, label: 'Always be Running', icon: favicon2, isImg: true, color: '#00ff9d' },
-  { id: 4, label: 'Cobra', icon: favicon3, isImg: true, color: '#ff9d00' },
-  { id: 5, label: 'Near Earth Hub', icon: favicon4, isImg: true, color: '#9d00ff' },
-  { id: 6, label: `The Maker's Eye`, icon: favicon5, isImg: true, color: '#ff3864' },
-  { id: 7, label: '矩阵潜袭QQ群', icon: <QqOutlined style={iconStyle} />, color: '#00aaff' },
-  { id: 8, label: '矩阵潜袭微信群', icon: <WechatOutlined style={iconStyle} />, color: '#00ff6a' },
-  { id: 9, label: '微信小程序', icon: <img src={weixinMiniProgram} style={iconStyle} />, color: '#ffcc00' },
-  { id: 10, label: '深网补给池', icon: <img src={shenwangIcon} style={iconStyle} />, color: '#ff0058' },
-  { id: 11, label: '组织比赛原则', icon: <WalletOutlined style={iconStyle} />, color: '#58ff00' },
-  { id: 12, label: '社群行为准则', icon: <FileDoneOutlined style={iconStyle} />, color: '#aa00ff' },
-];
-
 // 复制到剪贴板函数
 const copyToClipboard = (text) => {
   navigator.clipboard.writeText(text).then(() => {
@@ -45,6 +30,24 @@ const copyToClipboard = (text) => {
 const COMMUNITY = () => {
   const [visible, setVisible] = useState(false)
   const [modalContent, setModalContent] = useState({})
+  const { isSmallScreen } = useModel('mobile');
+  const iconStyle = { fontSize: isSmallScreen ? 32 : 64 }
+  // 按钮配置数据
+  const sciFiButtons = [
+    { id: 1, label: 'Null Signal Games', icon: favicon0, isImg: true, color: '#00f3ff' },
+    { id: 2, label: 'NetrunnerDB', icon: favicon1, isImg: true, color: '#ff00c8' },
+    { id: 3, label: 'Always be Running', icon: favicon2, isImg: true, color: '#00ff9d' },
+    { id: 4, label: 'Cobra', icon: favicon3, isImg: true, color: '#ff9d00' },
+    { id: 5, label: 'Near Earth Hub', icon: favicon4, isImg: true, color: '#9d00ff' },
+    { id: 6, label: `The Maker's Eye`, icon: favicon5, isImg: true, color: '#ff3864' },
+    { id: 7, label: '矩阵潜袭QQ群', icon: <QqOutlined style={iconStyle} />, color: '#00aaff' },
+    { id: 8, label: '矩阵潜袭微信群', icon: <WechatOutlined style={iconStyle} />, color: '#00ff6a' },
+    { id: 9, label: '微信小程序', icon: <img src={weixinMiniProgram} style={iconStyle} />, color: '#ffcc00' },
+    { id: 10, label: '深网补给池', icon: <img src={shenwangIcon} style={iconStyle} />, color: '#ff0058' },
+    { id: 11, label: '组织比赛原则', icon: <WalletOutlined style={iconStyle} />, color: '#58ff00' },
+    { id: 12, label: '社群行为准则', icon: <FileDoneOutlined style={iconStyle} />, color: '#aa00ff' },
+  ];
+
   // 按钮点击处理函数
   const handleSciFiButtonClick = (id) => {
     console.log(`执行操作: ${id}`);
@@ -174,18 +177,8 @@ const COMMUNITY = () => {
       >
         {modalContent.content}
       </Modal>
-      {/* 搜索栏 */}
-      <div className="search-bar">
-        {/* ...现有搜索栏代码... */}
-      </div>
-
       {/* 科幻风格按钮网格 */}
       {renderSciFiButtonGrid()}
-
-      {/* 文档主体（左侧导航 + 右侧内容） */}
-      <div className="doc-main">
-        {/* ...现有内容... */}
-      </div>
     </div>
   );
 }

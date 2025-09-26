@@ -4,11 +4,6 @@
   color: #e0e9ff;
 }
 
-.search-bar {
-  margin-bottom: 30px;
-  /* 保留原有搜索栏样式 */
-}
-
 .sci-fi-button-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -107,10 +102,6 @@
   }
 }
 
-.doc-main {
-  /* 保留原有文档主体样式 */
-}
-
 .sci-fi-button:hover {
   transform: translateY(-5px) scale(1.05);
   box-shadow: 0 0 20px var(--button-color), 0 0 30px var(--button-color);
@@ -172,26 +163,6 @@
   }
 }
 
-
-/* 响应式设计 */
-@media (max-width: 1200px) {
-  .sci-fi-button-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .sci-fi-button-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .sci-fi-button-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @keyframes pulse {
   0% {
     opacity: 0;
@@ -203,5 +174,30 @@
 
   100% {
     opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .COMMUNITY {
+    .sci-fi-button-grid {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 10px;
+
+      .sci-fi-button {
+        height: fit-content;
+
+        .button-content {
+          .button-icon {
+            width: 32px;
+            height: 32px;
+          }
+
+          .button-label {
+            font-size: 16px
+          }
+        }
+      }
+    }
   }
 }

@@ -5,6 +5,7 @@ import environmentImg from '@/assets/Environment/environmentImg.webp'
 import buyQrcode from '@/assets/Environment/buyQrcode.webp'
 import { Image, Modal } from "antd"
 import { cycleText, banTextStandard, banTextStarter } from './content'
+import { useModel } from 'umi'
 
 const ENVIRONMENT = () => {
   const [currentView, setCurrentView] = useState('main'); // 'main', 'banlist', 'cycle'
@@ -14,6 +15,7 @@ const ENVIRONMENT = () => {
   const [cycleData, setCycleData] = useState({}); // 循环信息
   const [currentBan, setCurrentBan] = useState('standard'); // 禁卡表
   const [isFading, setIsFading] = useState(false); // 控制淡入淡出动画
+  const { isSmallScreen } = useModel('mobile');
 
   const showBanlist = (type) => {
     // 根据type设置禁卡表
@@ -84,7 +86,7 @@ const ENVIRONMENT = () => {
         footer={null}
       >
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <img style={{ width: 400 }} src={buyQrcode} />
+          <img style={isSmallScreen ? { width: '-webkit-fill-available' } : { width: 400 }} src={buyQrcode} />
         </div>
       </Modal>
       {/* 主页面内容 */}
@@ -117,16 +119,17 @@ const ENVIRONMENT = () => {
             </div>
           </div>
 
-          <img className={styles.middle} src={environmentImg} />
+          {!isSmallScreen && <img className={styles.middle} src={environmentImg} />}
 
           {/* 右侧按钮 - 循环区 */}
-          <div className={styles.rightButtons} style={{ minWidth: '420px' }}>
+          <div className={styles.rightButtons} style={isSmallScreen ? { marginTop: '10px' } : { minWidth: '420px' }}>
             <div className={styles.cycleButtons}>
               {cycleText?.map(item => <button className={styles.cycleButton} style={{ background: `linear-gradient(135deg, ${item.color}, #ffffff00)` }} onClick={() => showCycle(item.key)}>
                 <img src={item.logo} className={styles.cycleLogo} />  {item.title}
               </button>)}
             </div>
           </div>
+          {isSmallScreen && <img className={styles.middle} src={environmentImg} />}
         </div>
       </div>
 
@@ -170,7 +173,7 @@ const ENVIRONMENT = () => {
               <Image
                 preview={{ getContainer: () => document.getElementById('root') }}
                 className={styles.image}
-                width={150}
+                width={isSmallScreen ? 100 : 150}
                 src={image}
               />
             ))}

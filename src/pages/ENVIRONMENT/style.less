@@ -538,3 +538,87 @@
     font-family: 'CommonFont';
   }
 }
+
+@media (max-width: 768px) {
+  .page {
+    padding: 0;
+
+    .cycleContent {
+      .cycleText {
+        margin: 10px;
+      }
+
+      .cycleBottom {
+        flex-direction: column;
+        align-items: center;
+
+        .cycleCards {
+          width: 90vw;
+        }
+
+        .cycleCoverContent {
+          .cycleCover {
+            width: 40vw;
+          }
+        }
+      }
+    }
+
+    .pageHeader {
+      h2 {
+        font-size: 30px;
+      }
+
+      h3 {
+        font-size: 16px;
+      }
+    }
+
+    .descriptionSection {
+      padding: 10px;
+
+      p {
+        font-size: 20px;
+      }
+    }
+
+    .buttonSection {
+      flex-direction: column;
+
+      .middle {
+        height: unset;
+      }
+
+      .rightButtons {
+        min-width: unset;
+
+        .cycleButtons {
+          justify-content: center;
+
+          .cycleButton {
+            width: 40%;
+            padding-left: 0;
+            padding: 5px 10px;
+          }
+        }
+      }
+    }
+
+    .banListContent {
+      flex-direction: column;
+
+      .banListImages {
+        padding: 0 10px;
+        justify-content: space-between;
+
+        .image {
+          width: 100px;
+        }
+      }
+
+      .banListText {
+        width: 100%;
+      }
+    }
+  }
+}
