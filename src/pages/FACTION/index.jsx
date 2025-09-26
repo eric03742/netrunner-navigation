@@ -207,7 +207,7 @@ const FACTION = () => {
               ))}
             </div>
             {/* 悬浮图片展示 */}
-            {hoveredImg && (
+            {hoveredImg && !isSmallScreen && (
               <div
                 className={styles.floatingImageCard}
                 style={{
