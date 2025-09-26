@@ -9,7 +9,7 @@ import introduction5 from '@/assets/IndexPage/introduction5.webp'
 const INDEX = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
-  const [touchStartY, setTouchStartY] = useState(0);
+  const [touchStartX, setTouchStartX] = useState(0);
   const totalPages = 6;
 
   // 节流控制函数
@@ -50,29 +50,28 @@ const INDEX = () => {
 
   // 处理触摸开始事件
   const handleTouchStart = useCallback((e) => {
-    setTouchStartY(e.touches[0].clientY);
+    setTouchStartX(e.touches[0].clientX);
   }, []);
-
   // 处理触摸结束事件
   const handleTouchEnd = useCallback((e) => {
-    if (!touchStartY) return;
+    if (!touchStartX) return;
 
-    const touchEndY = e.changedTouches[0].clientY;
-    const diffY = touchStartY - touchEndY;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diffX = touchStartX - touchEndX;
 
     // 判断滑动距离是否足够触发翻页
-    if (Math.abs(diffY) > 50) {
-      if (diffY > 0) {
-        // 向上滑动，相当于鼠标滚轮向下滚动
+    if (Math.abs(diffX) > 50) {
+      if (diffX > 0) {
+        // 向左滑动，切换到下一页
         handleScroll('down');
       } else {
-        // 向下滑动，相当于鼠标滚轮向上滚动
+        // 向右滑动，切换到上一页
         handleScroll('up');
       }
     }
 
-    setTouchStartY(0);
-  }, [touchStartY, handleScroll]);
+    setTouchStartX(0);
+  }, [touchStartX, handleScroll]);
 
   useEffect(() => {
     // 添加事件监听器
