@@ -149,7 +149,7 @@ const Layout = () => {
           }))}
         />
       </div>
-      <div className="layout-contain">
+      <div className={isSmallScreen ? activeKey === 'INDEX' ? "layout-contain-Index" : "layout-contain-mobile" : "layout-contain"}>
         {/* Background container with animation */}
         <div className="layout-bg">
           {/* Previous background (fading out) */}

@@ -30,6 +30,10 @@
 
     .layout-tab {
       padding-top: 20px;
+
+      .ant-tabs-ink-bar {
+        background: #fff
+      }
     }
 
     .layout-tab-title {
@@ -200,16 +204,6 @@
       }
     }
 
-    .layout-contain {
-      min-height: unset;
-      height: calc(100vh - 170px);
-
-      .layout-bg {
-        min-height: unset;
-        height: calc(100vh - 170px);
-      }
-    }
-
     .layout-footer {
       height: 85px;
       font-size: 12px;
@@ -229,5 +223,25 @@
         padding: 0;
       }
     }
+  }
+}
+
+.layout-contain-Index {
+  min-height: unset;
+  height: calc(100vh - 170px);
+
+  .layout-bg {
+    min-height: unset;
+    height: calc(100vh - 170px);
+  }
+}
+
+.layout-contain-mobile {
+  min-height: unset;
+  height: calc(100vh - 85px);
+
+  .layout-bg {
+    min-height: unset;
+    height: calc(100vh - 85px);
   }
 }
