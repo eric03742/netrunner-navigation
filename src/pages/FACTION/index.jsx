@@ -1,5 +1,6 @@
 import styles from './style.less';
 import { useState, useEffect } from 'react';
+import { Image } from 'antd'
 import { useModel } from 'umi'
 import weyland from '@/assets/Faction/NISEI_WEYLAND.svg';
 import nbn from '@/assets/Faction/NISEI_NBN.svg';
@@ -88,7 +89,6 @@ const FactionList = [
 const FACTION = () => {
   const [currentSelected, setCurrentSelected] = useState('HAAS-BIOROID')
   const [hoveredItem, setHoveredItem] = useState(null)
-  const [hoveredImg, setHoveredImg] = useState(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [animationState, setAnimationState] = useState('enter'); // 'enter' 或 'exit'
   const [selectedFaction, setSelectedFaction] = useState(null)
@@ -112,12 +112,6 @@ const FACTION = () => {
     setMousePosition({ x: e.clientX, y: e.clientY })
   }
 
-  const handleMouseImgEnter = (item, e) => {
-    setHoveredImg(item)
-    setMousePosition({ x: e.clientX, y: e.clientY })
-  }
-
-
   const handleMouseMove = (e) => {
     setMousePosition({ x: e.clientX, y: e.clientY })
   }
@@ -126,9 +120,6 @@ const FACTION = () => {
     setHoveredItem(null)
   }
 
-  const handleMouseImgLeave = () => {
-    setHoveredImg(null)
-  }
   return (
     <div className={styles.faction}>
       <div className={styles.list}>
@@ -168,6 +159,11 @@ const FACTION = () => {
       <div className={styles.rightContent}>
         {selectedFaction && (
           <div className={styles.contentWrapper}>
+            {isSmallScreen && <Image key={selectedFaction.subTitle} style={{ width: '95%' }} src={selectedFaction?.img} className={classNames({
+              [styles.fadeEnter]: animationState === 'enter',
+              [styles.fadeExit]: animationState === 'exit'
+            })} />}
+
             {/* 内容部分 - 淡入淡出动画 */}
             <div className={styles.textContent}>
               {selectedFaction.content.map((text, index) => (
@@ -188,13 +184,8 @@ const FACTION = () => {
             {/* 卡片部分 - 卡牌桌面游戏效果 */}
             <div className={styles.cardContent}>
               {selectedFaction.cards.map((card, index) => (
-                <img
-                  onMouseEnter={(e) => handleMouseImgEnter(card, e)}
-                  onMouseMove={handleMouseMove}
-                  onMouseLeave={handleMouseImgLeave}
-                  onClick={() => setHoveredImg(card)}
+                <Image
                   src={card}
-                  alt={`card-${index}`}
                   className={classNames(styles.animatedCard, {
                     [styles.exit]: animationState === 'exit'
                   })}
@@ -206,18 +197,6 @@ const FACTION = () => {
                 />
               ))}
             </div>
-            {/* 悬浮图片展示 */}
-            {hoveredImg && !isSmallScreen && (
-              <div
-                className={styles.floatingImageCard}
-                style={{
-                  left: mousePosition.x - 100,
-                  top: mousePosition.y - 300,
-                }}
-              >
-                <img src={hoveredImg} />
-              </div>
-            )}
           </div>
         )}
       </div>
