@@ -39,6 +39,7 @@ const Layout = () => {
   const [prevKey, setPrevKey] = useState('INDEX');
   const [direction, setDirection] = useState(''); // 'left' or 'right'
   const [isAnimating, setIsAnimating] = useState(false);
+  const [touchStartX, setTouchStartX] = useState(0); // 添加触摸起始位置状态
   const { isSmallScreen } = useModel('mobile');
 
   useEffect(() => {
@@ -48,6 +49,41 @@ const Layout = () => {
       img.src = item.background;
     });
   }, []);
+
+  // 处理触摸开始事件
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  // 处理触摸结束事件
+  const handleTouchEnd = (e) => {
+    if (!touchStartX) return;
+
+    const touchEndX = e.changedTouches[0].clientX;
+    const diffX = touchStartX - touchEndX;
+
+    // 判断滑动距离是否足够触发切换
+    if (Math.abs(diffX) > 50) {
+      // 获取可见的tab项（不包括隐藏的）
+      const visibleTabs = TAB.filter(item => !item.hidden);
+      // 找到当前激活的tab索引
+      const currentIndex = visibleTabs.findIndex(item => item.subTitle === activeKey);
+
+      if (diffX > 0) {
+        // 向左滑动，切换到下一个tab（如果存在）
+        if (currentIndex < visibleTabs.length - 1) {
+          handleTabChange(visibleTabs[currentIndex + 1].subTitle);
+        }
+      } else {
+        // 向右滑动，切换到上一个tab（如果存在）
+        if (currentIndex > 0) {
+          handleTabChange(visibleTabs[currentIndex - 1].subTitle);
+        }
+      }
+    }
+
+    setTouchStartX(0);
+  };
 
   const handleTabChange = (key) => {
     const currentIndex = TAB.findIndex((item) => item.subTitle === activeKey);
@@ -149,7 +185,11 @@ const Layout = () => {
           }))}
         />
       </div>
-      <div className={isSmallScreen ? activeKey === 'INDEX' ? "layout-contain-Index" : "layout-contain-mobile" : "layout-contain"}>
+      <div
+        className={isSmallScreen ? activeKey === 'INDEX' ? "layout-contain-Index" : "layout-contain-mobile" : "layout-contain"}
+        onTouchStart={isSmallScreen ? handleTouchStart : undefined}
+        onTouchEnd={isSmallScreen ? handleTouchEnd : undefined}
+      >
         {/* Background container with animation */}
         <div className="layout-bg">
           {/* Previous background (fading out) */}

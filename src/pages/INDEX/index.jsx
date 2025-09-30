@@ -6,10 +6,15 @@ import introduction2 from '@/assets/IndexPage/introduction2.webp'
 import introduction3 from '@/assets/IndexPage/introduction3.webp'
 import introduction4 from '@/assets/IndexPage/introduction4.webp'
 import introduction5 from '@/assets/IndexPage/introduction5.webp'
+import NISEI_CLICK from '@/assets/IndexPage/NISEI_CLICK.svg'
+import accountQRCode from '@/assets/IndexPage/accountQRCode.webp'
+import { Modal } from 'antd';
+
 const INDEX = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const [touchStartX, setTouchStartX] = useState(0);
+  const [modalVisible, setModalVisible] = useState(false); // 添加模态框状态
   const totalPages = 6;
 
   // 节流控制函数
@@ -50,22 +55,22 @@ const INDEX = () => {
 
   // 处理触摸开始事件
   const handleTouchStart = useCallback((e) => {
-    setTouchStartX(e.touches[0].clientX);
+    setTouchStartX(e.touches[0].clientY);
   }, []);
   // 处理触摸结束事件
   const handleTouchEnd = useCallback((e) => {
     if (!touchStartX) return;
 
-    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndX = e.changedTouches[0].clientY;
     const diffX = touchStartX - touchEndX;
 
     // 判断滑动距离是否足够触发翻页
     if (Math.abs(diffX) > 50) {
       if (diffX > 0) {
-        // 向左滑动，切换到下一页
+        // 向上滑动，切换到下一页
         handleScroll('down');
       } else {
-        // 向右滑动，切换到上一页
+        // 向下滑动，切换到上一页
         handleScroll('up');
       }
     }
@@ -122,6 +127,37 @@ const INDEX = () => {
 
   return (
     <div className={styles.IndexPage}>
+      {/* 当 currentPage 为 0 时显示 NISEI_CLICK 关注公众号 */}
+      {currentPage === 0 && (
+        <div
+          className={styles.niseiClickContainer}
+          onClick={() => setModalVisible(true)}
+        >
+          <span className={styles.niseiClickText}>关注公众号</span>
+          <div className={styles.qrcode}><img src={NISEI_CLICK} className={styles.niseiClickIcon} />矩阵潜袭</div>
+        </div>
+      )}
+
+      {/* 弹窗模态框 */}
+      <Modal
+        open={modalVisible}
+        getContainer={() => document.getElementById('root')}
+        onCancel={() => setModalVisible(false)}
+        wrapClassName={styles["index-modal"]}
+        footer={null}
+        width={400}
+        centered
+      >
+        <div className={styles.modalContent}>
+          <p className={styles.modalText}>扫码关注矩阵潜袭公众号</p>
+          <img
+            src={accountQRCode}
+            alt="Account QR Code"
+            className={styles.qrCodeImage}
+          />
+        </div>
+      </Modal>
+
       {/* 页面内容容器 */}
       <div className={styles.pageContainer}>
         {/* 原始欢迎页面 */}

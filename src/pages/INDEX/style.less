@@ -4,6 +4,8 @@
   position: relative;
 }
 
+.submit {}
+
 .pageContainer {
   height: 100%;
   position: relative;
@@ -140,6 +142,78 @@
   background-color: white;
 }
 
+// 添加公众号关注按钮样式
+.niseiClickContainer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1000;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: all 0.3s;
+  background: linear-gradient(90deg, rgb(51 51 51 / 50%), rgb(255 255 255 / 20%));
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(50, 50, 50, 0.7), rgba(30, 30, 30, 0.4));
+    transition: background 0.5s ease;
+  }
+}
+
+.niseiClickText {
+  color: white;
+  font-family: CommonFont;
+  font-size: 18px;
+}
+
+.qrcode {
+  color: white;
+  font-family: XiangSuFont;
+  display: flex;
+  align-items: center;
+}
+
+.niseiClickIcon {
+  width: 24px;
+  height: 24px;
+}
+
+// 添加模态框内容样式
+.modalContent {
+  text-align: center;
+}
+
+.qrCodeImage {
+  width: 100%;
+  max-width: 300px;
+}
+
+.modalText {
+  font-size: 24px;
+  font-family: 'CommonFont';
+}
+
+.index-modal {
+  :global {
+    .ant-modal-content {
+      background: #ffffffbf;
+      border-radius: 0;
+
+      .ant-modal-header {
+        background: unset;
+
+        .ant-modal-title {
+          font-size: 24px;
+          font-family: 'CommonFont';
+        }
+      }
+    }
+  }
+}
+
 // 移动端适配样式
 @media (max-width: 768px) {
   .IndexPage {
@@ -173,6 +247,31 @@
         img {
           max-height: 200px;
         }
+      }
+    }
+
+    .pageContainer {
+      .indicators {
+        position: absolute;
+        top: 50%; // 定位到右侧
+        left: 95%;
+        display: flex; // 垂直排列
+        flex-direction: column;
+        gap: 10px; // 指示器之间的间距
+        z-index: 100;
+      }
+
+      .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .indicator.active {
+        background-color: white;
       }
     }
   }
