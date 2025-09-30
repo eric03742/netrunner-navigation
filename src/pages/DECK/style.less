@@ -31,47 +31,39 @@
   // 详情页面样式
 }
 
-.pageHeader {
-  position: relative;
+.backButton {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  padding: 20px 0;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
 
-  .backButton {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  .arrowIcon {
+    width: 24px;
+    height: 24px;
+    fill: white;
     transition: all 0.3s ease;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateX(-5px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 
     .arrowIcon {
-      width: 24px;
-      height: 24px;
-      fill: white;
-      transition: all 0.3s ease;
+      transform: scale(1.2);
     }
+  }
 
-    &:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.6);
-      transform: translateX(-5px);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-
-      .arrowIcon {
-        transform: scale(1.2);
-      }
-    }
-
-    &:active {
-      transform: translateX(-3px);
-    }
+  &:active {
+    transform: translateX(-3px);
   }
 }
 
@@ -159,13 +151,18 @@
     font-family: 'CommonFont';
     text-align: center;
     font-size: 40px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     color: #fff;
   }
 
   p {
     font-family: 'XiangSuFont';
     font-size: 20px;
+    background: #4b4848a8;
+    padding: 10px;
+    margin: 0 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
   }
 }
 
@@ -203,6 +200,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top;
     transition: transform 0.5s ease;
   }
 
@@ -224,6 +222,18 @@
 
 .deckType,
 .deckBasic {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.keyword {
+  display: inline-block;
+  background: rgba(100, 181, 246, 0.3);
+  color: #64b5f6;
   display: inline-block;
   padding: 5px 10px;
   border-radius: 20px;
@@ -260,7 +270,6 @@
 .detailContent {
   display: flex;
   gap: 30px;
-  margin-top: 20px;
 }
 
 .detailImageContainer {
@@ -278,7 +287,7 @@
   flex: 2;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  font-family: 'CommonFont';
 }
 
 .detailInfo {
@@ -293,7 +302,7 @@
 .detailTags {
   display: flex;
   gap: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .detailType,
@@ -326,9 +335,8 @@
 .detailData {
   h2 {
     font-size: 1.8rem;
-    color: #64b5f6;
-    margin-bottom: 20px;
-    text-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
+    color: #fff;
+    text-shadow: 0 0 10px #fff;
   }
 
   p {
@@ -338,17 +346,53 @@
   }
 }
 
+.cardListHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.copyButton {
+  background: linear-gradient(45deg, #7249b3, #652d95);
+  color: #b2c1f7;
+  border: 1px solid #64b5f6;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
+
+  &:hover {
+    background: linear-gradient(45deg, #7249b3, #652d95);
+    box-shadow: 0 0 15px rgba(100, 181, 246, 0.5);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
 .cardList {
   background: rgba(30, 30, 45, 0.7);
   border-radius: 10px;
-  padding: 20px;
+  padding: 10px;
   font-family: 'Courier New', monospace;
   line-height: 1.6;
   color: #e0e0e0;
   border: 1px solid rgba(100, 181, 246, 0.2);
-  overflow-x: auto;
   max-height: 400px;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  /* 子元素默认垂直排列 */
+  flex-wrap: wrap;
+  /* 超出高度时换行（排到右侧） */
+  height: 400px;
+  /* 固定容器高度（超出此高度的内容会排到第二栏） */
+  width: 100%;
 
   .cardCategoryTitle {
     font-weight: bold;
@@ -359,15 +403,41 @@
   }
 
   .cardItem {
-    margin-left: 15px;
+    width: calc(50% - 10px);
     padding: 2px 0;
   }
 }
 
 @media (max-width: 768px) {
-  .deckGrid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+  .deckListContainer {
+    p {
+      margin: 0;
+      margin-bottom: 10px;
+    }
+
+    .deckGrid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+
+      .deckCard {
+        width: calc(50% - 20px);
+
+        .deckInfo {
+          .deckType {
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+
+    .deckImageContainer {
+      height: 200px;
+    }
+  }
+
+  .page {
+    padding: 10px;
   }
 
   .detailContent {
@@ -376,13 +446,5 @@
 
   .detailName {
     font-size: 1.8rem !important;
-  }
-
-  .deckImageContainer {
-    height: 250px;
-  }
-
-  .page {
-    padding: 10px;
   }
 }

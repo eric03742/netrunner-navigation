@@ -7,6 +7,7 @@ const DECK = () => {
   const [currentView, setCurrentView] = useState('main'); // 'main' or 'detail'
   const [isAnimating, setIsAnimating] = useState(false);
   const [direction, setDirection] = useState('right'); // 'left' or 'right'
+  const [copyStatus, setCopyStatus] = useState(''); // 用于显示复制状态
 
   const handleDeckClick = (deck) => {
     if (isAnimating) return; // 防止在动画过程中重复点击
@@ -58,6 +59,12 @@ const DECK = () => {
                 <div className={style.deckBasic}>
                   {deck.basic === 1 ? '单基础' : '双基础'}
                 </div>
+                {/* 显示关键词 */}
+                {deck.keywords && deck.keywords.map((keyword, index) => (
+                  <span key={index} className={style.keyword}>
+                    {keyword}
+                  </span>
+                ))}
               </div>
             </div>
           ))}
@@ -133,9 +140,22 @@ const DECK = () => {
   const renderDeckDetail = () => {
     if (!selectedDeck) return null;
 
+    // 复制卡组内容到剪贴板的函数
+    const copyToClipboard = async () => {
+      try {
+        await navigator.clipboard.writeText(selectedDeck.data);
+        setCopyStatus('已复制!');
+        setTimeout(() => setCopyStatus(''), 2000); // 2秒后清除状态提示
+      } catch (err) {
+        setCopyStatus('复制失败');
+        console.error('复制失败:', err);
+        setTimeout(() => setCopyStatus(''), 2000);
+      }
+    };
+
     return (
       <div className={style.deckDetailContainer}>
-        <div className={style.pageHeader}>
+        <div className={style.detailContent}>
           <button className={style.backButton} onClick={handleBackClick}>
             <svg className={style.arrowIcon} viewBox="0 0 24 24">
               <path
@@ -146,9 +166,6 @@ const DECK = () => {
               />
             </svg>
           </button>
-        </div>
-
-        <div className={style.detailContent}>
           <div className={style.detailImageContainer}>
             <img src={selectedDeck.img} alt={selectedDeck.name} className={style.detailImage} />
           </div>
@@ -163,6 +180,12 @@ const DECK = () => {
                 <div className={style.detailBasic}>
                   {selectedDeck.basic === 1 ? '单基础' : '双基础'}
                 </div>
+                {/* 在详情页显示关键词 */}
+                {selectedDeck.keywords && selectedDeck.keywords.map((keyword, index) => (
+                  <span style={{ fontSize: '1rem', padding: '8px 16px' }} key={index} className={style.keyword}>
+                    {keyword}
+                  </span>
+                ))}
               </div>
             </div>
 
@@ -172,7 +195,12 @@ const DECK = () => {
             </div>
 
             <div className={style.detailData}>
-              <h2>卡组内容</h2>
+              <div className={style.cardListHeader}>
+                <h2>卡组内容</h2>
+                <button className={style.copyButton} onClick={copyToClipboard}>
+                  {copyStatus || '复制卡组'}
+                </button>
+              </div>
               <div className={style.cardList}>
                 {convertDataToHtml(selectedDeck.data)}
               </div>
