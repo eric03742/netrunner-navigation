@@ -31,6 +31,7 @@ const runSubMenuItems = [
   { key: 'beginner', label: '新手指南' },
   { key: 'tutorial', label: '教学剧本' },
   { key: 'time', label: '时序图' },
+  { key: 'deck', label: '新手预组' },
 ];
 
 const Layout = () => {
@@ -116,6 +117,9 @@ const Layout = () => {
         case 'time':
           history.push('/#TIME');
           break;
+        case 'deck':
+          history.push('/#DECK');
+          break;
         default:
           history.push('/#BEGINNER');
       }
@@ -124,7 +128,7 @@ const Layout = () => {
 
   useEffect(() => {
     const newKey = hash.startsWith('#') ? hash.substring(1).split('/')[0] : 'INDEX'
-    if (['BEGINNER', 'TUTORIAL', 'TIME']?.includes(newKey)) {
+    if (['BEGINNER', 'TUTORIAL', 'TIME', 'DECK']?.includes(newKey)) {
       setActiveKey('BASICS');
     } else {
       setActiveKey(newKey);

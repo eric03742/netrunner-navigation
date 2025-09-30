@@ -1,5 +1,5 @@
 import './style.less';
-import { RobotOutlined, ReadOutlined, HddOutlined, BuildOutlined } from '@ant-design/icons'
+import { RobotOutlined, ReadOutlined, HddOutlined, BuildOutlined, WalletOutlined } from '@ant-design/icons'
 import { history } from 'umi';
 
 const BASICSLANDING = () => {
@@ -16,6 +16,9 @@ const BASICSLANDING = () => {
         break;
       case 4:
         history.push('/#TIME');
+        break;
+      case 5:
+        history.push('/#DECK');
         break;
       default:
         history.push('/#BEGINNER');
@@ -52,6 +55,13 @@ const BASICSLANDING = () => {
         >
           <HddOutlined />
           <span>时序图</span>
+        </button>
+        <button
+          className="tech-button tech-button-5"
+          onClick={() => handleButtonClick(5)}
+        >
+          <WalletOutlined />
+          <span>新手预组</span>
         </button>
       </div>
     </div>

@@ -1,0 +1,388 @@
+.deckContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  color: #f0f0f0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.mainPage {
+  // 主页面样式
+}
+
+.detailPage {
+  // 详情页面样式
+}
+
+.pageHeader {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px 0;
+
+  .backButton {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    .arrowIcon {
+      width: 24px;
+      height: 24px;
+      fill: white;
+      transition: all 0.3s ease;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.6);
+      transform: translateX(-5px);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+
+      .arrowIcon {
+        transform: scale(1.2);
+      }
+    }
+
+    &:active {
+      transform: translateX(-3px);
+    }
+  }
+}
+
+/* 初始状态 - 主页面显示 */
+.mainPage.active {
+  transform: translateX(0);
+  opacity: 1;
+  z-index: 2;
+}
+
+.mainPage.hidden {
+  transform: translateX(0);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.mainPage.slideOutToLeft {
+  transform: translateX(-100%);
+  opacity: 0;
+  z-index: 2;
+}
+
+.mainPage.slideOutToRight {
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 2;
+}
+
+.mainPage.slideInFromRight {
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 1;
+}
+
+.mainPage.slideInFromLeft {
+  transform: translateX(-100%);
+  opacity: 0;
+  z-index: 1;
+}
+
+/* 详情页面状态 */
+.detailPage.active {
+  transform: translateX(0);
+  opacity: 1;
+  z-index: 2;
+}
+
+.detailPage.hidden {
+  transform: translateX(0);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.detailPage.slideInFromLeft {
+  transform: translateX(-100%);
+  opacity: 0;
+  z-index: 1;
+}
+
+.detailPage.slideInFromRight {
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 1;
+}
+
+.detailPage.slideOutToLeft {
+  transform: translateX(-100%);
+  opacity: 0;
+  z-index: 2;
+}
+
+.detailPage.slideOutToRight {
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 2;
+}
+
+.deckListContainer {
+  padding: 20px;
+  padding-top: 0;
+
+  h1 {
+    font-family: 'CommonFont';
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 30px;
+    color: #fff;
+  }
+
+  p {
+    font-family: 'XiangSuFont';
+    font-size: 20px;
+  }
+}
+
+.deckGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.deckCard {
+  background: rgba(30, 30, 45, 0.7);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(100, 181, 246, 0.2);
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(100, 181, 246, 0.5);
+  }
+}
+
+.deckImageContainer {
+  height: 350px;
+  overflow: hidden;
+  position: relative;
+
+  .deckImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .deckCard:hover & .deckImage {
+    transform: scale(1.05);
+  }
+}
+
+.deckInfo {
+  padding: 20px;
+
+  .deckName {
+    font-size: 1.2rem;
+    margin: 0 0 10px 0;
+    color: #ffffff;
+    min-height: 60px;
+  }
+}
+
+.deckType,
+.deckBasic {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.deckType {
+  &.runner {
+    background: linear-gradient(45deg, #4caf50, #8bc34a);
+    color: white;
+  }
+
+  &.corp {
+    background: linear-gradient(45deg, #f44336, #ff9800);
+    color: white;
+  }
+}
+
+.deckBasic {
+  background: linear-gradient(45deg, #2196f3, #64b5f6);
+  color: white;
+}
+
+.deckDetailContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 0;
+  position: relative;
+}
+
+.detailContent {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.detailImageContainer {
+  flex: 1;
+  min-width: 300px;
+
+  .detailImage {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.detailInfoContainer {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.detailInfo {
+  .detailName {
+    font-size: 2.2rem;
+    margin: 0 0 20px 0;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.detailTags {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.detailType,
+.detailBasic {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.detailType {
+  &.runner {
+    background: linear-gradient(45deg, #4caf50, #8bc34a);
+    color: white;
+  }
+
+  &.corp {
+    background: linear-gradient(45deg, #f44336, #ff9800);
+    color: white;
+  }
+}
+
+.detailBasic {
+  background: linear-gradient(45deg, #2196f3, #64b5f6);
+  color: white;
+}
+
+.detailDescription,
+.detailData {
+  h2 {
+    font-size: 1.8rem;
+    color: #64b5f6;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #e0e0e0;
+  }
+}
+
+.cardList {
+  background: rgba(30, 30, 45, 0.7);
+  border-radius: 10px;
+  padding: 20px;
+  font-family: 'Courier New', monospace;
+  line-height: 1.6;
+  color: #e0e0e0;
+  border: 1px solid rgba(100, 181, 246, 0.2);
+  overflow-x: auto;
+  max-height: 400px;
+  overflow-y: auto;
+
+  .cardCategoryTitle {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 10px 0 5px 0;
+    color: #64b5f6;
+    font-size: 1.1rem;
+  }
+
+  .cardItem {
+    margin-left: 15px;
+    padding: 2px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .deckGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .detailContent {
+    flex-direction: column;
+  }
+
+  .detailName {
+    font-size: 1.8rem !important;
+  }
+
+  .deckImageContainer {
+    height: 250px;
+  }
+
+  .page {
+    padding: 10px;
+  }
+}

@@ -9,6 +9,7 @@ const FACTIONPage = lazy(() => import('../FACTION'));
 const BEGINNERPage = lazy(() => import('../BASICS'));
 const BASICS = lazy(() => import('../BASICSLANDING'));
 const TIME = lazy(() => import('../TIME'));
+const DECK = lazy(() => import('../DECK'));
 const TUTORIAL = lazy(() => import('../TUTORIAL'));
 const RUNPage = lazy(() => import('../RUN'));
 const ENVIRONMENTPage = lazy(() => import('../ENVIRONMENT'));
@@ -24,6 +25,7 @@ const Components = {
   'RUN': RUNPage,
   'ENVIRONMENT': ENVIRONMENTPage,
   'COMMUNITY': COMMUNITYPage,
+  'DECK': DECK
 };
 
 const HomePage = () => {
