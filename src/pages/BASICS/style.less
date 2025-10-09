@@ -81,7 +81,8 @@
       transition: width 0.3s ease;
 
       &.collapsed {
-        width: 110px;
+        width: 0;
+        flex: 0;
 
         .doc-nav {}
       }
@@ -207,6 +208,11 @@
         &:hover {
           background-color: #3c3c3c;
         }
+
+        &.collapsed {
+          left: 0px;
+          position: fixed;
+        }
       }
     }
 
@@ -229,7 +235,7 @@
       .doc-content {
         .content-section {
           margin-bottom: 30px;
-          padding: 20px 0;
+          padding: 20px 10px;
           border-bottom: 1px solid #3c3c3c;
 
           &.active-section {
@@ -479,9 +485,8 @@
       }
 
       .content-wrapper {
-        padding: 5px;
+        padding: 10px;
         overflow-x: hidden;
-        margin-left: 30px;
       }
     }
   }

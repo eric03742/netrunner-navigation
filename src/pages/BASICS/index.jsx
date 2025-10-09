@@ -63,6 +63,7 @@ const DocPreview = () => {
         behavior: 'smooth'
       });
     }
+    isSmallScreen && setIsNavCollapsed(true)
     // 重置搜索结果索引
     setCurrentResultIndex(-1);
   };
@@ -79,18 +80,32 @@ const DocPreview = () => {
     const results = [];
     docContent.sections.forEach((section, sectionIndex) => {
       const content = section.content.toLowerCase();
+      const title = section.title.toLowerCase();
       const searchLower = searchText.toLowerCase();
 
-      if (content.includes(searchLower)) {
-        // 找到所有匹配位置
-        let startIndex = content.indexOf(searchLower);
-        while (startIndex !== -1) {
+      if (content.includes(searchLower) || title.includes(searchLower)) {
+        // 如果标题匹配，添加整个标题作为结果
+        if (title.includes(searchLower)) {
           results.push({
             sectionIndex,
-            start: startIndex,
-            end: startIndex + searchText.length,
+            start: -1, // 标记为标题匹配
+            end: -1,
+            isTitleMatch: true
           });
-          startIndex = content.indexOf(searchLower, startIndex + searchText.length);
+        }
+
+        // 如果内容匹配，找到所有匹配位置
+        if (content.includes(searchLower)) {
+          let startIndex = content.indexOf(searchLower);
+          while (startIndex !== -1) {
+            results.push({
+              sectionIndex,
+              start: startIndex,
+              end: startIndex + searchText.length,
+              isTitleMatch: false
+            });
+            startIndex = content.indexOf(searchLower, startIndex + searchText.length);
+          }
         }
       }
     });
@@ -157,12 +172,12 @@ const DocPreview = () => {
   const renderTitleNav = () => {
     return (
       <div className={`doc-nav-wrapper ${isNavCollapsed ? 'collapsed' : ''}`}>
-        <div className="doc-nav">
+        <div className="doc-nav" style={isNavCollapsed ? { visibility: 'hidden' } : {}}>
           <div className="nav-header">
             <h3 className="nav-title">文档目录</h3>
           </div>
-          <ul className="title-list">
-            {!isNavCollapsed && docContent.titles.map((title, index) => (
+          <ul className="title-list" >
+            {docContent.titles.map((title, index) => (
               <li
                 key={index}
                 className={`title-item level-${title.level} ${activeTitleIndex === index ? 'active' : ''
@@ -175,7 +190,7 @@ const DocPreview = () => {
           </ul>
         </div>
         <button
-          className="toggle-nav-btn"
+          className={`toggle-nav-btn ${isNavCollapsed ? 'collapsed' : ''}`}
           onClick={() => setIsNavCollapsed(!isNavCollapsed)}
         >
           {!isNavCollapsed ? '◀' : '▶'}
@@ -210,7 +225,22 @@ const DocPreview = () => {
               className={`content-section ${activeTitleIndex === sectionIndex ? 'active-section' : ''
                 } ${hasActiveResult ? 'highlight-section' : ''}`}
             >
-              <h2 className="section-title">{section.title}</h2>
+              <h2 className="section-title">
+                {searchText ? (
+                  <Highlighter
+                    highlightClassName={
+                      currentResultIndex >= 0
+                        ? 'search-highlight active-highlight'
+                        : 'search-highlight'
+                    }
+                    searchWords={[searchText]}
+                    autoEscape={true}
+                    textToHighlight={section.title}
+                  />
+                ) : (
+                  section.title
+                )}
+              </h2>
               <div className="section-body">
                 {/* 渲染带样式的 HTML 内容 */}
                 {searchText ? (
@@ -273,7 +303,7 @@ const DocPreview = () => {
       </div>
 
       {/* 文档主体（左侧导航 + 右侧内容） */}
-      <div className="doc-main">
+      <div className="doc-main" style={isNavCollapsed ? { gap: 0 } : {}}>
         {/* 左侧标题导航 */}
         {renderTitleNav()}
 
