@@ -10,6 +10,35 @@ import NISEI_CLICK from '@/assets/IndexPage/NISEI_CLICK.svg'
 import accountQRCode from '@/assets/IndexPage/accountQRCode.webp'
 import { Modal } from 'antd';
 
+// 页面内容数据
+const pageContents = [
+  {
+    title: "未来已至",
+    text: "人类已经通过不同的方式，成功扩张到太阳系中。月球和火星已经变为殖民地。一项改造红色星球的计划正在进行中，唯一的阻碍是内战的爆发使火星上众多拱顶所被封锁。地球上，一台巨大的太空电梯，建立在名为新洛杉矶的庞大城邦中心附近，连接至低空轨道。这里是太阳系内的贸易枢纽站，大部分人称其为“豆茎”。",
+    img: introduction1
+  },
+  {
+    title: "脑内映射",
+    text: "最终诞生了“脑内映射”，这种技术可以将人类意识以电子化的方式，存储在复杂而精密的具有脑机接口的设备中。实体的鼠标和键盘成为了古董，手势接口和虚拟显示变得普及。精英级用户可将电脑直接连通至大脑来进行“接入”。",
+    img: introduction2
+  },
+  {
+    title: "巨型公司",
+    text: "被大众称为“公司”的超巨型企业集团，掌控着日常生活的方方面面：食物、3D娱乐、影音以及就业机会。人间会社和哈斯生化改写了生命的定义，致力于创造具有脑波记忆的人工智能意识克隆体和生化人。威兰财团控制着豆茎上下运作的一切资源。而网际传媒牢牢控制着地球上有史以来最广博的媒体网络，塑造着你的梦想与思维方式。",
+    img: introduction5
+  },
+  {
+    title: "网络之变",
+    text: "这些俯瞰一切，倾听一切的数字矩阵环绕着地球，并直达太阳系深处。每一秒在网络中奔腾的数据流，其数据量就已超过曾经五千年的书面文字总和。这是一个监视网，一个金融体系，一个大图书馆——它是现代文明的脊柱。但这也是公司们唯一的弱点。",
+    img: introduction3
+  },
+  {
+    title: "潜袭者志",
+    text: "绝不可能被精确定位或锁定。游侠黑客们——拥有硬件、软件和具有足以挑战系统技巧的电脑专家，利用网络的延伸建立自己的优势。其中有些人决心揭露系统核心背后隐藏的腐败，将数亿民众从公司主宰者们的伪善中唤醒。其他人只打算赚取一些私利，或在最终的平台上展现一下自己的价值。但无论动机为何，这些个体行为有一个共同的交集目标：数字世界的独立。他们的名字叫作潜袭者。",
+    img: introduction4
+  },
+];
+
 const INDEX = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
@@ -92,58 +121,23 @@ const INDEX = () => {
     };
   }, [handleWheel, handleTouchStart, handleTouchEnd]);
 
-  // 页面内容数据
-  const pageContents = [
-    {
-      title: "未来已至",
-      text: "人类已经通过不同的方式，成功扩张到太阳系中。月球和火星已经变为殖民地。一项改造红色星球的计划正在进行中，唯一的阻碍是内战的爆发使火星上众多拱顶所被封锁。地球上，一台巨大的太空电梯，建立在名为新洛杉矶的庞大城邦中心附近，连接至低空轨道。这里是太阳系内的贸易枢纽站，大部分人称其为“豆茎”。",
-      img: introduction1
-    },
-    {
-      title: "脑内映射",
-      text: "最终诞生了“脑内映射”，这种技术可以将人类意识以电子化的方式，存储在复杂而精密的具有脑机接口的设备中。实体的鼠标和键盘成为了古董，手势接口和虚拟显示变得普及。精英级用户可将电脑直接连通至大脑来进行“接入”。",
-      img: introduction2
-    },
-    {
-      title: "巨型公司",
-      text: "被大众称为“公司”的超巨型企业集团，掌控着日常生活的方方面面：食物、3D娱乐、影音以及就业机会。人间会社和哈斯生化改写了生命的定义，致力于创造具有脑波记忆的人工智能意识克隆体和生化人。威兰财团控制着豆茎上下运作的一切资源。而网际传媒牢牢控制着地球上有史以来最广博的媒体网络，塑造着你的梦想与思维方式。",
-      img: introduction5
-    },
-    {
-      title: "网络之变",
-      text: "这些俯瞰一切，倾听一切的数字矩阵环绕着地球，并直达太阳系深处。每一秒在网络中奔腾的数据流，其数据量就已超过曾经五千年的书面文字总和。这是一个监视网，一个金融体系，一个大图书馆——它是现代文明的脊柱。但这也是公司们唯一的弱点。",
-      img: introduction3
-    },
-    {
-      title: "潜袭者志",
-      text: "绝不可能被精确定位或锁定。游侠黑客们——拥有硬件、软件和具有足以挑战系统技巧的电脑专家，利用网络的延伸建立自己的优势。其中有些人决心揭露系统核心背后隐藏的腐败，将数亿民众从公司主宰者们的伪善中唤醒。其他人只打算赚取一些私利，或在最终的平台上展现一下自己的价值。但无论动机为何，这些个体行为有一个共同的交集目标：数字世界的独立。他们的名字叫作潜袭者。",
-      img: introduction4
-    },
-    // {
-    //   title: "故事驱动",
-    //   text: "在充满阴谋与背叛的世界中，你的选择将决定故事的走向和结局。"
-    // }
-  ];
-
   return (
     <div className={styles.IndexPage}>
-      {/* 当 currentPage 为 0 时显示 NISEI_CLICK 关注公众号 */}
-      {currentPage === 0 && (
-        <div
-          className={styles.niseiClickContainer}
-          onClick={() => setModalVisible(true)}
-        >
-          <span className={styles.niseiClickText}>关注公众号</span>
-          <div className={styles.qrcode}><img src={NISEI_CLICK} className={styles.niseiClickIcon} />矩阵潜袭</div>
-        </div>
-      )}
-
+      {/* 当 currentPage 为 0 时显示 NISEI_CLICK 关注公众号，使用淡入淡出效果 */}
+      <div
+        className={`${styles.niseiClickContainer} ${currentPage === 0 ? styles.fadeIn : styles.fadeOut}`}
+        onClick={() => setModalVisible(true)}
+      >
+        <span className={styles.niseiClickText}>关注公众号</span>
+        <div className={styles.qrcode}><img src={NISEI_CLICK} className={styles.niseiClickIcon} />矩阵潜袭</div>
+      </div>
       {/* 弹窗模态框 */}
       <Modal
         open={modalVisible}
         getContainer={() => document.getElementById('root')}
         onCancel={() => setModalVisible(false)}
         wrapClassName={styles["index-modal"]}
+        mask={false}
         footer={null}
         width={400}
         centered
@@ -202,7 +196,7 @@ const INDEX = () => {
           ))}
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 

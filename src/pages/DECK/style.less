@@ -4,7 +4,6 @@
   height: 100%;
   overflow: hidden;
   color: #f0f0f0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .page {
@@ -217,6 +216,7 @@
     margin: 0 0 10px 0;
     color: #ffffff;
     min-height: 60px;
+    font-family: 'CommonFont';
   }
 }
 
@@ -225,7 +225,7 @@
   display: inline-block;
   padding: 5px 10px;
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: 16px;
   margin-right: 10px;
   font-weight: bold;
 }
@@ -237,7 +237,7 @@
   display: inline-block;
   padding: 5px 10px;
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: 16px;
   margin-right: 10px;
   font-weight: bold;
 }
@@ -260,7 +260,7 @@
 }
 
 .deckDetailContainer {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
   padding-top: 0;
@@ -311,7 +311,6 @@
   padding: 8px 16px;
   border-radius: 30px;
   font-size: 1rem;
-  font-weight: bold;
 }
 
 .detailType {
@@ -337,12 +336,18 @@
     font-size: 1.8rem;
     color: #fff;
     text-shadow: 0 0 10px #fff;
+    margin-bottom: 5px;
   }
 
   p {
-    font-size: 1.1rem;
     line-height: 1.7;
     color: #e0e0e0;
+    margin-bottom: 5px;
+    background: linear-gradient(134deg, #2a2a2a, #f7f7f700);
+    padding: 5px;
+    border-radius: 10px;
+    font-family: 'XiangSuFont';
+    font-size: 20px;
   }
 }
 
@@ -350,7 +355,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 .copyButton {
@@ -359,8 +364,7 @@
   border: 1px solid #64b5f6;
   border-radius: 5px;
   padding: 8px 16px;
-  font-family: 'Courier New', monospace;
-  font-weight: bold;
+  font-family: 'XiangSuFont';
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
@@ -377,13 +381,12 @@
 }
 
 .cardList {
-  background: rgba(30, 30, 45, 0.7);
+  // background: rgba(30, 30, 45, 0.7);
   border-radius: 10px;
   padding: 10px;
-  font-family: 'Courier New', monospace;
   line-height: 1.6;
   color: #e0e0e0;
-  border: 1px solid rgba(100, 181, 246, 0.2);
+  // border: 1px solid rgba(100, 181, 246, 0.2);
   max-height: 400px;
   display: flex;
   flex-direction: column;
@@ -393,23 +396,27 @@
   height: 400px;
   /* 固定容器高度（超出此高度的内容会排到第二栏） */
   width: 100%;
+  overflow-y: auto;
+  background: linear-gradient(134deg, #2a2a2a, #f7f7f700);
+  border: 0;
+  font-family: 'CommonFont';
 
   .cardCategoryTitle {
     font-weight: bold;
     text-transform: uppercase;
-    margin: 10px 0 5px 0;
     color: #64b5f6;
     font-size: 1.1rem;
   }
 
   .cardItem {
     width: calc(50% - 10px);
-    padding: 2px 0;
   }
 }
 
 @media (max-width: 768px) {
   .deckListContainer {
+    padding: 0;
+
     p {
       margin: 0;
       margin-bottom: 10px;
@@ -419,13 +426,15 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
+      gap: 10px;
 
       .deckCard {
-        width: calc(50% - 20px);
+        width: calc(50% - 10px);
 
         .deckInfo {
           .deckType {
             margin-bottom: 5px;
+            margin-right: 5px;
           }
         }
       }
@@ -434,6 +443,11 @@
     .deckImageContainer {
       height: 200px;
     }
+  }
+
+  .detailTags {
+    gap: 5px;
+    flex-wrap: wrap;
   }
 
   .page {
@@ -446,5 +460,14 @@
 
   .detailName {
     font-size: 1.8rem !important;
+  }
+
+  .cardList {
+    max-height: unset;
+    height: unset;
+
+    .cardItem {
+      width: unset;
+    }
   }
 }

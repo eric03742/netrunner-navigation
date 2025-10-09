@@ -191,7 +191,7 @@ const DECK = () => {
 
             <div className={style.detailDescription}>
               <h2>玩法描述</h2>
-              <p>{selectedDeck.description}</p>
+              <p>{selectedDeck.instructions}</p>
             </div>
 
             <div className={style.detailData}>

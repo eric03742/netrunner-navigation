@@ -101,10 +101,11 @@ const Layout = () => {
     history.push(`/#${key}`);
   };
 
-  const handleRunSubMenuClick = ({ key }) => {
+  const handleRunSubMenuClick = (e) => {
+    e.domEvent.stopPropagation();
     setTimeout(() => {
       // 根据点击的子菜单项跳转到相应页面
-      switch (key) {
+      switch (e.key) {
         case 'pve':
           window.open('https://tutorial.sneakdoorbeta.net/', '_blank')
           break;
@@ -129,7 +130,7 @@ const Layout = () => {
   useEffect(() => {
     const newKey = hash.startsWith('#') ? hash.substring(1).split('/')[0] : 'INDEX'
     if (['BEGINNER', 'TUTORIAL', 'TIME', 'DECK']?.includes(newKey)) {
-      setActiveKey('BASICS');
+      setActiveKey('BASICS')
     } else {
       setActiveKey(newKey);
     }
@@ -178,7 +179,7 @@ const Layout = () => {
   return (
     <div className="layout">
       <div className="layout-header">
-        <img src={logo} className="logo-img" />
+        <img src={logo} className="logo-img" onClick={() => !isSmallScreen && history.push('/#INDEX')} />
         <Tabs
           className='layout-tab'
           activeKey={activeKey}
@@ -230,10 +231,10 @@ const Layout = () => {
             网站主理人&首席设计师：风筝
           </div>
           <div className="layout-developer">
-            开发者：皮皮-矩阵潜袭中国测试暗门委员会
+            开发者：皮皮&矩阵潜袭中国
           </div>
           <div className="layout-version">
-            当前版本：1.0.0 更新时间：2025/09/26
+            当前版本：1.1.0 更新时间：2025/10/09
           </div>
         </div>
       </div>
