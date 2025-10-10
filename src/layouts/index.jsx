@@ -1,6 +1,6 @@
 // src/layouts/index.jsx
 import { Tabs, Dropdown } from 'antd';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Outlet, history, useLocation, useModel } from 'umi';
 import logo from '@/assets/layout/logo.webp';
 import logo2 from '@/assets/layout/logo2.webp';
@@ -53,18 +53,27 @@ const Layout = () => {
 
   // 处理触摸开始事件
   const handleTouchStart = (e) => {
+    e.preventDefault();
     setTouchStartX(e.touches[0].clientX);
+  };
+
+  // 处理触摸移动事件，阻止浏览器默认行为
+  const handleTouchMove = (e) => {
+    // 阻止浏览器默认的手势行为
+    e.preventDefault();
   };
 
   // 处理触摸结束事件
   const handleTouchEnd = (e) => {
+    // 如果正在滑动过程中，则不处理新的滑动事件
     if (!touchStartX) return;
 
     const touchEndX = e.changedTouches[0].clientX;
     const diffX = touchStartX - touchEndX;
 
     // 判断滑动距离是否足够触发切换
-    if (Math.abs(diffX) > 50) {
+    if (Math.abs(diffX) > 10) {
+      e.preventDefault();
       // 获取可见的tab项（不包括隐藏的）
       const visibleTabs = TAB.filter(item => !item.hidden);
       // 找到当前激活的tab索引
@@ -82,7 +91,6 @@ const Layout = () => {
         }
       }
     }
-
     setTouchStartX(0);
   };
 
@@ -193,6 +201,7 @@ const Layout = () => {
       <div
         className={isSmallScreen ? activeKey === 'INDEX' ? "layout-contain-Index" : "layout-contain-mobile" : "layout-contain"}
         onTouchStart={isSmallScreen ? handleTouchStart : undefined}
+        onTouchMove={isSmallScreen ? handleTouchMove : undefined}
         onTouchEnd={isSmallScreen ? handleTouchEnd : undefined}
       >
         {/* Background container with animation */}

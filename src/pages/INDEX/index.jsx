@@ -86,6 +86,13 @@ const INDEX = () => {
   const handleTouchStart = useCallback((e) => {
     setTouchStartX(e.touches[0].clientY);
   }, []);
+
+  // 处理触摸移动事件
+  const handleTouchMove = useCallback((e) => {
+    // 阻止浏览器默认的下拉刷新行为
+    e.preventDefault();
+  }, []);
+
   // 处理触摸结束事件
   const handleTouchEnd = useCallback((e) => {
     if (!touchStartX) return;
@@ -110,16 +117,24 @@ const INDEX = () => {
   useEffect(() => {
     // 添加事件监听器
     window.addEventListener('wheel', handleWheel, { passive: false });
-    window.addEventListener('touchstart', handleTouchStart, { passive: true });
-    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+    window.addEventListener('touchstart', handleTouchStart, { passive: false });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('touchend', handleTouchEnd, { passive: false });
+
+    // 禁用浏览器的默认下拉刷新行为
+    document.body.style.overscrollBehavior = 'none';
 
     return () => {
       // 清理事件监听器
       window.removeEventListener('wheel', handleWheel);
       window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleTouchEnd);
+
+      // 清理样式
+      document.body.style.overscrollBehavior = '';
     };
-  }, [handleWheel, handleTouchStart, handleTouchEnd]);
+  }, [handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd]);
 
   return (
     <div className={styles.IndexPage}>
@@ -200,4 +215,4 @@ const INDEX = () => {
   );
 }
 
-export default INDEX;
+export default INDEX
