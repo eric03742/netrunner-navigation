@@ -51,49 +51,6 @@ const Layout = () => {
     });
   }, []);
 
-  // 处理触摸开始事件
-  const handleTouchStart = (e) => {
-    e.preventDefault();
-    setTouchStartX(e.touches[0].clientX);
-  };
-
-  // 处理触摸移动事件，阻止浏览器默认行为
-  const handleTouchMove = (e) => {
-    // 阻止浏览器默认的手势行为
-    e.preventDefault();
-  };
-
-  // 处理触摸结束事件
-  const handleTouchEnd = (e) => {
-    // 如果正在滑动过程中，则不处理新的滑动事件
-    if (!touchStartX) return;
-
-    const touchEndX = e.changedTouches[0].clientX;
-    const diffX = touchStartX - touchEndX;
-
-    // 判断滑动距离是否足够触发切换
-    if (Math.abs(diffX) > 10) {
-      e.preventDefault();
-      // 获取可见的tab项（不包括隐藏的）
-      const visibleTabs = TAB.filter(item => !item.hidden);
-      // 找到当前激活的tab索引
-      const currentIndex = visibleTabs.findIndex(item => item.subTitle === activeKey);
-
-      if (diffX > 0) {
-        // 向左滑动，切换到下一个tab（如果存在）
-        if (currentIndex < visibleTabs.length - 1) {
-          handleTabChange(visibleTabs[currentIndex + 1].subTitle);
-        }
-      } else {
-        // 向右滑动，切换到上一个tab（如果存在）
-        if (currentIndex > 0) {
-          handleTabChange(visibleTabs[currentIndex - 1].subTitle);
-        }
-      }
-    }
-    setTouchStartX(0);
-  };
-
   const handleTabChange = (key) => {
     const currentIndex = TAB.findIndex((item) => item.subTitle === activeKey);
     const nextIndex = TAB.findIndex((item) => item.subTitle === key);
@@ -200,9 +157,6 @@ const Layout = () => {
       </div>
       <div
         className={isSmallScreen ? activeKey === 'INDEX' ? "layout-contain-Index" : "layout-contain-mobile" : "layout-contain"}
-        onTouchStart={isSmallScreen ? handleTouchStart : undefined}
-        onTouchMove={isSmallScreen ? handleTouchMove : undefined}
-        onTouchEnd={isSmallScreen ? handleTouchEnd : undefined}
       >
         {/* Background container with animation */}
         <div className="layout-bg">
@@ -226,13 +180,13 @@ const Layout = () => {
           <Outlet />
         </div>
       </div>
-      <div className="layout-footer">
+      {activeKey === 'INDEX' && < div className="layout-footer">
         <img className="layout-footer-logo" src={logo2} />
         <div className="layout-text">
           <div className="layout-beian">
             <a href=" " target="_blank" style={{ paddingRight: 20 }}>闽ICP备2025085053号-1</a>
             <div className="layout-beian-row">
-              <img className="layout-beian-img" src={beian} />
+              {!isSmallScreen && <img className="layout-beian-img" src={beian} />}
               <a href="https://beian.mps.gov.cn/#/query/webSearch?code=35060202000609" rel="noreferrer" target="_blank"><img /> 闽公网安备35060202000609号</a>
             </div>
           </div>
@@ -246,8 +200,8 @@ const Layout = () => {
             当前版本：1.1.0 更新时间：2025/10/09
           </div>
         </div>
-      </div>
-    </div>
+      </div>}
+    </div >
   );
 };
 
