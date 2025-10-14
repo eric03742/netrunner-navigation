@@ -24,9 +24,11 @@ const TAB = [
   { key: '7', label: '新手指南', subTitle: 'BEGINNER', background: FactionBG, hidden: true },
   { key: '8', label: '教学剧本', subTitle: 'TUTORIAL', background: FactionBG, hidden: true },
   { key: '9', label: '时序图', subTitle: 'TIME', background: FactionBG, hidden: true },
+  { key: '10', label: '视频教学', subTitle: 'VIDEO', background: FactionBG, hidden: true },
 ];
 
 const runSubMenuItems = [
+  { key: 'video', label: '视频教学' },
   { key: 'pve', label: '人机对战' },
   { key: 'beginner', label: '新手指南' },
   { key: 'tutorial', label: '教学剧本' },
@@ -40,9 +42,8 @@ const Layout = () => {
   const [prevKey, setPrevKey] = useState('INDEX');
   const [direction, setDirection] = useState(''); // 'left' or 'right'
   const [isAnimating, setIsAnimating] = useState(false);
-  const [touchStartX, setTouchStartX] = useState(0); // 添加触摸起始位置状态
   const { isSmallScreen } = useModel('mobile');
-
+  const { isPure } = useModel('isPure');
   useEffect(() => {
     // 预加载所有背景图片
     TAB.forEach(item => {
@@ -74,6 +75,9 @@ const Layout = () => {
         case 'pve':
           window.open('https://tutorial.sneakdoorbeta.net/', '_blank')
           break;
+        case 'video':
+          history.push(`/#VIDEO`);
+          break;
         case 'beginner':
           history.push(`/#BEGINNER`);
           break;
@@ -94,7 +98,7 @@ const Layout = () => {
 
   useEffect(() => {
     const newKey = hash.startsWith('#') ? hash.substring(1).split('/')[0] : 'INDEX'
-    if (['BEGINNER', 'TUTORIAL', 'TIME', 'DECK']?.includes(newKey)) {
+    if (['BEGINNER', 'TUTORIAL', 'TIME', 'DECK', 'VIDEO']?.includes(newKey)) {
       setActiveKey('BASICS')
     } else {
       setActiveKey(newKey);
@@ -159,22 +163,22 @@ const Layout = () => {
         className={isSmallScreen ? activeKey === 'INDEX' ? "layout-contain-Index" : "layout-contain-mobile" : "layout-contain"}
       >
         {/* Background container with animation */}
-        <div className="layout-bg">
+        <div className="layout-bg" >
           {/* Previous background (fading out) */}
-          <div
+          {!isPure && <div
             className={`bg-slide bg-slide-prev ${isAnimating ? 'fade-out' : ''}`}
             style={{
               backgroundImage: `url(${TAB.find((item) => item.subTitle === prevKey)?.background})`,
             }}
-          />
+          />}
           {/* Current background (sliding in) */}
-          <div
+          {!isPure && <div
             className={`bg-slide bg-slide-current ${isAnimating ? `slide-in-${direction}` : ''}`}
             style={{
               backgroundImage: `url(${TAB.find((item) => item.subTitle === activeKey)?.background})`,
               filter: activeKey === 'INDEX' ? 'none' : 'blur(5px)'
             }}
-          />
+          />}
         </div>
         <div className="layout-inner">
           <Outlet />

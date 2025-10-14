@@ -10,6 +10,7 @@ const BEGINNERPage = lazy(() => import('../BASICS'));
 const BASICS = lazy(() => import('../BASICSLANDING'));
 const TIME = lazy(() => import('../TIME'));
 const DECK = lazy(() => import('../DECK'));
+const VIDEO = lazy(() => import('../VIDEO'));
 const TUTORIAL = lazy(() => import('../TUTORIAL'));
 const RUNPage = lazy(() => import('../RUN'));
 const ENVIRONMENTPage = lazy(() => import('../ENVIRONMENT'));
@@ -21,6 +22,7 @@ const Components = {
   'BEGINNER': BEGINNERPage,
   'TIME': TIME,
   'BASICS': BASICS,
+  'VIDEO': VIDEO,
   'TUTORIAL': TUTORIAL,
   'RUN': RUNPage,
   'ENVIRONMENT': ENVIRONMENTPage,

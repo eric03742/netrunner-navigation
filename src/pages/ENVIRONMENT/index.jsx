@@ -16,6 +16,7 @@ const ENVIRONMENT = () => {
   const [currentBan, setCurrentBan] = useState('standard'); // 禁卡表
   const [isFading, setIsFading] = useState(false); // 控制淡入淡出动画
   const { isSmallScreen } = useModel('mobile');
+  const { isPure } = useModel('isPure');
 
   const showBanlist = (type) => {
     // 根据type设置禁卡表
@@ -205,7 +206,7 @@ const ENVIRONMENT = () => {
         </div>
         <div className={`${styles.cycleContent} ${isFading ? styles.fadeIn : ''}`} style={{ paddingTop: 0 }}>
           {/* logo居中 */}
-          {cycleData.logo && <img src={cycleData.logo} className={styles.cycleLogos} />}
+          {cycleData.logo && <img style={isPure ? { background: '#ffffffd6' } : {}} src={cycleData.logo} className={styles.cycleLogos} />}
 
           {/* logo可能会出现的副标题 */}
           {cycleData.subTitle && <div className={styles.cycleSubTitle}>{cycleData?.subTitle}</div>}

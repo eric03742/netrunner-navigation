@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import style from './style.less';
 import { deckList, Words } from './content';
+import { useModel } from 'umi'
 
 const DECK = () => {
   const [selectedDeck, setSelectedDeck] = useState(null);
@@ -8,7 +9,7 @@ const DECK = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [direction, setDirection] = useState('right'); // 'left' or 'right'
   const [copyStatus, setCopyStatus] = useState(''); // 用于显示复制状态
-
+  const { isPure } = useModel('isPure');
   const handleDeckClick = (deck) => {
     if (isAnimating) return; // 防止在动画过程中重复点击
 
@@ -39,13 +40,14 @@ const DECK = () => {
     return (
       <div className={style.deckListContainer}>
         <h1>新手预组卡组</h1>
-        <p>仅使用《核心网关》基础包构筑的卡组，是由《核心网关》的首席设计师CritHitD20设计。而使用<span style={{ color: '#000' }}>“核心网关+仰望”</span>扩展包构筑的卡组则由Phi（又名Girometics，游戏开发与新启赛制卡牌筛选团队成员）设计。在每套卡组下方，Sara都简单说明了该卡组的玩法，虽然这些卡组的构筑可能不够合理，但尽可能是围绕ID的玩法去构筑。我们希望这些卡组能为你在《矩阵潜袭》的旅程中提供一个有趣的起点，并激发你构筑属于自己的卡组！</p>
-        <p>《矩阵潜袭》的新手示范卡组包括<span style={{ color: '#000' }}>7套单基础+21套双基础</span>的卡组，每个ID都至少有一个卡组。不管是《核心网关》或者《仰望》基础包，里面的卡牌都是各3张，<span style={{ color: 'rgb(232 16 16)', fontWeight: 600 }}>玩家直接抄牌表进行构筑即可。</span></p>
+        <p>仅使用《核心网关》基础包构筑的卡组，是由《核心网关》的首席设计师CritHitD20设计。而使用<span style={{ color: isPure ? 'rgb(136 232 162)' : '#000' }}>“核心网关+仰望”</span>扩展包构筑的卡组则由Phi（又名Girometics，游戏开发与新启赛制卡牌筛选团队成员）设计。在每套卡组下方，Sara都简单说明了该卡组的玩法，虽然这些卡组的构筑可能不够合理，但尽可能是围绕ID的玩法去构筑。我们希望这些卡组能为你在《矩阵潜袭》的旅程中提供一个有趣的起点，并激发你构筑属于自己的卡组！</p>
+        <p>《矩阵潜袭》的新手示范卡组包括<span style={{ color: isPure ? 'rgb(136 232 162)' : '#000' }}>7套单基础+21套双基础</span>的卡组，每个ID都至少有一个卡组。不管是《核心网关》或者《仰望》基础包，里面的卡牌都是各3张，<span style={{ color: 'rgb(232 16 16)', fontWeight: 600 }}>玩家直接抄牌表进行构筑即可。</span></p>
         <div className={style.deckGrid}>
           {deckList.map((deck, index) => (
             <div
               key={index}
               className={style.deckCard}
+              style={isPure ? { background: '#cab3c866' } : {}}
               onClick={() => handleDeckClick(deck)}
             >
               <div className={style.deckImageContainer}>

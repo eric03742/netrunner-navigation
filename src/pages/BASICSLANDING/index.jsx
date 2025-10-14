@@ -1,10 +1,13 @@
 import './style.less';
-import { RobotOutlined, ReadOutlined, HddOutlined, BuildOutlined, WalletOutlined } from '@ant-design/icons'
+import { VideoCameraOutlined, RobotOutlined, ReadOutlined, HddOutlined, BuildOutlined, WalletOutlined } from '@ant-design/icons'
 import { history } from 'umi';
 
 const BASICSLANDING = () => {
   const handleButtonClick = (buttonName) => {
     switch (buttonName) {
+      case 0:
+        history.push(`/#VIDEO`);
+        break;
       case 1:
         window.open('https://tutorial.sneakdoorbeta.net/', '_blank')
         break;
@@ -28,6 +31,13 @@ const BASICSLANDING = () => {
   return (
     <div className="basics-landing">
       <div className="button-container">
+        <button
+          className="tech-button tech-button-0"
+          onClick={() => handleButtonClick(0)}
+        >
+          <VideoCameraOutlined />
+          <span>视频教学</span>
+        </button>
         <button
           className="tech-button tech-button-1"
           onClick={() => handleButtonClick(1)}

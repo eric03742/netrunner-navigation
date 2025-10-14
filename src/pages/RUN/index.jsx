@@ -37,6 +37,7 @@ const RUN = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const { isSmallScreen } = useModel('mobile');
+  const { isPure } = useModel('isPure');
 
   // 自动轮播
   useEffect(() => {
@@ -75,7 +76,7 @@ const RUN = () => {
     <div className={styles.container}>
       {/* 顶部标题 */}
       <div className={styles.header}>
-        <div className={styles.headerText}><span style={{ color: '#000' }}>想尝试潜袭吗？</span><span>来矩阵潜袭国服!</span></div>
+        <div className={styles.headerText}><span style={{ color: isPure ? 'rgb(237 70 70)' : '#000' }}>想尝试潜袭吗？</span><span>来矩阵潜袭国服!</span></div>
       </div>
 
       {/* 中间轮播区域 */}

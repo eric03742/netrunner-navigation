@@ -9,6 +9,7 @@ import introduction5 from '@/assets/IndexPage/introduction5.webp'
 import NISEI_CLICK from '@/assets/IndexPage/NISEI_CLICK.svg'
 import accountQRCode from '@/assets/IndexPage/accountQRCode.webp'
 import { Modal } from 'antd';
+import { useModel } from 'umi'
 
 // 页面内容数据
 const pageContents = [
@@ -44,6 +45,7 @@ const INDEX = () => {
   const [isScrolling, setIsScrolling] = useState(false);
   const [touchStartX, setTouchStartX] = useState(0);
   const [modalVisible, setModalVisible] = useState(false); // 添加模态框状态
+  const { isPure, setIsPure } = useModel('isPure');
   const totalPages = 6;
 
   // 节流控制函数
@@ -145,6 +147,12 @@ const INDEX = () => {
       >
         <span className={styles.niseiClickText}>关注公众号</span>
         <div className={styles.qrcode}><img src={NISEI_CLICK} className={styles.niseiClickIcon} />矩阵潜袭</div>
+      </div>
+      <div
+        className={`${styles.showBackgroundButton} ${currentPage === 0 ? styles.fadeIn : styles.fadeOut}`}
+        onClick={() => setIsPure(!isPure)}
+      >
+        <span className={styles.niseiClickText}>{!isPure ? '酷黑模式' : '炫彩模式'}</span>
       </div>
       {/* 弹窗模态框 */}
       <Modal
