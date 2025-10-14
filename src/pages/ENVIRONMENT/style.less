@@ -449,9 +449,8 @@
 
 .cycleCards {
   display: block;
-  max-width: 400px;
-  width: 400px;
   height: fit-content;
+  width: 30%
 }
 
 .cycleCardContent {
@@ -462,6 +461,7 @@
   color: #fff;
   font-family: 'XiangSuFont';
   line-height: 20px;
+  width: 40%;
 }
 
 .cycleCoverContent {
@@ -471,9 +471,10 @@
   gap: 20px;
   flex-wrap: wrap;
   margin-top: 20px;
+  width: 30%;
 
   img {
-    width: 190px;
+    width: calc(50% - 10px);
     height: fit-content;
   }
 }
@@ -552,11 +553,17 @@
         flex-direction: column;
         align-items: center;
 
+        .cycleCardContent {
+          width: 90vw;
+        }
+
         .cycleCards {
           width: 90vw;
         }
 
         .cycleCoverContent {
+          width: 90vw;
+
           .cycleCover {
             width: 40vw;
           }

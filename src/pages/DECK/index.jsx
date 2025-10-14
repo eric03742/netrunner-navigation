@@ -143,7 +143,21 @@ const DECK = () => {
     // 复制卡组内容到剪贴板的函数
     const copyToClipboard = async () => {
       try {
-        await navigator.clipboard.writeText(selectedDeck.data);
+        let formattedData = selectedDeck.data;
+
+        // 为Words数组中匹配到的类别标题添加换行
+        Words.forEach(word => {
+          const regex = new RegExp(`(${word}\\s*\\([^)]+\\))`, 'g');
+          formattedData = formattedData.replace(regex, '\n$1\n');
+        });
+
+        // 在数字x前添加换行
+        formattedData = formattedData.replace(/(\d+x)/g, '\n$1');
+
+        // 移除可能的多余空行并清理
+        formattedData = formattedData.replace(/\n{2,}/g, '\n').trim();
+
+        await navigator.clipboard.writeText(formattedData);
         setCopyStatus('已复制!');
         setTimeout(() => setCopyStatus(''), 2000); // 2秒后清除状态提示
       } catch (err) {
