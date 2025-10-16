@@ -99,7 +99,7 @@ const ENVIRONMENT = () => {
       >
         {/* 说明文字区域 */}
         <div className={styles.descriptionSection}>
-          <p>作为一款对战卡牌游戏，保证游戏平衡性的重要手段是确保您和您的对手在<span style={{ fontWeight: 800, color: '#e11919' }}>相同的赛制环境</span>内对战，即使用同样的牌池，以及相同的<span style={{ fontWeight: 800, color: '#000' }}>禁卡表</span>。</p>
+          <p>作为一款对战卡牌游戏，保证游戏平衡性的重要手段是确保您和您的对手在<span style={{ fontWeight: 800, color: '#e11919' }}>相同的赛制环境</span>内对战，即使用同样的牌池，以及相同的<span style={{ fontWeight: 800, color: isPure ? 'rgb(70,170,149)' : '#000' }}>禁卡表</span>。</p>
           <p>您可以和你的小伙伴自定义环境，但我们建议采用主流环境进行游戏，这样可以让您更方便地参与到更多玩家的讨论中。主流环境包括4种，其中90%以上的玩家使用的是<span style={{ fontWeight: 800, color: '#4ceb27' }}>标准（Standard）环境</span>，其他玩家则可能使用<span style={{ fontWeight: 800, color: '#79d6f3' }}>核心（Core Set）</span>、<span style={{ fontWeight: 800, color: '#e55cb4' }}>新启（Startup）</span>、<span style={{ fontWeight: 800, color: 'gray' }}>永恒（Eternal）</span>这3种。</p>
         </div>
 
