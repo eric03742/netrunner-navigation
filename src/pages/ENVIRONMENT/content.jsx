@@ -348,5 +348,17 @@ export const banTextStarter = <div class="ban-list">
       <span class="cn">剁肉刀</span>
       <span class="en">禁用</span>
     </li>
+    <li>
+      <span class="cycle">《解放》</span>
+      <span class="number">No.12：</span>
+      <span class="cn">S型猴翻</span>
+      <span class="en">禁用</span>
+    </li>
+    <li>
+      <span class="cycle">《解放》</span>
+      <span class="number">No.89：</span>
+      <span class="cn">凝露</span>
+      <span class="en">禁用</span>
+    </li>
   </ul>
 </div>

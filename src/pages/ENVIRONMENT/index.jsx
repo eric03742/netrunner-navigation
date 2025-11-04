@@ -147,8 +147,8 @@ const ENVIRONMENT = () => {
             <h3>生效日期：2025年10月3日</h3>
           </>}
           {currentBan === 'starter' && <>
-            <h2>新启禁卡表25.04</h2>
-            <h3>生效日期：2025年4月27日</h3>
+            <h2>新启禁卡表25.11</h2>
+            <h3>生效日期：2025年11月3日</h3>
           </>}
           {/* 添加右箭头按钮 */}
           <button className={styles.nextButton} onClick={showMainFromBanlist}>
