@@ -9,6 +9,30 @@ import { titles, sections } from './const'
 // import rules from './rules.docx'
 // import { formatContent } from './utils';
 
+const highlightText = (html, searchTerm) => {
+  if (!searchTerm) return html;
+
+  // 保存<i>标签
+  const iTags = [];
+  let tempHtml = html.replace(/<i\b[^>]*>/gi, (match) => {
+    iTags.push(match);
+    return '%%OPEN_I_TAG%%';
+  }).replace(/<\/i>/gi, '%%CLOSE_I_TAG%%');
+
+  // 对文本进行高亮处理（避开HTML标签）
+  const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+  tempHtml = tempHtml.replace(/>([^<]*)</g, (match, content) => {
+    return '>' + content.replace(regex, '<mark class="search-highlight">$1</mark>') + '<';
+  });
+
+  // 恢复<i>标签
+  tempHtml = tempHtml.replace(/%%OPEN_I_TAG%%/g, (match) => {
+    return iTags.shift() || match;
+  }).replace(/%%CLOSE_I_TAG%%/g, '</i>');
+
+  return tempHtml;
+};
+
 // 文档预览组件
 const DocPreview = () => {
   // 状态管理
@@ -244,16 +268,11 @@ const DocPreview = () => {
               <div className="section-body">
                 {/* 渲染带样式的 HTML 内容 */}
                 {searchText ? (
-                  // 如果有搜索文本，使用 Highlighter 组件
-                  <Highlighter
-                    highlightClassName={
-                      currentResultIndex >= 0
-                        ? 'search-highlight active-highlight'
-                        : 'search-highlight'
-                    }
-                    searchWords={[searchText]}
-                    autoEscape={true}
-                    textToHighlight={section.content.replace(/<[^>]*>/g, '')} // 去除 HTML 标签进行搜索
+                  // 如果有搜索文本，使用自定义的高亮函数来保留<i>标签
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: highlightText(section.content, searchText)
+                    }}
                   />
                 ) : (
                   // 否则直接渲染 HTML 内容

@@ -1,33 +1,3 @@
-import basic1 from '@/assets/Basic/basic1.webp'
-import basic2 from '@/assets/Basic/basic2.webp'
-import basic3 from '@/assets/Basic/basic3.webp'
-import basic4 from '@/assets/Basic/basic4.webp'
-import basic5 from '@/assets/Basic/basic5.webp'
-import basic6 from '@/assets/Basic/basic6.webp'
-import basic7 from '@/assets/Basic/basic7.webp'
-import basic8 from '@/assets/Basic/basic8.webp'
-import basic9 from '@/assets/Basic/basic9.webp'
-import basic10 from '@/assets/Basic/basic10.webp'
-import basic11 from '@/assets/Basic/basic11.webp'
-import basic12 from '@/assets/Basic/basic12.webp'
-import basic13 from '@/assets/Basic/basic13.webp'
-import basic14 from '@/assets/Basic/basic14.webp'
-import basic15 from '@/assets/Basic/basic15.webp'
-import basic16 from '@/assets/Basic/basic16.webp'
-import basic17 from '@/assets/Basic/basic17.webp'
-import basic18 from '@/assets/Basic/basic18.webp'
-import basic19 from '@/assets/Basic/basic19.webp'
-import basic20 from '@/assets/Basic/basic20.webp'
-import basic21 from '@/assets/Basic/basic21.webp'
-import basic22 from '@/assets/Basic/basic22.webp'
-import basic23 from '@/assets/Basic/basic23.webp'
-import basic24 from '@/assets/Basic/basic24.webp'
-import basic25 from '@/assets/Basic/basic25.webp'
-import basic26 from '@/assets/Basic/basic26.webp'
-import basic27 from '@/assets/Basic/basic27.webp'
-import basic28 from '@/assets/Basic/basic28.webp'
-import basic29 from '@/assets/Basic/basic29.webp'
-
 export const titles = [
   {
     "text": "一、游戏概述",
@@ -1141,7 +1111,7 @@ export const sections = [
   {
     "title": "1.抽牌阶段",
     "level": 4,
-    "content": "<p>（1）公司获得本回合的<i class=\"icon icon-click\"></i>(默认为<i class=\"icon icon-click\"></i><i class=\"icon icon-click\"></i><i class=\"icon icon-click\"></i>)</p><p>（2）<strong>付费能力窗口</strong>↻<i class=\"icon icon-interrupt\"></i><i class=\"icon icon-agenda-points\"></i></p><p>（3）公司补充<strong>可再生信用点</strong></p><p>（4）结算“回合开始时”效果</p><p>（5）公司从研发中心顶抽1张牌</p><p>（6）前往行动阶段</p>"
+    "content": "<p>（1）公司获得本回合的起始<i class=\"icon icon-click\"></i>(默认为<i class=\"icon icon-click\"></i><i class=\"icon icon-click\"></i><i class=\"icon icon-click\"></i>)</p><p>（2）<strong>付费能力窗口</strong>↻<i class=\"icon icon-interrupt\"></i><i class=\"icon icon-agenda-points\"></i></p><p>（3）公司补充<strong>可再生信用点</strong></p><p>（4）结算“回合开始时”效果</p><p>（5）公司从研发中心顶抽1张牌</p><p>（6）前往行动阶段</p>"
   },
   {
     "title": "2.行动阶段",
@@ -1166,7 +1136,7 @@ export const sections = [
   {
     "title": "1.行动阶段",
     "level": 4,
-    "content": "<p>（1）潜袭者获得本回合的<i class=\"icon icon-click\"></i>（默认为<i class=\"icon icon-click\"></i><i class=\"icon icon-click\"></i><i class=\"icon icon-click\"></i><i class=\"icon icon-click\"></i>）</p><p>（2）<strong>付费能力窗口</strong>↻<i class=\"icon icon-interrupt\"></i></p><p>（3）潜袭者补充<strong>可再生信用点</strong></p><p>（4）结算“回合开始时”效果</p><p>（5）付费能力窗口</p><p>（6）重复直到没有剩余的<i class=\"icon icon-click\"></i>：</p><p>     a.潜袭者执行一个<strong>行动</strong></p><p>    b.<strong>付费能力窗口</strong>↻<i class=\"icon icon-interrupt\"></i></p><p>（7）结算“行动阶段结束时”效果</p><p>（8）前往弃牌阶段</p>"
+    "content": "<p>（1）潜袭者获得本回合的起始<i class=\"icon icon-click\"></i>（默认为<i class=\"icon icon-click\"></i><i class=\"icon icon-click\"></i><i class=\"icon icon-click\"></i><i class=\"icon icon-click\"></i>）</p><p>（2）<strong>付费能力窗口</strong>↻<i class=\"icon icon-interrupt\"></i></p><p>（3）潜袭者补充<strong>可再生信用点</strong></p><p>（4）结算“回合开始时”效果</p><p>（5）付费能力窗口</p><p>（6）重复直到没有剩余的<i class=\"icon icon-click\"></i>：</p><p>     a.潜袭者执行一个<strong>行动</strong></p><p>    b.<strong>付费能力窗口</strong>↻<i class=\"icon icon-interrupt\"></i></p><p>（7）结算“行动阶段结束时”效果</p><p>（8）前往弃牌阶段</p>"
   },
   {
     "title": "2.弃牌阶段",

@@ -58,7 +58,7 @@ export const cycleText = [
     color: 'rgb(29 181 217)'
   },
   {
-    title: '余烬',
+    title: '余烬循环',
     subTitle: '余烬循环由《坍落》和《起义》2个扩展组成。',
     key: 'qiyi',
     time: <div>
@@ -86,7 +86,7 @@ export const cycleText = [
     color: 'rgb(245 128 25)'
   },
   {
-    title: '北极光',
+    title: '北极光循环',
     subTitle: '北极光循环由《极昼》和《幻日》2个扩展组成。',
     key: 'beijiguang',
     time: <div>
@@ -194,6 +194,12 @@ export const banTextStandard = <div class="ban-list">
       <span class="number">No.128：</span>
       <span class="cn">赛博杀毒剂沙盒</span>
       <span class="en">Cyberdex Sandbox</span>
+    </li>
+    <li>
+      <span class="cycle">《余烬》</span>
+      <span class="number">No.129：</span>
+      <span class="cn">误导</span>
+      <span class="en">False Lead</span>
     </li>
     <li>
       <span class="cycle">《北极光》</span>
@@ -306,6 +312,12 @@ export const banTextStandard = <div class="ban-list">
       <span class="number">No.91：</span>
       <span class="cn">世界树</span>
       <span class="en">World Tree</span>
+    </li>
+    <li>
+      <span class="cycle">《北极光》</span>
+      <span class="number">No.94：</span>
+      <span class="cn">套娃</span>
+      <span class="en">Matryoshka</span>
     </li>
     <li>
       <span class="cycle">《解放》</span>

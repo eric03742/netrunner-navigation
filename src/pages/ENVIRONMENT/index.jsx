@@ -143,8 +143,8 @@ const ENVIRONMENT = () => {
       >
         <div className={styles.pageHeader}>
           {currentBan === 'standard' && <>
-            <h2>标准禁卡表25.10</h2>
-            <h3>生效日期：2025年10月3日</h3>
+            <h2>标准禁卡表25.11</h2>
+            <h3>生效日期：2025年12月1日</h3>
           </>}
           {currentBan === 'starter' && <>
             <h2>新启禁卡表25.11</h2>

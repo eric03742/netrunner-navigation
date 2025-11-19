@@ -1,5 +1,5 @@
 import './style.less';
-import { QqOutlined, WechatOutlined, RadarChartOutlined, FileDoneOutlined, WalletOutlined } from '@ant-design/icons'
+import { QqOutlined, WechatOutlined, TeamOutlined, FileDoneOutlined, WalletOutlined, SaveOutlined } from '@ant-design/icons'
 import { useState } from 'react';
 import { Modal, message } from 'antd'
 import { useModel } from 'umi'
@@ -15,6 +15,8 @@ import shenwang from '@/assets/Community/shenwang.webp'
 import weixinMiniProgram from '@/assets/Community/weixinMiniProgram.webp';
 import shenwangIcon from '@/assets/Community/shenwangIcon.webp';
 import mini from '@/assets/Community/mini.webp'
+import party from '@/assets/Community/party.png'
+import offical from '@/assets/Community/offical.jpg'
 import { competitions, behavior } from './const'
 
 const iconStyle = { fontSize: 64 }
@@ -38,14 +40,17 @@ const COMMUNITY = () => {
     { id: 2, label: 'NetrunnerDB', icon: favicon1, isImg: true, color: '#ff00c8' },
     { id: 3, label: 'Always be Running', icon: favicon2, isImg: true, color: '#00ff9d' },
     { id: 4, label: 'Cobra', icon: favicon3, isImg: true, color: '#ff9d00' },
-    { id: 5, label: 'Near Earth Hub', icon: favicon4, isImg: true, color: '#9d00ff' },
     { id: 6, label: `The Maker's Eye`, icon: favicon5, isImg: true, color: '#ff3864' },
+    { id: 5, label: 'Near Earth Hub', icon: favicon4, isImg: true, color: '#9d00ff' },
     { id: 7, label: '矩阵潜袭QQ群', icon: <QqOutlined style={iconStyle} />, color: '#00aaff' },
+    { id: 13, label: '微信公众号', icon: <i className='icon icon-click' style={iconStyle}></i>, color: '#8269c7' },
     { id: 8, label: '矩阵潜袭微信群', icon: <WechatOutlined style={iconStyle} />, color: '#00ff6a' },
     { id: 9, label: '微信小程序', icon: <img src={weixinMiniProgram} style={iconStyle} />, color: '#ffcc00' },
+    { id: 14, label: '约局联系人', icon: <TeamOutlined style={iconStyle} />, color: '#cfee5e' },
     { id: 10, label: '深网补给池', icon: <img src={shenwangIcon} style={iconStyle} />, color: '#ff0058' },
     { id: 11, label: '组织比赛原则', icon: <WalletOutlined style={iconStyle} />, color: '#58ff00' },
     { id: 12, label: '社群行为准则', icon: <FileDoneOutlined style={iconStyle} />, color: '#aa00ff' },
+    { id: 15, label: 'Stack存储栈', icon: <SaveOutlined style={iconStyle} />, color: '#bb4678' },
   ];
 
   // 按钮点击处理函数
@@ -130,6 +135,39 @@ const COMMUNITY = () => {
                 <div dangerouslySetInnerHTML={{ __html: item.content }} />
               ))}
             </div>
+          </>
+        })
+        break;
+      case 13:
+        setVisible(true)
+        setModalContent({
+          title: sciFiButtons.find(item => item.id === id).label,
+          content: <>
+            <div className='modal-text'>微信公众号搜索：矩阵潜袭</div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <img style={{ width: 400 }} src={offical} /></div>
+          </>
+        })
+        break;
+      case 14:
+        setVisible(true)
+        setModalContent({
+          title: sciFiButtons.find(item => item.id === id).label,
+          content: <>
+            <div className='modal-text'>访问： <a onClick={() => window.open('https://docs.qq.com/sheet/DVUdhU2N3ZFhJQXNS?is_no_hook_redirect=1&tab=BB08J2', '_blank')}>线下约局联系表格</a></div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <img style={{ width: 400 }} src={party} />
+            </div>
+          </>
+        })
+        break;
+      case 15:
+        setVisible(true)
+        setModalContent({
+          title: sciFiButtons.find(item => item.id === id).label,
+          content: <>
+            <div className='modal-text'>访问： <a onClick={() => window.open('https://pan.baidu.com/s/1NJGKhyD7CKFWBTpiLi7BAg?pwd=kaom', '_blank')}>百度网盘</a></div>
+            <div className='modal-text'>提取码：kaom</div>
           </>
         })
         break;
