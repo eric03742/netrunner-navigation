@@ -19,25 +19,34 @@ const ENVIRONMENT = () => {
   const { isPure } = useModel('isPure');
 
   const showBanlist = (type) => {
-    // 根据type设置禁卡表
     if (type === 'standard') {
       setCurrentBan('standard')
-      try {
-        const images = require.context('@/assets/Environment/standardBanList', false, /\.(webp)$/);
-        const imageArray = images.keys().map(image => images(image));
-        setBanList(imageArray);
-      } catch (error) {
-        console.error('Failed to import ban list images:', error);
-      }
+      const banData = banTextStandard;
+      const imageArray = [
+        ...banData.corporation.map(card => ({
+          src: `https://play.sneakdoorbeta.net/img/cards/zh-simp/default/stock/${card.id}.webp`,
+          id: card.id
+        })),
+        ...banData.runner.map(card => ({
+          src: `https://play.sneakdoorbeta.net/img/cards/zh-simp/default/stock/${card.id}.webp`,
+          id: card.id
+        }))
+      ];
+      setBanList(imageArray);
     } else {
       setCurrentBan('starter')
-      try {
-        const images = require.context('@/assets/Environment/starterBanList', false, /\.(webp)$/);
-        const imageArray = images.keys().map(image => images(image));
-        setBanList(imageArray);
-      } catch (error) {
-        console.error('Failed to import ban list images:', error);
-      }
+      const banData = banTextStarter;
+      const imageArray = [
+        ...banData.corporation.map(card => ({
+          src: `https://play.sneakdoorbeta.net/img/cards/zh-simp/default/stock/${card.id}.webp`,
+          id: card.id
+        })),
+        ...banData.runner.map(card => ({
+          src: `https://play.sneakdoorbeta.net/img/cards/zh-simp/default/stock/${card.id}.webp`,
+          id: card.id
+        }))
+      ];
+      setBanList(imageArray);
     }
     setTransitionClass(styles.slideOutToRight);
     setTimeout(() => {
@@ -143,12 +152,12 @@ const ENVIRONMENT = () => {
       >
         <div className={styles.pageHeader}>
           {currentBan === 'standard' && <>
-            <h2>标准禁卡表25.11</h2>
-            <h3>生效日期：2025年12月1日</h3>
+            <h2>标准禁卡表26.3</h2>
+            <h3>生效日期：2026年3月2日</h3>
           </>}
           {currentBan === 'starter' && <>
-            <h2>新启禁卡表25.11</h2>
-            <h3>生效日期：2025年11月3日</h3>
+            <h2>新启禁卡表26.3</h2>
+            <h3>生效日期：2026年3月2日</h3>
           </>}
           {/* 添加右箭头按钮 */}
           <button className={styles.nextButton} onClick={showMainFromBanlist}>
@@ -163,23 +172,45 @@ const ENVIRONMENT = () => {
           </button>
         </div>
         <div className={styles.banListContent}>
-          {/* 左侧禁卡列表文本 */}
           <div className={styles.banListText}>
-            {currentBan === 'standard' ? banTextStandard : banTextStarter}
+            <h3>公司</h3>
+            <ul>
+              {(currentBan === 'standard' ? banTextStandard.corporation : banTextStarter.corporation).map((item, index) => (
+                <li key={index}>
+                  <span className="cycle">{item.cycle}</span>
+                  <span className="number">{item.number}</span>
+                  <span className="cn">{item.cn}</span>
+                </li>
+              ))}
+            </ul>
+
+            <h3>潜袭者</h3>
+            <ul>
+              {(currentBan === 'standard' ? banTextStandard.runner : banTextStarter.runner).map((item, index) => (
+                <li key={index}>
+                  <span className="cycle">{item.cycle}</span>
+                  <span className="number">{item.number}</span>
+                  <span className="cn">{item.cn}</span>
+                </li>
+              ))}
+            </ul>
+
+            {currentBan === 'starter' && <p>此外，公司牌组中 3 分或更多议案不得超过 4 张。</p>}
           </div>
 
-          {/* 右侧图片内容 */}
           <div className={styles.banListImages}>
-            {banList.map((image) => (
+            {banList.map((image, index) => (
               <Image
                 preview={{ getContainer: () => document.getElementById('root') }}
                 className={styles.image}
                 width={isSmallScreen ? 100 : 150}
-                src={image}
+                src={image.src}
+                key={index}
               />
             ))}
           </div>
         </div>
+
       </div>
 
       {/* 循环区页面 */}

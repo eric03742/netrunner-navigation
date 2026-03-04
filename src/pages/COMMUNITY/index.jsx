@@ -15,8 +15,8 @@ import shenwang from '@/assets/Community/shenwang.webp'
 import weixinMiniProgram from '@/assets/Community/weixinMiniProgram.webp';
 import shenwangIcon from '@/assets/Community/shenwangIcon.webp';
 import mini from '@/assets/Community/mini.webp'
-import party from '@/assets/Community/party.png'
-import offical from '@/assets/Community/offical.jpg'
+import party from '@/assets/Community/party.webp'
+import offical from '@/assets/Community/offical.webp'
 import { competitions, behavior } from './const'
 
 const iconStyle = { fontSize: 64 }

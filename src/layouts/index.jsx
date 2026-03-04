@@ -8,7 +8,7 @@ import CommunityBG from '@/assets/layout/bgs/Community-BG.webp';
 import EnvironmentBG from '@/assets/layout/bgs/Environment-BG.webp';
 import FactionBG from '@/assets/layout/bgs/Faction-BG.webp';
 import BasicBG from '@/assets/layout/bgs/Basics-BG.webp';
-import IndexBG from '@/assets/layout/bgs/Index-BG.webp';
+import IndexBG from '@/assets/layout/bgs/Index-BG-3.webp';
 import RunBG from '@/assets/layout/bgs/Run-BG.webp';
 import beian from '@/assets/layout/beian.webp'
 import './style.less';
@@ -162,21 +162,20 @@ const Layout = () => {
       <div
         className={isSmallScreen ? activeKey === 'INDEX' ? "layout-contain-Index" : "layout-contain-mobile" : "layout-contain"}
       >
-        {/* Background container with animation */}
         <div className="layout-bg" >
-          {/* Previous background (fading out) */}
           {!isPure && <div
             className={`bg-slide bg-slide-prev ${isAnimating ? 'fade-out' : ''}`}
             style={{
               backgroundImage: `url(${TAB.find((item) => item.subTitle === prevKey)?.background})`,
+              backgroundPosition: prevKey === 'INDEX' ? 'center top' : 'center',
             }}
           />}
-          {/* Current background (sliding in) */}
           {!isPure && <div
             className={`bg-slide bg-slide-current ${isAnimating ? `slide-in-${direction}` : ''}`}
             style={{
               backgroundImage: `url(${TAB.find((item) => item.subTitle === activeKey)?.background})`,
-              filter: activeKey === 'INDEX' ? 'none' : 'blur(5px)'
+              filter: activeKey === 'INDEX' ? 'none' : 'blur(5px)',
+              backgroundPosition: activeKey === 'INDEX' ? 'center top' : 'center',
             }}
           />}
         </div>
@@ -201,7 +200,7 @@ const Layout = () => {
             开发者：皮皮&矩阵潜袭中国
           </div>
           <div className="layout-version">
-            当前版本：1.1.0 更新时间：2025/10/09
+            当前版本：1.2.0 更新时间：2026/3/4
           </div>
         </div>
       </div>}

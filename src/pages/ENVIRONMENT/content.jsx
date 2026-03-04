@@ -17,6 +17,9 @@ import yangwangCards from '@/assets/Environment/cycle/yangwangCards.webp';
 import yangwangCover from '@/assets/Environment/cycle/yangwangCover.webp';
 import yangwangLogo from '@/assets/Environment/cycle/yangwangLogo.webp';
 
+import zhigaodianCover from '@/assets/Environment/cycle/zhigaodianCover.webp';
+import zhigaodianLogo from '@/assets/Environment/cycle/zhigaodianLogo.webp';
+
 export const cycleText = [
   {
     title: '核心网关',
@@ -141,236 +144,77 @@ export const cycleText = [
     cards: jiefangCards,
     covers: [jiefangCover, jiefangCover2],
     color: 'rgb(128 128 237)'
+  },
+  {
+    title: '制高点',
+    subTitle: '制高点是矩阵潜袭推出的全新独立扩展套组。',
+    key: 'zhigaodian',
+    time: <div>
+      <p>《制高点》2026年3月2日发布</p>
+    </div>,
+    text: <div>
+      <p>《制高点》将带领玩家重访NSG以往作品曾展现的矩阵潜袭世界图景——从北极的冰雪秘境、巴西的暴动冲突，到永不停歇的巨大城市卡里曼丹，并特别聚焦月球的高远世界。</p>
+    </div>,
+    content: <div>
+      <p>《制高点》包含：</p>
+      <p>·41种公司卡牌（包含2种公司ID）；</p>
+      <p>·25种潜袭者卡牌（包含2种潜袭者ID）；</p>
+      <p>·20种修订卡牌（修订之前卡牌的文本）；</p>
+      <p>以上卡牌每种3张，共192张卡牌。</p>
+    </div>,
+    logo: zhigaodianLogo,
+    cards: null,
+    covers: [zhigaodianCover],
+    color: 'rgb(128, 237, 152)'
   }
 ]
 
-export const banTextStandard = <div class="ban-list">
-  <h3>公司</h3>
-  <ul>
-    <li>
-      <span class="cycle">《核心网关》</span>
-      <span class="number">No.51：</span>
-      <span class="cn">网际传媒：身临其境</span>
-      <span class="en">NBN: Reality Plus</span>
-    </li>
-    <li>
-      <span class="cycle">《余烬》</span>
-      <span class="number">No.41：</span>
-      <span class="cn">蜇！</span>
-      <span class="en">sting!</span>
-    </li>
-    <li>
-      <span class="cycle">《余烬》</span>
-      <span class="number">No.97：</span>
-      <span class="cn">瓦隆什计划</span>
-      <span class="en">Project Vacheron</span>
-    </li>
-    <li>
-      <span class="cycle">《余烬》</span>
-      <span class="number">No.108：</span>
-      <span class="cn">记忆冲净</span>
-      <span class="en">Engram Flush</span>
-    </li>
-    <li>
-      <span class="cycle">《余烬》</span>
-      <span class="number">No.114：</span>
-      <span class="cn">贝罗娜</span>
-      <span class="en">Bellona</span>
-    </li>
-    <li>
-      <span class="cycle">《余烬》</span>
-      <span class="number">No.116：</span>
-      <span class="cn">打钱工作室</span>
-      <span class="en">Gold Farmer</span>
-    </li>
-    <li>
-      <span class="cycle">《余烬》</span>
-      <span class="number">No.127：</span>
-      <span class="cn">卡扬贝网阵</span>
-      <span class="en">Cayambe Grid</span>
-    </li>
-    <li>
-      <span class="cycle">《余烬》</span>
-      <span class="number">No.128：</span>
-      <span class="cn">赛博杀毒剂沙盒</span>
-      <span class="en">Cyberdex Sandbox</span>
-    </li>
-    <li>
-      <span class="cycle">《余烬》</span>
-      <span class="number">No.129：</span>
-      <span class="cn">误导</span>
-      <span class="en">False Lead</span>
-    </li>
-    <li>
-      <span class="cycle">《北极光》</span>
-      <span class="number">No.51：</span>
-      <span class="cn">德拉戈•伊万诺夫</span>
-      <span class="en">Drago Ivanov</span>
-    </li>
-    <li>
-      <span class="cycle">《北极光》</span>
-      <span class="number">No.106：</span>
-      <span class="cn">万象·基林博士</span>
-      <span class="en">Dr. Vientiane Keeling</span>
-    </li>
-    <li>
-      <span class="cycle">《北极光》</span>
-      <span class="number">No.111：</span>
-      <span class="cn">纳尼西维克网阵</span>
-      <span class="en">Nanisivik Grid</span>
-    </li>
-    <li>
-      <span class="cycle">《解放》</span>
-      <span class="number">No.58：</span>
-      <span class="cn">赛博砂采集者</span>
-      <span class="en">Cybersand Harvester</span>
-    </li>
-    <li>
-      <span class="cycle">《解放》</span>
-      <span class="number">No.111：</span>
-      <span class="cn">支流</span>
-      <span class="en">Tributary</span>
-    </li>
-    <li>
-      <span class="cycle">仰望</span>
-      <span class="number">No.67：</span>
-      <span class="cn">润色</span>
-      <span class="en">Touch-ups</span>
-    </li>
-  </ul>
+export const banTextStandard = {
+  corporation: [
+    { cycle: '《核心网关》', number: 'No.36', cn: '光脑体变', id: '30036' },
+    { cycle: '《核心网关》', number: 'No.51', cn: '网际传媒：身临其境', id: '30051' },
+    { cycle: '《余烬》', number: 'No.41', cn: '蜇！', id: '26041' },
+    { cycle: '《余烬》', number: 'No.97', cn: '瓦隆什计划', id: '26097' },
+    { cycle: '《余烬》', number: 'No.108', cn: '记忆冲净', id: '26108' },
+    { cycle: '《余烬》', number: 'No.114', cn: '贝罗娜', id: '26114' },
+    { cycle: '《余烬》', number: 'No.116', cn: '打钱工作室', id: '26116' },
+    { cycle: '《余烬》', number: 'No.127', cn: '卡扬贝网阵', id: '26127' },
+    { cycle: '《余烬》', number: 'No.128', cn: '赛博杀毒剂沙盒', id: '26128' },
+    { cycle: '《余烬》', number: 'No.129', cn: '误导', id: '26129' },
+    { cycle: '《北极光》', number: 'No.11', cn: '纽纱·“黑貂”·辛塔什塔: 交响奇才', id: '33011' },
+    { cycle: '《北极光》', number: 'No.51', cn: '德拉戈•伊万诺夫', id: '33051' },
+    { cycle: '《北极光》', number: 'No.59', cn: '斯维亚托戈尔号挖掘机', id: '33059' },
+    { cycle: '《北极光》', number: 'No.106', cn: '万象·基林博士', id: '33106' },
+    { cycle: '《北极光》', number: 'No.111', cn: '纳尼西维克网阵', id: '33111' },
+    { cycle: '《解放》', number: 'No.58', cn: '赛博砂采集者', id: '34058' },
+    { cycle: '《解放》', number: 'No.111', cn: '支流', id: '34111' },
+    { cycle: '《仰望》', number: 'No.67', cn: '润色', id: '35067' }
+  ],
+  runner: [
+    { cycle: '《核心网关》', number: 'No.6', cn: '剁肉刀', id: '20006' },
+    { cycle: '《余烬》', number: 'No.16', cn: '会计师', id: '26016' },
+    { cycle: '《余烬》', number: 'No.26', cn: '粮食', id: '26026' },
+    { cycle: '《余烬》', number: 'No.66', cn: '白 星子：未名主角', id: '26066-front' },
+    { cycle: '《余烬》', number: 'No.67', cn: '狂舞', id: '26067' },
+    { cycle: '《北极光》', number: 'No.25', cn: '坚忍号', id: '33025' },
+    { cycle: '《北极光》', number: 'No.74', cn: '查希亚·"蒙獒"·钢图拉嘎', id: '33074' },
+    { cycle: '《北极光》', number: 'No.90', cn: 'K2CP 涡轮机', id: '33090' },
+    { cycle: '《北极光》', number: 'No.91', cn: '世界树', id: '33091' },
+    { cycle: '《北极光》', number: 'No.94', cn: '套娃', id: '33094' },
+    { cycle: '《解放》', number: 'No.87', cn: '特技球', id: '34087' }
+  ]
+}
 
-  <h3>潜袭者</h3>
-  <ul>
-    <li>
-      <span class="cycle">《核心网关》</span>
-      <span class="number">No.6：</span>
-      <span class="cn">剁肉刀</span>
-      <span class="en">Cleaver</span>
-    </li>
-    <li>
-      <span class="cycle">《余烬》</span>
-      <span class="number">No.16：</span>
-      <span class="cn">会计师</span>
-      <span class="en">Bukhgalter</span>
-    </li>
-    <li>
-      <span class="cycle">《余烬》</span>
-      <span class="number">No.26：</span>
-      <span class="cn">粮食</span>
-      <span class="en">Rezeki</span>
-    </li>
-    <li>
-      <span class="cycle">《余烬》</span>
-      <span class="number">No.67：</span>
-      <span class="cn">狂舞</span>
-      <span class="en">Moshing</span>
-    </li>
-    <li>
-      <span class="cycle">《余烬》</span>
-      <span class="number">No.94：</span>
-      <span class="cn">每日播报</span>
-      <span class="en">Daily Casts</span>
-    </li>
-    <li>
-      <span class="cycle">《余烬》</span>
-      <span class="number">No.95：</span>
-      <span class="cn">梦网</span>
-      <span class="en">DreamNet</span>
-    </li>
-    <li>
-      <span class="cycle">《北极光》</span>
-      <span class="number">No.22：</span>
-      <span class="cn">深潜</span>
-      <span class="en">Deep Dive</span>
-    </li>
-    <li>
-      <span class="cycle">《北极光》</span>
-      <span class="number">No.25：</span>
-      <span class="cn">坚忍号</span>
-      <span class="en">Endurance</span>
-    </li>
-    <li>
-      <span class="cycle">《北极光》</span>
-      <span class="number">No.74：</span>
-      <span class="cn">查希亚·"蒙獒"·钢图拉嘎</span>
-      <span class="en">Tsakhia "Bankhar" Gantulga</span>
-    </li>
-    <li>
-      <span class="cycle">《北极光》</span>
-      <span class="number">No.83：</span>
-      <span class="cn">信息赏金</span>
-      <span class="en">Info Bounty</span>
-    </li>
-    <li>
-      <span class="cycle">《北极光》</span>
-      <span class="number">No.90：</span>
-      <span class="cn">K2CP涡轮机</span>
-      <span class="en">K2CP Turbine</span>
-    </li>
-    <li>
-      <span class="cycle">《北极光》</span>
-      <span class="number">No.91：</span>
-      <span class="cn">世界树</span>
-      <span class="en">World Tree</span>
-    </li>
-    <li>
-      <span class="cycle">《北极光》</span>
-      <span class="number">No.94：</span>
-      <span class="cn">套娃</span>
-      <span class="en">Matryoshka</span>
-    </li>
-    <li>
-      <span class="cycle">《解放》</span>
-      <span class="number">No.87：</span>
-      <span class="cn">特技球</span>
-      <span class="en">Trick Shot</span>
-    </li>
-  </ul>
-</div>
-
-export const banTextStarter = <div class="ban-list">
-  <h3>公司</h3>
-  <ul>
-    <li>
-      <span class="cycle">《核心网关》</span>
-      <span class="number">No.51：</span>
-      <span class="cn">网际传媒：身临其境</span>
-      <span class="en">禁用</span>
-    </li>
-    <li>
-      <span class="cycle">《核心网关》</span>
-      <span class="number">No.63：</span>
-      <span class="cn">大灯塔</span>
-      <span class="en">禁用</span>
-    </li>
-    <li>
-      <span class="cycle">《解放》</span>
-      <span class="number">No.111：</span>
-      <span class="cn">支流</span>
-      <span class="en">禁用</span>
-    </li>
-  </ul>
-  <p>此外，公司牌组中3分或更多议案不得超过4张。</p>
-
-  <h3>潜袭者</h3>
-  <ul>
-    <li>
-      <span class="cycle">《核心网关》</span>
-      <span class="number">No.6：</span>
-      <span class="cn">剁肉刀</span>
-      <span class="en">禁用</span>
-    </li>
-    <li>
-      <span class="cycle">《解放》</span>
-      <span class="number">No.12：</span>
-      <span class="cn">S型猴翻</span>
-      <span class="en">禁用</span>
-    </li>
-    <li>
-      <span class="cycle">《解放》</span>
-      <span class="number">No.89：</span>
-      <span class="cn">凝露</span>
-      <span class="en">禁用</span>
-    </li>
-  </ul>
-</div>
+export const banTextStarter = {
+  corporation: [
+    { cycle: '《核心网关》', number: 'No.40', cn: '无暇发布会', id: '30040' },
+    { cycle: '《核心网关》', number: 'No.51', cn: '网际传媒：身临其境', id: '30051' },
+    { cycle: '《仰望》', number: 'No.45', cn: '梅西娅 B4LL4RD', id: '35045' },
+    { cycle: '《制高点》', number: 'No.66', cn: '让他们做个美梦', id: '36066' },
+  ],
+  runner: [
+    { cycle: '《核心网关》', number: 'No.6', cn: '剁肉刀', id: '30006' },
+    // { cycle: '《解放》', number: 'No.12', cn: 'S 型猴翻', id: '34012' },
+    // { cycle: '《解放》', number: 'No.89', cn: '凝露', id: '34089' }
+  ]
+}
