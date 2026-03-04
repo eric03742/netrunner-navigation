@@ -35,12 +35,14 @@
 }
 
 .pageHeader {
-  position: relative;
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
+  z-index: 10;
 
   h2 {
     font-family: 'XiangSuFont';
@@ -223,15 +225,17 @@
 .buttonSection {
   display: flex;
   justify-content: space-between;
-  flex: 1;
+  // align-items: center; // 新增：垂直居中对齐
+  gap: 20px
 }
 
 .leftButtons,
 .rightButtons {
-  flex: 1;
+  flex: 1; // 保持不变：占据 1/3 宽度
   display: flex;
   flex-direction: column;
   align-items: center;
+  // justify-content: center; // 新增：内容垂直居中
 
   h3 {
     margin-bottom: 15px;
@@ -239,7 +243,10 @@
 }
 
 .middle {
-  height: 300px;
+  flex: 1; // 修改：图片也占据 1/3 宽度
+  height: 500px;
+  object-fit: contain; // 新增：保持图片比例
+  max-width: 100%; // 新增：防止溢出
 }
 
 .buttonGrid {
@@ -255,7 +262,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  width: 100%;
 }
 
 .techButton {
@@ -594,6 +600,7 @@
 
       .middle {
         height: unset;
+        margin: 20px
       }
 
       .rightButtons {

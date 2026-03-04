@@ -142,17 +142,24 @@
   background-color: white;
 }
 
-// 添加公众号关注按钮样式
-.showBackgroundButton,
-.niseiClickContainer {
+// 添加右侧按钮容器样式
+.rightButtonsContainer {
   position: absolute;
   top: 20px;
   right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+// 添加公众号关注按钮样式
+.niseiClickContainer,
+.showBackgroundButton {
   cursor: pointer;
   display: flex;
   align-items: center;
   flex-direction: column;
-  z-index: 1000;
   padding: 4px 6px;
   border-radius: 4px;
   transition: all 0.3s;
@@ -172,6 +179,12 @@
     background: linear-gradient(135deg, rgba(50, 50, 50, 0.7), rgba(30, 30, 30, 0.4));
     transition: background 0.5s ease;
   }
+}
+
+.niseiClickText {
+  color: white;
+  font-family: CommonFont;
+  font-size: 18px;
 }
 
 .showBackgroundButton {
@@ -240,7 +253,7 @@
     }
 
     .animatedPage {
-      margin-top: 10px;
+      margin-top: 20%;
       display: block;
 
       .animatedText {
@@ -271,11 +284,11 @@
     .pageContainer {
       .indicators {
         position: absolute;
-        top: 50%; // 定位到右侧
+        top: 50%;
         left: 95%;
-        display: flex; // 垂直排列
+        display: flex;
         flex-direction: column;
-        gap: 10px; // 指示器之间的间距
+        gap: 10px;
         z-index: 100;
       }
 
@@ -290,6 +303,37 @@
 
       .indicator.active {
         background-color: white;
+      }
+    }
+
+    // 移动端右侧按钮容器改为水平排列
+    .rightButtonsContainer {
+      top: 10px;
+      right: 0;
+      transform: unset;
+      flex-direction: row;
+      gap: 8px;
+      width: 100%;
+      justify-content: space-between;
+      padding: 0 10px;
+    }
+
+    .niseiClickContainer,
+    .showBackgroundButton {
+      padding: 3px 5px;
+      width: fit-content;
+
+      .niseiClickText {
+        font-size: 14px;
+      }
+
+      .qrcode {
+        font-size: 12px;
+      }
+
+      .niseiClickIcon {
+        width: 18px;
+        height: 18px;
       }
     }
   }

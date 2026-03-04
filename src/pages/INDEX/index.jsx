@@ -140,19 +140,21 @@ const INDEX = () => {
 
   return (
     <div className={styles.IndexPage}>
-      {/* 当 currentPage 为 0 时显示 NISEI_CLICK 关注公众号，使用淡入淡出效果 */}
-      <div
-        className={`${styles.niseiClickContainer} ${currentPage === 0 ? styles.fadeIn : styles.fadeOut}`}
-        onClick={() => setModalVisible(true)}
-      >
-        <span className={styles.niseiClickText}>关注公众号</span>
-        <div className={styles.qrcode}><img src={NISEI_CLICK} className={styles.niseiClickIcon} />矩阵潜袭</div>
-      </div>
-      <div
-        className={`${styles.showBackgroundButton} ${currentPage === 0 ? styles.fadeIn : styles.fadeOut}`}
-        onClick={() => setIsPure(!isPure)}
-      >
-        <span className={styles.niseiClickText}>{!isPure ? '酷黑模式' : '炫彩模式'}</span>
+      {/* 右侧按钮容器 - 包含关注公众号和酷黑模式 */}
+      <div className={styles.rightButtonsContainer}>
+        <div
+          className={`${styles.niseiClickContainer} ${currentPage === 0 ? styles.fadeIn : styles.fadeOut}`}
+          onClick={() => setModalVisible(true)}
+        >
+          <span className={styles.niseiClickText}>关注公众号</span>
+          <div className={styles.qrcode}><img src={NISEI_CLICK} className={styles.niseiClickIcon} />矩阵潜袭</div>
+        </div>
+        <div
+          className={`${styles.showBackgroundButton} ${currentPage === 0 ? styles.fadeIn : styles.fadeOut}`}
+          onClick={() => setIsPure(!isPure)}
+        >
+          <span className={styles.niseiClickText}>{!isPure ? '酷黑模式' : '炫彩模式'}</span>
+        </div>
       </div>
       {/* 弹窗模态框 */}
       <Modal

@@ -132,7 +132,7 @@ const ENVIRONMENT = () => {
           {!isSmallScreen && <img className={styles.middle} src={environmentImg} />}
 
           {/* 右侧按钮 - 循环区 */}
-          <div className={styles.rightButtons} style={isSmallScreen ? { marginTop: '10px' } : { minWidth: '420px' }}>
+          <div className={styles.rightButtons} style={isSmallScreen ? { marginTop: '10px' } : {}}>
             <div className={styles.cycleButtons}>
               {cycleText?.map(item => <button className={styles.cycleButton} style={{ background: `linear-gradient(135deg, ${item.color}, #ffffff00)` }} onClick={() => showCycle(item.key)}>
                 <img src={item.logo} className={styles.cycleLogo} />  {item.title}
