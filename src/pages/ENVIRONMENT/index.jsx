@@ -152,11 +152,11 @@ const ENVIRONMENT = () => {
       >
         <div className={styles.pageHeader}>
           {currentBan === 'standard' && <>
-            <h2>标准禁卡表26.3</h2>
-            <h3>生效日期：2026年3月2日</h3>
+            <h2>标准禁卡表26.05</h2>
+            <h3>生效日期：2026年5月1日</h3>
           </>}
           {currentBan === 'starter' && <>
-            <h2>新启禁卡表26.3</h2>
+            <h2>新启禁卡表26.03</h2>
             <h3>生效日期：2026年3月2日</h3>
           </>}
           {/* 添加右箭头按钮 */}

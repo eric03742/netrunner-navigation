@@ -173,8 +173,9 @@ export const banTextStandard = {
   corporation: [
     { cycle: '《核心网关》', number: 'No.36', cn: '光脑体变', id: '30036' },
     { cycle: '《核心网关》', number: 'No.51', cn: '网际传媒：身临其境', id: '30051' },
+    { cycle: '《核心网关》', number: 'No.67', cn: '地外办公室', id: '30067' },
     { cycle: '《余烬》', number: 'No.41', cn: '蜇！', id: '26041' },
-    { cycle: '《余烬》', number: 'No.97', cn: '瓦隆什计划', id: '26097' },
+    { cycle: '《余烬》', number: 'No.97', cn: '瓦什隆计划', id: '26097' },
     { cycle: '《余烬》', number: 'No.108', cn: '记忆冲净', id: '26108' },
     { cycle: '《余烬》', number: 'No.114', cn: '贝罗娜', id: '26114' },
     { cycle: '《余烬》', number: 'No.116', cn: '打钱工作室', id: '26116' },
@@ -184,9 +185,11 @@ export const banTextStandard = {
     { cycle: '《北极光》', number: 'No.11', cn: '纽纱·“黑貂”·辛塔什塔: 交响奇才', id: '33011' },
     { cycle: '《北极光》', number: 'No.51', cn: '德拉戈•伊万诺夫', id: '33051' },
     { cycle: '《北极光》', number: 'No.59', cn: '斯维亚托戈尔号挖掘机', id: '33059' },
+    { cycle: '《北极光》', number: 'No.63', cn: '开采', id: '33063' },
     { cycle: '《北极光》', number: 'No.106', cn: '万象·基林博士', id: '33106' },
     { cycle: '《北极光》', number: 'No.111', cn: '纳尼西维克网阵', id: '33111' },
     { cycle: '《解放》', number: 'No.58', cn: '赛博砂采集者', id: '34058' },
+    { cycle: '《解放》', number: 'No.94', cn: '灰白终章', id: '34094' },
     { cycle: '《解放》', number: 'No.111', cn: '支流', id: '34111' },
     { cycle: '《仰望》', number: 'No.67', cn: '润色', id: '35067' }
   ],
