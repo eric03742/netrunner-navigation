@@ -58,9 +58,12 @@ const DECK = () => {
                 <div className={`${style.deckType} ${deck.type === 'runner' ? style.runner : style.corp}`}>
                   {deck.type === 'runner' ? '黑客' : '公司'}
                 </div>
-                <div className={style.deckBasic}>
+                {deck.isRecomand && <div className={style.deckRecommend}>
+                  核心预组
+                </div>}
+                {deck.basic && <div className={style.deckBasic}>
                   {deck.basic === 1 ? '单基础' : '双基础'}
-                </div>
+                </div>}
                 {/* 显示关键词 */}
                 {deck.keywords && deck.keywords.map((keyword, index) => (
                   <span key={index} className={style.keyword}>

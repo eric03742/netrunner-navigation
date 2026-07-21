@@ -35,8 +35,6 @@
 }
 
 .pageHeader {
-  position: sticky;
-  top: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,83 +58,85 @@
     position: absolute;
     left: 20px;
   }
+}
 
-  // 添加右箭头按钮样式
-  .nextButton {
-    position: absolute;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+// 返回/前进按钮（固定在页面顶部）
+.nextButton {
+  position: sticky;
+  top: 20px;
+  margin-left: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 20;
+
+  .arrowIcon {
+    width: 24px;
+    height: 24px;
+    fill: white;
     transition: all 0.3s ease;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateX(5px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 
     .arrowIcon {
-      width: 24px;
-      height: 24px;
-      fill: white;
-      transition: all 0.3s ease;
-    }
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.6);
-      transform: translateX(5px);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-
-      .arrowIcon {
-        transform: scale(1.2);
-      }
-    }
-
-    &:active {
-      transform: translateX(3px);
+      transform: scale(1.2);
     }
   }
 
-  // 添加右箭头按钮样式
-  .nextLeftButton {
-    position: absolute;
-    left: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  &:active {
+    transform: translateX(3px);
+  }
+}
+
+.nextLeftButton {
+  position: sticky;
+  top: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 20;
+
+  .arrowIcon {
+    width: 24px;
+    height: 24px;
+    fill: white;
     transition: all 0.3s ease;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateX(-5px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 
     .arrowIcon {
-      width: 24px;
-      height: 24px;
-      fill: white;
-      transition: all 0.3s ease;
+      transform: scale(1.2);
     }
+  }
 
-    &:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.6);
-      transform: translateX(-5px);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-
-      .arrowIcon {
-        transform: scale(1.2);
-      }
-    }
-
-    &:active {
-      transform: translateX(-3px);
-    }
+  &:active {
+    transform: translateX(-3px);
   }
 }
 

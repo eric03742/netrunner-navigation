@@ -24,11 +24,11 @@ const ENVIRONMENT = () => {
       const banData = banTextStandard;
       const imageArray = [
         ...banData.corporation.map(card => ({
-          src: `https://play.sneakdoorbeta.net/img/cards/zh-simp/default/stock/${card.id}.webp`,
+          src: `https://play.sneakdoorbeta.net/img/cards/zh-simp/default/stock/${card.urlId || card.id}.webp`,
           id: card.id
         })),
         ...banData.runner.map(card => ({
-          src: `https://play.sneakdoorbeta.net/img/cards/zh-simp/default/stock/${card.id}.webp`,
+          src: `https://play.sneakdoorbeta.net/img/cards/zh-simp/default/stock/${card.urlId || card.id}.webp`,
           id: card.id
         }))
       ];
@@ -150,26 +150,26 @@ const ENVIRONMENT = () => {
           : (currentView === 'main' ? `${styles.enterFromLeft}` : `${styles.hidden}`)
           }`}
       >
+        {/* 返回按钮（固定在顶部） */}
+        <button className={styles.nextButton} onClick={showMainFromBanlist}>
+          <svg className={styles.arrowIcon} viewBox="0 0 24 24">
+            <path
+              d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"
+              strokeWidth="2"
+              stroke="#fff"
+              fill="none"
+            />
+          </svg>
+        </button>
         <div className={styles.pageHeader}>
           {currentBan === 'standard' && <>
-            <h2>标准禁卡表26.05</h2>
-            <h3>生效日期：2026年5月1日</h3>
+            <h2>标准禁卡表26.08</h2>
+            <h3>生效日期：2026年8月1日</h3>
           </>}
           {currentBan === 'starter' && <>
             <h2>新启禁卡表26.03</h2>
             <h3>生效日期：2026年3月2日</h3>
           </>}
-          {/* 添加右箭头按钮 */}
-          <button className={styles.nextButton} onClick={showMainFromBanlist}>
-            <svg className={styles.arrowIcon} viewBox="0 0 24 24">
-              <path
-                d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"
-                strokeWidth="2"
-                stroke="#fff"
-                fill="none"
-              />
-            </svg>
-          </button>
         </div>
         <div className={styles.banListContent}>
           <div className={styles.banListText}>
@@ -220,18 +220,18 @@ const ENVIRONMENT = () => {
           : (currentView === 'main' ? `${styles.enterFromRight}` : `${styles.hidden}`)
           }`}
       >
+        {/* 返回按钮（固定在顶部） */}
+        <button className={styles.nextLeftButton} onClick={showMainFromCycle}>
+          <svg className={styles.arrowIcon} viewBox="0 0 24 24">
+            <path
+              d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"
+              strokeWidth="2"
+              stroke="#fff"
+              fill="none"
+            />
+          </svg>
+        </button>
         <div className={styles.pageHeader} style={{ paddingBottom: 0 }}>
-          {/* 添加左侧返回按钮，箭头向左 */}
-          <button className={styles.nextLeftButton} onClick={showMainFromCycle}>
-            <svg className={styles.arrowIcon} viewBox="0 0 24 24">
-              <path
-                d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"
-                strokeWidth="2"
-                stroke="#fff"
-                fill="none"
-              />
-            </svg>
-          </button>
           {/* 标题 */}
           <h2 style={{ color: cycleData.color }}>{cycleData?.title}</h2>
         </div>

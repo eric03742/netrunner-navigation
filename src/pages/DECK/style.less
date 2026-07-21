@@ -35,7 +35,7 @@
   height: 50px;
   border-radius: 50%;
   background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 30%);
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
@@ -55,10 +55,10 @@
   }
 
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 10%);
+      border-color: rgba(255, 255, 255, 60%);
     transform: translateX(-5px);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 30%);
 
     .arrowIcon {
       transform: scale(1.2);
@@ -151,7 +151,7 @@
   padding-top: 0;
 
   h1 {
-    font-family: 'CommonFont';
+    font-family: CommonFont;
     text-align: center;
     font-size: 40px;
     margin-bottom: 10px;
@@ -159,7 +159,7 @@
   }
 
   p {
-    font-family: 'XiangSuFont';
+    font-family: XiangSuFont;
     font-size: 20px;
     background: #4b4848a8;
     padding: 10px;
@@ -178,19 +178,19 @@
 }
 
 .deckCard {
-  background: rgba(30, 30, 45, 0.7);
+  background: rgba(30, 30, 45, 70%);
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 30%);
   transition: all 0.3s ease;
   cursor: pointer;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(100, 181, 246, 0.2);
+  border: 1px solid rgba(100, 181, 246, 20%);
 
   &:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-    border-color: rgba(100, 181, 246, 0.5);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 40%);
+      border-color: rgba(100, 181, 246, 50%);
   }
 }
 
@@ -217,15 +217,16 @@
 
   .deckName {
     font-size: 1.2rem;
-    margin: 0 0 10px 0;
-    color: #ffffff;
+    margin: 0 0 10px;
+      color: #fff;
     min-height: 60px;
-    font-family: 'CommonFont';
+    font-family: CommonFont;
   }
 }
 
 .deckType,
-.deckBasic {
+.deckBasic,
+.deckRecommend {
   display: inline-block;
   padding: 5px 10px;
   border-radius: 20px;
@@ -236,7 +237,7 @@
 
 .keyword {
   display: inline-block;
-  background: rgba(100, 181, 246, 0.3);
+  background: rgba(100, 181, 246, 30%);
   color: #64b5f6;
   display: inline-block;
   padding: 5px 10px;
@@ -263,6 +264,10 @@
   color: white;
 }
 
+.deckRecommend {
+  background: linear-gradient(45deg, #73e080, #28930f);
+  color: white;
+}
 .deckDetailContainer {
   max-width: 1400px;
   margin: 0 auto;
@@ -283,7 +288,7 @@
   .detailImage {
     width: 100%;
     border-radius: 15px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 40%);
   }
 }
 
@@ -291,15 +296,15 @@
   flex: 2;
   display: flex;
   flex-direction: column;
-  font-family: 'CommonFont';
+  font-family: CommonFont;
 }
 
 .detailInfo {
   .detailName {
     font-size: 2.2rem;
-    margin: 0 0 20px 0;
-    color: #ffffff;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0 0 20px;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 30%);
   }
 }
 
@@ -350,7 +355,7 @@
     background: linear-gradient(134deg, #2a2a2a, #f7f7f700);
     padding: 5px;
     border-radius: 10px;
-    font-family: 'XiangSuFont';
+    font-family: XiangSuFont;
     font-size: 20px;
   }
 }
@@ -368,14 +373,14 @@
   border: 1px solid #64b5f6;
   border-radius: 5px;
   padding: 8px 16px;
-  font-family: 'XiangSuFont';
+  font-family: XiangSuFont;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
+  box-shadow: 0 0 10px rgba(100, 181, 246, 30%);
 
   &:hover {
     background: linear-gradient(45deg, #7249b3, #652d95);
-    box-shadow: 0 0 15px rgba(100, 181, 246, 0.5);
+    box-shadow: 0 0 15px rgba(100, 181, 246, 50%);
     transform: translateY(-2px);
   }
 
@@ -394,16 +399,19 @@
   max-height: 400px;
   display: flex;
   flex-direction: column;
+
   /* 子元素默认垂直排列 */
   flex-wrap: wrap;
+
   /* 超出高度时换行（排到右侧） */
   height: 400px;
+
   /* 固定容器高度（超出此高度的内容会排到第二栏） */
   width: 100%;
   overflow-y: auto;
   background: linear-gradient(134deg, #2a2a2a, #f7f7f700);
   border: 0;
-  font-family: 'CommonFont';
+  font-family: CommonFont;
 
   .cardCategoryTitle {
     font-weight: bold;
