@@ -120,7 +120,7 @@ const Layout = () => {
     if (isAnimating) {
       const timer = setTimeout(() => {
         setIsAnimating(false);
-      }, 600); // Match CSS animation duration (0.6s 交叉淡入)
+      }, 800); // Match CSS animation duration (0.8s)
       return () => clearTimeout(timer);
     }
   }, [isAnimating]);
@@ -168,7 +168,7 @@ const Layout = () => {
         />
       </div>
       <div
-        className={isSmallScreen ? activeKey === 'INDEX' ? "layout-contain-Index" : "layout-contain-mobile" : "layout-contain"}
+        className="layout-contain"
       >
         <div className="layout-bg" >
           {!isPure && (() => {
