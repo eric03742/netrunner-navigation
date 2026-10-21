@@ -184,8 +184,10 @@ const COMMUNITY = () => {
         setModalContent({
           title: sciFiButtons.find(item => item.id === id).label,
           content: <>
-            <div className='modal-text'>访问： <a onClick={() => window.open('https://pan.baidu.com/s/1NJGKhyD7CKFWBTpiLi7BAg?pwd=kaom', '_blank')}>百度网盘</a></div>
-            <div className='modal-text'>提取码：kaom</div>
+            <div className='modal-text'>夸克网盘： <a onClick={() => window.open('https://pan.quark.cn/s/315f9b5cbf9a', '_blank')}>访问链接</a></div>
+            <div className='modal-text'>提取码：hcLb</div>
+            <div className='modal-text'>百度网盘： <a onClick={() => window.open('https://pan.baidu.com/s/1u8RCK529d5rSe6GXok0aUw?pwd=w3p5', '_blank')}>访问链接</a></div>
+            <div className='modal-text'>提取码：w3p5</div>
           </>
         })
         break;
@@ -204,7 +206,7 @@ const COMMUNITY = () => {
             className="sci-fi-button"
             style={{
               '--button-color': button.color,
-              background: `linear-gradient(180deg, ${button.color}cc, rgba(20, 25, 35, 0.9))`,
+              background: `linear-gradient(180deg, ${button.color}cc, ${button.color}33)`,
             }}
             onClick={() => handleSciFiButtonClick(button.id)}
           >

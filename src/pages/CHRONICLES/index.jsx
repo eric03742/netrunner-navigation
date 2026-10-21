@@ -32,25 +32,47 @@ const Chronicles = () => {
       if (img.dataset.chroniclesWrapped) return;
       img.dataset.chroniclesWrapped = '1';
       img.classList.add('chronicles-img');
+      img.loading = 'lazy';
     });
   }, []);
 
   return (
     <div className={`chronicles-container ${isPure ? 'chronicles-pure' : ''} ${isSmallScreen ? 'chronicles-mobile' : ''}`}>
-      {/* 左侧 sticky 目录 */}
-      <aside className={`chronicles-nav ${navCollapsed ? 'collapsed' : ''}`}>
-        <div className="chronicles-nav-inner">
-          <div className="chronicles-nav-header">
-            <span>目录</span>
-            <button
-              className="chronicles-nav-toggle"
-              onClick={() => setNavCollapsed(!navCollapsed)}
-              aria-label="toggle nav"
-            >
-              {navCollapsed ? '▶' : '◀'}
-            </button>
+      {/* 移动端悬浮目录按钮 */}
+      {isSmallScreen && (
+        <button className="chronicles-nav-fab" onClick={() => setNavCollapsed(false)}>
+          目录
+        </button>
+      )}
+      {/* 移动端目录弹窗 */}
+      {isSmallScreen && !navCollapsed && (
+        <div className="chronicles-nav-overlay" onClick={() => setNavCollapsed(true)}>
+          <div className="chronicles-nav-popup" onClick={(e) => e.stopPropagation()}>
+            <div className="chronicles-nav-popup-header">
+              <span>目录</span>
+              <button className="chronicles-nav-popup-close" onClick={() => setNavCollapsed(true)}>✕</button>
+            </div>
+            <ul className="chronicles-nav-popup-list">
+              {headings.map((h, idx) => (
+                <li
+                  key={h.id}
+                  className={`chronicles-nav-item level-${h.level}`}
+                  onClick={() => { handleHeadingClick(h.id); setNavCollapsed(true); }}
+                >
+                  {h.text}
+                </li>
+              ))}
+            </ul>
           </div>
-          {!navCollapsed && (
+        </div>
+      )}
+      {/* PC 端侧边栏目录 */}
+      {!isSmallScreen && (
+        <aside className="chronicles-nav">
+          <div className="chronicles-nav-inner">
+            <div className="chronicles-nav-header">
+              <span>目录</span>
+            </div>
             <ul className="chronicles-nav-list">
               {headings.map((h, idx) => (
                 <li
@@ -62,18 +84,9 @@ const Chronicles = () => {
                 </li>
               ))}
             </ul>
-          )}
-        </div>
-        {navCollapsed && (
-          <button
-            className="chronicles-nav-expand"
-            onClick={() => setNavCollapsed(false)}
-            aria-label="expand nav"
-          >
-            ▶
-          </button>
-        )}
-      </aside>
+          </div>
+        </aside>
+      )}
 
       {/* 主文章区 */}
       <main className="chronicles-main">
@@ -81,7 +94,7 @@ const Chronicles = () => {
         <header className="chronicles-header">
           <h1 className="chronicles-title">{meta.title}</h1>
           <div className="chronicles-meta">
-            <span className="chronicles-author">作者：EW</span>
+            <span className="chronicles-author">作者：Empty World</span>
             <span className="chronicles-date">
               发布时间：{meta.publishedAt.replace(/\s*\+08:00$/, '')}
             </span>

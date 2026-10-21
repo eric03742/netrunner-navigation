@@ -5,6 +5,16 @@ import { useModel } from 'umi'
 import { DEEPNET_PACKS } from './manifest.js'
 import style from './style.less'
 
+// 判断图片是否横向（宽>高）
+const checkLandscape = (src) => {
+  return new Promise((resolve) => {
+    const img = new Image()
+    img.onload = () => resolve(img.width > img.height)
+    img.onerror = () => resolve(false)
+    img.src = src
+  })
+}
+
 const Deepnet = () => {
   const { isSmallScreen } = useModel('mobile')
   const { isPure } = useModel('isPure')
@@ -14,6 +24,24 @@ const Deepnet = () => {
 
   // 全局翻面：true 时所有缩略图翻到背面
   const [showAllBack, setShowAllBack] = useState(false)
+
+  // 横向图片标记
+  const [landscapeSet, setLandscapeSet] = useState(new Set())
+
+  // 预检测所有图片方向
+  useMemo(() => {
+    const all = []
+    DEEPNET_PACKS.forEach(p => p.cards.forEach(c => {
+      if (c.front) all.push({ src: c.front, key: `f-${p.pack}-${c.index}` })
+      if (c.back) all.push({ src: c.back, key: `b-${p.pack}-${c.index}` })
+    }))
+    Promise.all(all.map(async ({ src, key }) => ({ key, is: await checkLandscape(src) })))
+      .then(results => {
+        const set = new Set()
+        results.forEach(r => { if (r.is) set.add(r.key) })
+        setLandscapeSet(set)
+      })
+  }, [])
 
   const openCard = (card) => setActive({ card, flipped: showAllBack })
   const closeBig = () => setActive(null)
@@ -99,6 +127,7 @@ const Deepnet = () => {
                         alt={card.name || '变体卡'}
                         loading="lazy"
                         draggable={false}
+                        data-landscape={landscapeSet.has(`f-${pack.pack}-${card.index}`) ? '1' : ''}
                       />
                     </div>
                     <div className={style.cardBack}>
@@ -108,6 +137,7 @@ const Deepnet = () => {
                           alt={`${card.name || '变体卡'} 背面`}
                           loading="lazy"
                           draggable={false}
+                          data-landscape={landscapeSet.has(`b-${pack.pack}-${card.index}`) ? '1' : ''}
                         />
                       ) : (
                         <div className={style.noBack}>背面暂无</div>
@@ -147,20 +177,28 @@ const Deepnet = () => {
           <div className={style.bigWrap}>
             <div
               className={style.bigcard}
-              onClick={bigHasBack ? toggleFlip : undefined}
-              role={bigHasBack ? 'button' : undefined}
-              tabIndex={bigHasBack ? 0 : undefined}
-              aria-label={bigHasBack ? '点击翻面' : undefined}
+              onClick={bigHasBack && !isSmallScreen ? toggleFlip : undefined}
+              role={bigHasBack && !isSmallScreen ? 'button' : undefined}
+              tabIndex={bigHasBack && !isSmallScreen ? 0 : undefined}
+              aria-label={bigHasBack && !isSmallScreen ? '点击翻面' : undefined}
             >
               <div
                 className={`${style.bigcardInner} ${bigFlipped ? style.bigcardFlipped : ''}`}
               >
                 <div className={style.bigFront}>
-                  <img src={bigCard.front} alt={bigCard.name || '变体卡'} />
+                  <img
+                    src={bigCard.front}
+                    alt={bigCard.name || '变体卡'}
+                    data-landscape={landscapeSet.has(`f-${active?.card?.pack}-${active?.card?.index}`) ? '1' : ''}
+                  />
                 </div>
                 <div className={style.bigBack}>
                   {bigHasBack ? (
-                    <img src={bigCard.back} alt="背面" />
+                    <img
+                      src={bigCard.back}
+                      alt="背面"
+                      data-landscape={landscapeSet.has(`b-${active?.card?.pack}-${active?.card?.index}`) ? '1' : ''}
+                    />
                   ) : (
                     <div className={style.noBackBig}>背面暂无</div>
                   )}

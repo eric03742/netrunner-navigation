@@ -20,7 +20,7 @@ const Video = () => {
         <div
           key={index}
           className={style.imageWrapper}
-          onClick={() => setPlayBvid(video.bvid)}
+          onClick={() => window.open(`https://www.bilibili.com/video/${video.bvid}`, '_blank')}
         >
           <Image
             src={video.img}
@@ -36,34 +36,6 @@ const Video = () => {
           </div>
         </div>
       ))}
-
-      <Modal
-        open={!!playBvid}
-        onCancel={closeModal}
-        footer={null}
-        closable
-        destroyOnClose
-        getContainer={() => document.getElementById('root')}
-        wrapClassName={style.videoModal}
-        width={isSmallScreen ? undefined : 800}
-        title={null}
-      >
-        {playBvid && (
-          <iframe
-            src={playerSrc}
-            title="bilibili-player"
-            allowFullScreen
-            frameBorder="0"
-            scrolling="no"
-            className={style.playerFrame}
-            style={{
-              width: isSmallScreen ? '-webkit-fill-available' : '100%',
-              height: isSmallScreen ? 260 : 450,
-              border: 0
-            }}
-          />
-        )}
-      </Modal>
     </div>
   )
 }

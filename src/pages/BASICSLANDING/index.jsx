@@ -9,7 +9,7 @@ const BASICSLANDING = () => {
         history.push(`/#VIDEO`);
         break;
       case 1:
-        window.open('https://tutorial.sneakdoorbeta.net/', '_blank')
+        history.push('/#ENTRY');
         break;
       case 2:
         history.push(`/#BEGINNER`);
@@ -24,7 +24,7 @@ const BASICSLANDING = () => {
         history.push('/#DECK');
         break;
       case 6:
-        history.push('/#ENTRY');
+        window.open('https://tutorial.sneakdoorbeta.net/', '_blank')
         break;
       default:
         history.push('/#BEGINNER');
@@ -45,8 +45,8 @@ const BASICSLANDING = () => {
           className="tech-button tech-button-1"
           onClick={() => handleButtonClick(1)}
         >
-          <RobotOutlined />
-          <span>人机对战</span>
+          <FundProjectionScreenOutlined />
+          <span>潜袭入门</span>
         </button>
         <button
           className="tech-button tech-button-2"
@@ -80,8 +80,8 @@ const BASICSLANDING = () => {
           className="tech-button tech-button-6"
           onClick={() => handleButtonClick(6)}
         >
-          <FundProjectionScreenOutlined />
-          <span>潜袭入门</span>
+          <RobotOutlined />
+          <span>人机对战</span>
         </button>
       </div>
     </div>

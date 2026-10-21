@@ -173,7 +173,7 @@ const FACTION = () => {
             [styles.contentExit]: animationState === 'exit',
             [styles.contentEnter]: animationState === 'enter'
           })}>
-            {isSmallScreen && <Image key={selectedFaction.subTitle} style={{ width: '95%' }} src={selectedFaction?.img} className={classNames({
+            {isSmallScreen && <Image key={selectedFaction.subTitle} preview={false} style={{ width: '95%' }} src={selectedFaction?.img} className={classNames({
               [styles.fadeEnter]: animationState === 'enter',
               [styles.fadeExit]: animationState === 'exit'
             })} />}
@@ -202,6 +202,7 @@ const FACTION = () => {
                 <Image
                   key={selectedFaction.subTitle + '-card-' + index}
                   src={card}
+                  preview={false}
                   className={classNames(styles.animatedCard, {
                     [styles.exit]: animationState === 'exit'
                   })}

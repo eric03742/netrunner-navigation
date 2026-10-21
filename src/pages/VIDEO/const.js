@@ -3,6 +3,7 @@ import videoCover2 from '@/assets/Video/videoCover2.avif'
 import videoCover3 from '@/assets/Video/videoCover3.avif'
 import videoCover4 from '@/assets/Video/videoCover4.avif'
 import videoCover5 from '@/assets/Video/videoCover5.avif'
+import videoCover6 from '@/assets/Video/videoCover6.webp'
 
 export const videoList = [
   {
@@ -29,5 +30,10 @@ export const videoList = [
     bvid: 'BV1yGCSYcEwc',
     name: '一个已死的游戏，正在举办世界赛',
     img: videoCover5
+  },
+  {
+    bvid: 'BV1tyaL6gEBe',
+    name: '想尝试潜袭吗？',
+    img: videoCover6
   }
 ]

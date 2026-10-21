@@ -32,12 +32,12 @@ const TAB = [
 
 const runSubMenuItems = [
   { key: 'video', label: '视频教学' },
-  { key: 'pve', label: '人机对战' },
+  { key: 'entry', label: '潜袭入门' },
   { key: 'beginner', label: '新手指南' },
   { key: 'tutorial', label: '教学剧本' },
   { key: 'time', label: '时序图' },
   { key: 'deck', label: '新手预组' },
-  { key: 'entry', label: '潜袭入门' },
+  { key: 'pve', label: '人机对战' },
 ];
 
 const Layout = () => {
@@ -222,7 +222,7 @@ const Layout = () => {
             开发者：皮皮
           </div>
           <div className="layout-version">
-            当前版本：1.3.0 更新时间：2026/10/20
+            当前版本：1.3.0 更新时间：2026/10/21
           </div>
         </div>
       </div>}

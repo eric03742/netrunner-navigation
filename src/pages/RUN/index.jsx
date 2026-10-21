@@ -76,7 +76,7 @@ const RUN = () => {
     <div className={styles.container}>
       {/* 顶部标题 */}
       <div className={styles.header}>
-        <div className={styles.headerText}><span style={{ color: isPure ? 'rgb(237 70 70)' : '#000' }}>想尝试潜袭吗？</span><span>来矩阵潜袭国服!</span></div>
+        <div className={styles.headerText}><span style={{ color: !isPure ? 'rgb(255,84,84)' : '#fff' }}>想尝试潜袭吗？</span><span>来矩阵潜袭国服!</span></div>
       </div>
 
       {/* 中间轮播区域 */}

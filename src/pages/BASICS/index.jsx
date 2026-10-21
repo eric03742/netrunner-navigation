@@ -9,6 +9,14 @@ import { titles, sections } from './const'
 // import rules from './rules.docx'
 // import { formatContent } from './utils';
 
+// 从标题生成带 id 的目录项（用于锚点跳转）
+const buildHeadings = (titleList) =>
+  titleList.map((t, i) => ({
+    id: `section-${i}`,
+    text: t.text,
+    level: t.level,
+  }));
+
 const highlightText = (html, searchTerm) => {
   if (!searchTerm) return html;
 
@@ -321,10 +329,41 @@ const DocPreview = () => {
         )}
       </div>
 
-      {/* 文档主体（左侧导航 + 右侧内容） */}
+      {/* 悬浮目录按钮（移动端） */}
+      {isSmallScreen && (
+        <button className="doc-nav-fab" onClick={() => setIsNavCollapsed(false)}>
+          目录
+        </button>
+      )}
+      {/* 目录弹窗（移动端） */}
+      {isSmallScreen && !isNavCollapsed && (
+        <div className="doc-nav-overlay" onClick={() => setIsNavCollapsed(true)}>
+          <div className="doc-nav-popup" onClick={(e) => e.stopPropagation()}>
+            <div className="doc-nav-popup-header">
+              <span>文档目录</span>
+              <button className="doc-nav-popup-close" onClick={() => setIsNavCollapsed(true)}>✕</button>
+            </div>
+            <ul className="doc-nav-popup-list">
+              {docContent.titles.map((title, index) => (
+                <li
+                  key={index}
+                  className={`title-item level-${title.level} ${activeTitleIndex === index ? 'active' : ''}`}
+                  onClick={() => { handleTitleClick(index); setIsNavCollapsed(true); }}
+                >
+                  {title.text}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
+
+      {/* 文档主体 */}
+      {/* PC 端：左侧导航 + 右侧内容 */}
+      {/* 移动端：只有右侧内容，目录用弹窗 */}
       <div className="doc-main" style={isNavCollapsed ? { gap: 0 } : {}}>
-        {/* 左侧标题导航 */}
-        {renderTitleNav()}
+        {/* PC 端左侧标题导航 */}
+        {!isSmallScreen && renderTitleNav()}
 
         {/* 右侧文档内容 */}
         <div className="content-wrapper">

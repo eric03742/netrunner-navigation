@@ -161,7 +161,7 @@ export const DEEPNET_CARDS = [
   { pack: 1, index: 13, name: '林木线', count: '1套3张', front: p113f, back: p113b },
   { pack: 1, index: 14, name: '胜券在握', count: '1套3张', front: p114f, back: p114b },
   { pack: 2, index: 1, name: '对冲基金', count: '1套6张', front: p201f, back: p201b },
-  { pack: 2, index: 2, name: null, count: null, front: p202f, back: p202b },
+  { pack: 2, index: 2, name: '对冲基金', count: '1套3张', front: p202f, back: p202b, variant: true },
   { pack: 2, index: 3, name: '精准响应', count: '1套3张', front: p203f, back: p203b },
   { pack: 2, index: 4, name: '穷途末路', count: '1套3张', front: p204f, back: p204b },
   { pack: 2, index: 5, name: '心灵重塑', count: '1套3张', front: p205f, back: p205b },
@@ -217,7 +217,7 @@ export const DEEPNET_CARDS = [
   { pack: 5, index: 12, name: '让他们做个美梦', count: '1套3张', front: p512f, back: p512b },
   { pack: 5, index: 13, name: '虚无特工', count: '1套3张', front: p513f, back: p513b },
   { pack: 5, index: 14, name: '表岩屑开采许可', count: '1套3张', front: p514f, back: p514b },
-  { pack: 5, index: 15, name: null, count: null, front: p515f, back: null, variant: true },
+  { pack: 5, index: 15, name: '表岩屑开采许可', count: '1套3张', front: p515f, back: null, variant: true },
 ];
 
 // 按弹分组的辅助导出

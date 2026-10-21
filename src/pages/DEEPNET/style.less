@@ -3,8 +3,10 @@
 
 .container {
   height: 100%;
+  min-height: 100%;
   overflow-y: auto;
-  padding: 24px clamp(12px, 4vw, 40px) 48px;
+  overflow-x: hidden;
+  padding: 24px clamp(12px, 4vw, 40px) 24px;
   position: relative;
   background-color: #0d0a1a;
   color: #e0d8ff;
@@ -171,8 +173,15 @@
 }
 
 .gridMobile {
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+
+  .card {
+    width: calc(50% - 6px);
+    flex: 0 0 auto;
+  }
 }
 
 // 酷黑模式网格无特殊调整，占位
@@ -194,7 +203,6 @@
     box-shadow: 0 0 0 2px #b080ff;
   }
 
-  // hover：上浮 + 发光（不翻转）
   &:hover {
     .cardInner {
       transform: translateY(-6px);
@@ -211,6 +219,58 @@
   &:active {
     .cardInner {
       transform: translateY(-2px);
+    }
+  }
+}
+
+// 移动端卡片样式
+@media (max-width: 768px) {
+  .card {
+    aspect-ratio: 142 / 198;
+
+    .cardInner {
+      height: 100%;
+      transform-style: flat;
+    }
+
+    .cardFront {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+    }
+
+    // 翻面时隐藏正面、显示背面
+    .cardFlipped {
+      .cardFront {
+        display: none;
+      }
+      .cardBack {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        transform: none;
+        display: flex;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          display: block;
+        }
+      }
+    }
+
+    .cardBack {
+      display: none;
     }
   }
 }
@@ -249,8 +309,16 @@
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
+  }
+
+  // 横向卡图旋转90度变竖向，并放大填满
+  img[data-landscape="1"] {
+    transform: rotate(90deg) scale(1.4);
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 }
 
@@ -394,6 +462,14 @@
     height: 100%;
     object-fit: cover;
     display: block;
+  }
+
+  // 大图横向卡旋转90度变竖向，放大填满
+  img[data-landscape="1"] {
+    transform: rotate(90deg) scale(1.4);
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 }
 

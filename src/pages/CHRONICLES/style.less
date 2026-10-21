@@ -8,25 +8,19 @@
   box-sizing: border-box;
   background-color: #1e1e1e;
   color: #e0e0e0;
-  // 正文用无衬线系统字体，易读；标题/导航单独用科幻字体
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
     'Microsoft YaHei', sans-serif;
   overflow: hidden;
 
-  // 左侧 sticky 目录
+  // PC 端左侧 sticky 目录
   .chronicles-nav {
     position: relative;
-    flex: 0 0 auto;
+    flex: 0 0 220px;
     width: 220px;
     height: 100%;
     background: #252526;
     border-right: 1px solid #333;
-    transition: width 0.25s ease;
     overflow: hidden;
-
-    &.collapsed {
-      width: 36px;
-    }
 
     .chronicles-nav-inner {
       height: 100%;
@@ -43,22 +37,6 @@
       color: #fff;
       font-size: 14px;
       font-weight: 600;
-
-      .chronicles-nav-toggle {
-        background: transparent;
-        border: 1px solid #444;
-        color: #ccc;
-        cursor: pointer;
-        padding: 2px 6px;
-        border-radius: 3px;
-        font-size: 12px;
-        line-height: 1;
-
-        &:hover {
-          background: #333;
-          color: #fff;
-        }
-      }
     }
 
     .chronicles-nav-list {
@@ -87,34 +65,17 @@
           font-weight: 600;
           color: #fff;
         }
+
         &.level-2 {
           padding-left: 24px;
         }
+
         &.level-3 {
           padding-left: 34px;
           font-size: 12px;
         }
       }
-    }
-
-    .chronicles-nav-expand {
-      position: absolute;
-      top: 50%;
-      left: 4px;
-      transform: translateY(-50%);
-      background: #2d2d30;
-      border: 1px solid #444;
-      color: #ccc;
-      cursor: pointer;
-      padding: 4px 6px;
-      border-radius: 3px;
-      font-size: 12px;
-
-      &:hover {
-        background: #333;
-        color: #fff;
-      }
-    }
+        }
   }
 
   // 主文章区可滚动
@@ -127,16 +88,19 @@
 
     // 滚动条样式
     &::-webkit-scrollbar {
-      width: 10px;
+      width: 8px;
     }
+
     &::-webkit-scrollbar-track {
       background: transparent;
     }
+
     &::-webkit-scrollbar-thumb {
       background-color: #555;
       border-radius: 0;
       border: 2px solid transparent;
       background-clip: padding-box;
+
       &:hover {
         background-color: #777;
       }
@@ -155,9 +119,6 @@
       font-size: clamp(20px, 3vw, 28px);
       font-weight: 700;
       line-height: 1.3;
-      // 标题用科幻字体
-      font-family: 'CommonFont', -apple-system, sans-serif;
-      letter-spacing: 1px;
     }
 
     .chronicles-meta {
@@ -203,12 +164,14 @@
       padding-bottom: 0.3em;
       border-bottom: 1px solid #333;
     }
+
     h2 {
       font-size: 1.35em;
       padding-bottom: 0.3em;
       border-bottom: 1px solid #2a2a2a;
       margin-top: 2.2em;
     }
+
     h3 {
       font-size: 1.15em;
       margin-top: 2em;
@@ -218,7 +181,6 @@
       margin: 0 0 14px;
     }
 
-    // 图片段
     .chronicles-img-p {
       text-align: center;
       margin: 18px 0;
@@ -230,48 +192,43 @@
       height: auto;
       display: inline-block;
       border-radius: 4px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 40%);
     }
 
-    // 加粗
     strong {
       font-weight: 600;
       color: #fff;
     }
 
-    // 删除线
     del {
       color: #888;
       text-decoration: line-through;
     }
 
-    // 引用：理查德·加菲尔德评论等
     blockquote {
       margin: 16px 0;
       padding: 8px 16px;
       color: #b0b0b0;
       border-left: 3px solid #4fd3d1;
-      background: rgba(79, 211, 209, 0.05);
+      background: rgba(79, 211, 209, 5%);
       border-radius: 0 4px 4px 0;
       line-height: 1.8;
 
-      // 保留内联 span 颜色
       span[style*='color'] {
         // 不覆盖，保留原色
       }
     }
 
-    // 分隔线
     hr {
       border: none;
       border-top: 1px solid #333;
       margin: 32px 0;
     }
 
-    // 外链
     a {
       color: #4fd3d1;
       text-decoration: none;
+
       &:hover {
         color: #6fe7e5;
         text-decoration: underline;
@@ -279,21 +236,25 @@
     }
   }
 
-  // 酷黑模式：更深、对比更强
+    // 酷黑模式
   &.chronicles-pure {
     background-color: #000;
+
     .chronicles-nav {
       background: #0a0a0a;
       border-right-color: #1a1a1a;
     }
+
     .chronicles-main {
       background: #000;
     }
+
     .chronicles-article {
       color: #c0c0c0;
       h1, h2, h3, strong { color: #fff; }
+
       blockquote {
-        background: rgba(79, 211, 209, 0.03);
+        background: rgba(79, 211, 209, 3%);
       }
     }
   }
@@ -302,36 +263,111 @@
   &.chronicles-mobile {
     flex-direction: column;
 
-    .chronicles-nav {
-      width: 100%;
-      height: auto;
-      max-height: 40px;
-      overflow: hidden;
-      border-right: none;
-      border-bottom: 1px solid #333;
-      transition: max-height 0.25s ease;
-
-      &.collapsed {
-        width: 100%;
-        max-height: 40px;
+    // 悬浮目录按钮
+      .chronicles-nav-fab {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 100;
+        background: rgba(79, 141, 211, 80%);
+        color: #fff;
+        border: none;
+        border-radius: 24px;
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 40%);
+        backdrop-filter: blur(8px);
       }
-      &:not(.collapsed) {
-        max-height: 50vh;
+    
+      // 目录遮罩
+      .chronicles-nav-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 70%);
+        z-index: 200;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 60px;
       }
+    
+      // 目录弹窗
+      .chronicles-nav-popup {
+        background: #1e1e1e;
+        border: 1px solid #333;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 400px;
+        max-height: 70vh;
+        overflow-y: auto;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 60%);
+    
+        .chronicles-nav-popup-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 12px 16px;
+          border-bottom: 1px solid #333;
+        color: #fff;
+          font-size: 16px;
+          font-weight: 600;
+        
+          .chronicles-nav-popup-close {
+            background: transparent;
+            border: none;
+            color: #999;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0 4px;
 
-      .chronicles-nav-inner {
-        .chronicles-nav-header {
-          padding: 10px 14px;
-        }
-        .chronicles-nav-list {
-          .chronicles-nav-item {
-            padding: 8px 14px;
-            font-size: 14px;
-            &.level-2 { padding-left: 24px; }
-            &.level-3 { padding-left: 34px; }
+          &:hover {
+              color: #fff;
+            }
           }
-        }
       }
+
+            .chronicles-nav-popup-list {
+              list-style: none;
+              margin: 0;
+              padding: 8px 0;
+      
+              .chronicles-nav-item {
+          padding: 8px 16px;
+            font-size: 14px;
+          color: #b0b0b0;
+            cursor: pointer;
+            transition: all 0.2s;
+          
+            &:hover {
+              background: #2a2a2a;
+              color: #fff;
+            }
+          
+            &.level-1 {
+              font-size: 15px;
+              font-weight: 600;
+              color: #fff;
+            }
+          
+            &.level-2 {
+              padding-left: 28px;
+            }
+          
+            &.level-3 {
+              padding-left: 40px;
+              font-size: 12px;
+            }
+          }
+          }
+          }
+// 移动端隐藏 PC 侧边栏
+.chronicles-nav {
+  display: none;
     }
 
     .chronicles-main {
@@ -355,6 +391,7 @@
       .chronicles-meta {
         gap: 8px;
         font-size: 12px;
+
         .chronicles-source {
           margin-left: 0;
         }

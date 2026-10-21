@@ -239,9 +239,7 @@ const parseMarkdown = (md) => {
 
 // 原始 md 正文（从「# 矩阵编年史（1）：2012-唐怀瑟之门」开始到「原文编号：cv53439312」结束）
 // 注：md 来源可信，内联 <span style="color:..."> 保留。
-const markdownSource = `# 矩阵编年史（1）：2012-唐怀瑟之门
-
-![文章封面](images/000-cover.jpg)
+const markdownSource = `![文章封面](images/000-cover.jpg)
 
 ## 前言
 
