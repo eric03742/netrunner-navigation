@@ -240,3 +240,48 @@
 .icon-agenda-points:before {
   content: "\e930";
 }
+
+/* ============================================================
+ * 全局统一滚动条样式
+ * 所有模块的可滚动区域统一用这套，避免默认滚动条难看。
+ * 暗色细滚动条 + hover 高亮，赛博朋克风。
+ * ============================================================ */
+
+// 命名导出滚动条 mixin（供各模块局部滚动区复用）
+// 这里用全局选择器兜底：凡是有 overflow:auto/scroll 的容器都生效
+* {
+  // Firefox
+  scrollbar-width: thin;
+  scrollbar-color: rgb(120 140 170 / 50%) transparent;
+}
+
+// WebKit：统一细滚动条
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(120 140 170 / 45%);
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.2s ease;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(160 180 210 / 75%);
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: rgb(190 210 240 / 90%);
+}
+
+// 横向滚动条稍矮
+*::-webkit-scrollbar:horizontal {
+  height: 6px;
+}

@@ -124,7 +124,11 @@
   height: 100%;
   background-size: cover;
   background-position: center;
-  filter: blur(5px);
+  // 背景图加强虚化：5px -> 12px，并轻微压暗，让前景内容更突出
+  filter: blur(12px) brightness(0.85);
+
+  // 模糊会让图片边缘漏出底色，放大避免边缘黑边
+  transform: scale(1.08);
 
   &.bg-slide-current {
     background-position: center;
@@ -134,7 +138,8 @@
 .bg-slide-prev {
   z-index: 1;
   opacity: 1;
-  transition: opacity 0.5s ease;
+  // 交叉淡入更丝滑：加长过渡 + 用 ease-in-out
+  transition: opacity 0.6s ease-in-out;
 }
 
 .bg-slide-current {
@@ -143,6 +148,8 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
+  // 当前层也参与淡入，和 prev 形成交叉淡入
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
 }
 
 .fade-out {
@@ -150,11 +157,11 @@
 }
 
 .slide-in-left {
-  animation: slideInLeft 0.5s forwards;
+  animation: fade-in 0.6s forwards;
 }
 
 .slide-in-right {
-  animation: slideInRight 0.5s forwards;
+  animation: fade-in 0.6s forwards;
 }
 
 .layout-inner {
@@ -183,6 +190,17 @@
 
   to {
     transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+// 背景交叉淡入：比原来的左右滑入更柔和
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
     opacity: 1;
   }
 }

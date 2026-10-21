@@ -182,7 +182,6 @@ export const banTextStandard = {
     { cycle: '《余烬》', number: 'No.127', cn: '卡扬贝网阵', id: '26127' },
     { cycle: '《余烬》', number: 'No.128', cn: '赛博杀毒剂沙盒', id: '26128' },
     { cycle: '《余烬》', number: 'No.129', cn: '误导', id: '26129' },
-    { cycle: '《北极光》', number: 'No.11', cn: '纽纱·“黑貂”·辛塔什塔: 交响奇才', id: '33011' },
     { cycle: '《北极光》', number: 'No.51', cn: '德拉戈•伊万诺夫', id: '33051' },
     { cycle: '《北极光》', number: 'No.63', cn: '开采', id: '33063' },
     { cycle: '《北极光》', number: 'No.106', cn: '万象·基林博士', id: '33106' },
@@ -199,6 +198,7 @@ export const banTextStandard = {
     { cycle: '《余烬》', number: 'No.26', cn: '粮食', id: '26026' },
     { cycle: '《余烬》', number: 'No.66', cn: '白 星子：未名主角', id: '26066-front' },
     { cycle: '《余烬》', number: 'No.67', cn: '狂舞', id: '26067' },
+    { cycle: '《北极光》', number: 'No.11', cn: '纽纱·“黑貂”·辛塔什塔: 交响奇才', id: '33011' },
     { cycle: '《北极光》', number: 'No.25', cn: '坚忍号', id: '33025' },
     { cycle: '《北极光》', number: 'No.74', cn: '查希亚·"蒙獒"·钢图拉嘎', id: '33074' },
     { cycle: '《北极光》', number: 'No.90', cn: 'K2CP 涡轮机', id: '33090' },
@@ -210,10 +210,11 @@ export const banTextStandard = {
 
 export const banTextStarter = {
   corporation: [
-    { cycle: '《核心网关》', number: 'No.40', cn: '无暇发布会', id: '30040' },
+    { cycle: '《核心网关》', number: 'No.40', cn: '无瑕发布会', id: '30040' },
     { cycle: '《核心网关》', number: 'No.51', cn: '网际传媒：身临其境', id: '30051' },
     { cycle: '《仰望》', number: 'No.45', cn: '梅西娅 B4LL4RD', id: '35045' },
-    { cycle: '《制高点》', number: 'No.66', cn: '让他们做个美梦', id: '36066' },
+    { cycle: '《制高点》', number: 'No.66', cn: '让他们做个美梦', id: '36066', urlId: '36066-front' },
+    { cycle: '《核心网关》', number: 'No.67', cn: '地外办公室', id: '30067' },
   ],
   runner: [
     { cycle: '《核心网关》', number: 'No.6', cn: '剁肉刀', id: '30006' },

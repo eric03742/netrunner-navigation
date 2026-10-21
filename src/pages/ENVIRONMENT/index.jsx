@@ -167,8 +167,8 @@ const ENVIRONMENT = () => {
             <h3>生效日期：2026年8月1日</h3>
           </>}
           {currentBan === 'starter' && <>
-            <h2>新启禁卡表26.03</h2>
-            <h3>生效日期：2026年3月2日</h3>
+            <h2>新启禁卡表26.09</h2>
+            <h3>生效日期：2026年9月21日</h3>
           </>}
         </div>
         <div className={styles.banListContent}>
@@ -195,7 +195,7 @@ const ENVIRONMENT = () => {
               ))}
             </ul>
 
-            {currentBan === 'starter' && <p>此外，公司牌组中 3 分或更多议案不得超过 4 张。</p>}
+            {currentBan === 'starter' && <p>此外，公司牌组中，印制的议案分数为 3 分或以上的议案卡最多只能携带 4 张。</p>}
           </div>
 
           <div className={styles.banListImages}>

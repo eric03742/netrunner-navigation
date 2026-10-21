@@ -13,8 +13,11 @@ const DECK = lazy(() => import('../DECK'));
 const VIDEO = lazy(() => import('../VIDEO'));
 const TUTORIAL = lazy(() => import('../TUTORIAL'));
 const RUNPage = lazy(() => import('../RUN'));
+const CHRONICLESPage = lazy(() => import('../CHRONICLES'));
+const DEEPNETPage = lazy(() => import('../DEEPNET'));
 const ENVIRONMENTPage = lazy(() => import('../ENVIRONMENT'));
 const COMMUNITYPage = lazy(() => import('../COMMUNITY'));
+const ENTRYPage = lazy(() => import('../ENTRY'));
 
 const Components = {
   'INDEX': IndexPage,
@@ -25,9 +28,12 @@ const Components = {
   'VIDEO': VIDEO,
   'TUTORIAL': TUTORIAL,
   'RUN': RUNPage,
+  'CHRONICLES': CHRONICLESPage,
+  'DEEPNET': DEEPNETPage,
   'ENVIRONMENT': ENVIRONMENTPage,
   'COMMUNITY': COMMUNITYPage,
-  'DECK': DECK
+  'DECK': DECK,
+  'ENTRY': ENTRYPage
 };
 
 const HomePage = () => {

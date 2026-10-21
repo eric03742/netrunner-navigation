@@ -14,17 +14,10 @@
     right: 0;
     bottom: 0;
     background:
-      radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 20%),
-      radial-gradient(circle at 90% 80%, rgba(128, 0, 255, 0.1) 0%, transparent 20%);
+      radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 10%) 0%, transparent 20%),
+      radial-gradient(circle at 90% 80%, rgba(128, 0, 255, 10%) 0%, transparent 20%);
     pointer-events: none;
   }
-
-  &::-webkit-scrollbar {
-    display: none; // 隐藏 Webkit 浏览器的滚动条
-  }
-
-  -ms-overflow-style: none; // 隐藏 IE 浏览器的滚动条
-  scrollbar-width: none; // 隐藏 Firefox 浏览器的滚动条
 }
 
 .imageWrapper {
@@ -64,10 +57,18 @@
     &::before {
       left: 100%;
     }
+
+    .playOverlay {
+      opacity: 1;
+    }
   }
 
   &:hover img {
     transform: scale(1.05);
+  }
+
+  &:hover .playIcon {
+    transform: scale(1.1);
   }
 }
 
@@ -76,6 +77,49 @@
   border-radius: 6px;
   width: 100%;
   height: auto;
+}
+
+// 播放图标 overlay：半透明圆 + 三角
+.playOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 36px; // 给底部标题留位置
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.playIcon {
+  display: inline-block;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 55%);
+  border: 2px solid #0ff;
+  box-shadow:
+    0 0 12px rgba(0, 255, 255, 70%),
+    inset 0 0 8px rgba(0, 255, 255, 40%);
+  position: relative;
+  transition: transform 0.3s ease;
+
+  // CSS 三角
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 56%;
+    transform: translate(-50%, -50%);
+    border-style: solid;
+    border-width: 9px 0 9px 14px;
+    border-color: transparent transparent transparent #0ff;
+    filter: drop-shadow(0 0 4px rgba(0, 255, 255, 80%));
+  }
 }
 
 // 移动端适配样式
@@ -104,4 +148,42 @@
   margin-top: 15px;
   padding: 5px;
   border-top: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+// B 站 iframe 播放器 Modal
+.videoModal {
+  :global {
+    .ant-modal {
+      top: 40px;
+    }
+
+    .ant-modal-content {
+      background: rgba(10, 12, 20, 92%);
+      border: 1px solid rgba(0, 255, 255, 50%);
+      border-radius: 12px;
+      box-shadow:
+        0 0 24px rgba(0, 255, 255, 40%),
+        inset 0 0 12px rgba(0, 255, 255, 20%);
+      padding: 12px;
+    }
+
+    .ant-modal-close {
+      color: #0ff;
+      top: 8px;
+      inset-inline-end: 8px;
+    }
+
+    .ant-modal-close-x {
+      color: #0ff;
+      font-size: 18px;
+      text-shadow: 0 0 6px rgba(0, 255, 255, 80%);
+    }
+  }
+}
+
+.playerFrame {
+  display: block;
+  border: 0;
+  border-radius: 8px;
+  overflow: hidden;
 }

@@ -7,32 +7,65 @@
 .sci-fi-button-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-auto-rows: 250px;
   gap: 20px;
   margin-bottom: 30px;
 }
 
 .sci-fi-button {
   position: relative;
-  height: 250px;
-  background: rgba(30, 40, 70, 0.3);
-  border-radius: 8px;
+  height: 100%;
+  min-height: 250px;
+  // 圆角加大，更像宝石/玻璃面板
+  border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s ease;
   backdrop-filter: blur(5px);
+  // 边框：用按钮自身的色做半透明边框，去掉原硬灰边
+  border: 1px solid rgba(255, 255, 255, 18%);
+  // 内层高光：顶部一道淡白光，模拟玻璃面板质感
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 22%),
+    inset 0 0 0 1px rgba(255, 255, 255, 6%),
+    0 4px 14px rgba(0, 0, 0, 35%);
+
+  // 外层用按钮色做一圈柔和辉光（默认就很淡，hover 加强）
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    box-shadow: 0 0 0 1px var(--button-color, transparent);
+    opacity: 0.35;
+    transition: opacity 0.3s ease, box-shadow 0.3s ease;
+    pointer-events: none;
+    z-index: 3;
+  }
 }
 
 .sci-fi-button:hover {
-  background: rgba(50, 70, 120, 0.5);
-  border-color: rgba(100, 180, 255, 0.6);
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(100, 180, 255, 0.3);
+  border-color: rgba(255, 255, 255, 45%);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 35%),
+    0 0 20px var(--button-color),
+    0 0 30px var(--button-color);
+
+  &::after {
+    opacity: 0.9;
+    box-shadow: 0 0 0 2px var(--button-color), 0 0 16px var(--button-color);
+  }
 }
 
 .sci-fi-button:hover .button-glow {
   opacity: 0.8;
   transform: scale(1.2);
+  animation: pulse 1.5s infinite;
+}
+
+.sci-fi-button:hover .button-content {
+  text-shadow: 0 0 10px white;
 }
 
 .button-content {
@@ -67,7 +100,7 @@
   text-align: center;
   color: #e0e9ff;
   font-family: XiangSuFont;
-  text-shadow: 0 0 8px rgba(100, 180, 255, 0.7);
+  text-shadow: 0 0 8px rgba(100, 180, 255, 70%);
   height: 60px;
 }
 
@@ -78,15 +111,11 @@
   right: 0;
   bottom: 0;
   background: radial-gradient(circle at center,
-      rgba(100, 180, 255, 0.4) 0%,
-      rgba(100, 180, 255, 0) 70%);
+      rgba(100, 180, 255, 40%) 0%,
+      rgba(100, 180, 255, 0%) 70%);
   opacity: 0;
   transition: all 0.4s ease;
   z-index: 1;
-}
-
-.sci-fi-button:hover .button-glow {
-  animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
@@ -101,21 +130,6 @@
   100% {
     opacity: 0.4;
   }
-}
-
-.sci-fi-button:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 0 20px var(--button-color), 0 0 30px var(--button-color);
-  background: rgba(0, 30, 60, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-}
-
-.sci-fi-button:hover .button-glow {
-  animation: pulse 1.5s infinite;
-}
-
-.sci-fi-button:hover .button-content {
-  text-shadow: 0 0 10px white;
 }
 
 .community-modal {
@@ -170,29 +184,16 @@
   }
 }
 
-@keyframes pulse {
-  0% {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
 @media (max-width: 768px) {
   .COMMUNITY {
     .sci-fi-button-grid {
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(4, 1fr);
+      grid-auto-rows: 200px;
       gap: 10px;
 
       .sci-fi-button {
-        height: auto;
+        height: 100%;
+        min-height: 200px;
 
         .button-content {
           .button-icon {

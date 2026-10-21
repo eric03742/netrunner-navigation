@@ -6,27 +6,27 @@ import videoCover5 from '@/assets/Video/videoCover5.avif'
 
 export const videoList = [
   {
-    url: 'https://www.bilibili.com/video/BV1iN411F7AD/?spm_id_from=333.337.search-card.all.click',
+    bvid: 'BV1iN411F7AD',
     name: '矩阵潜袭教学',
     img: videoCover1
   },
   {
-    url: 'https://www.bilibili.com/video/BV1XK1oYNEAT/?spm_id_from=333.337.search-card.all.click',
+    bvid: 'BV1XK1oYNEAT',
     name: '矩阵潜袭 核心网关 教学牌组实战解说',
     img: videoCover2
   },
   {
-    url: 'https://www.bilibili.com/video/BV1qNY1zpEgD/?spm_id_from=333.337.search-card.all.click&vd_source=ff640e97c59d12aafa7f3a6f207f2332',
+    bvid: 'BV1qNY1zpEgD',
     name: '矩阵潜袭在线国服使用方式！',
     img: videoCover3
   },
   {
-    url: 'https://www.bilibili.com/video/BV1PtQCYNEUb/?spm_id_from=333.337.search-card.all.click',
+    bvid: 'BV1PtQCYNEUb',
     name: '从1996到2025年！有史以来最好的卡牌游戏之一',
     img: videoCover4
   },
   {
-    url: 'https://www.bilibili.com/video/BV1yGCSYcEwc/?spm_id_from=333.337.search-card.all.click&vd_source=ff640e97c59d12aafa7f3a6f207f2332',
+    bvid: 'BV1yGCSYcEwc',
     name: '一个已死的游戏，正在举办世界赛',
     img: videoCover5
   }

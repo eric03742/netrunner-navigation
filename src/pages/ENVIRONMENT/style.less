@@ -225,43 +225,50 @@
 .buttonSection {
   display: flex;
   justify-content: space-between;
-  // align-items: center; // 新增：垂直居中对齐
-  gap: 20px
+  align-items: center;
+  gap: 20px;
 }
 
-.leftButtons,
-.rightButtons {
-  flex: 1; // 保持不变：占据 1/3 宽度
+.leftButtons {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  // justify-content: center; // 新增：内容垂直居中
 
   h3 {
     margin-bottom: 15px;
   }
 }
 
+.rightButtons {
+  flex: 1.4; // 右侧略宽，给 2 列按钮留空间
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .middle {
-  flex: 1; // 修改：图片也占据 1/3 宽度
-  height: 500px;
-  object-fit: contain; // 新增：保持图片比例
-  max-width: 100%; // 新增：防止溢出
+  flex: 0 0 auto;
+  height: 360px; // 缩小图片高度（原 500px）
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .buttonGrid {
   display: flex;
   flex-direction: column;
-  grid-template-columns: 1fr 1fr;
   gap: 10px;
   width: 100%;
   max-width: 300px;
 }
 
 .cycleButtons {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); // 2 列排布
   gap: 10px;
+  width: 100%;
+  max-width: 460px;
 }
 
 .techButton {
@@ -343,8 +350,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding-left: 40px;
-  width: 200px;
+  width: 100%; // 跟随 grid 列宽
+  min-width: 0;
 
   .cycleLogo {
     width: 30px;
@@ -600,19 +607,25 @@
 
       .middle {
         height: unset;
-        margin: 20px
+        max-height: 240px;
+        width: auto;
+        margin: 20px;
       }
 
       .rightButtons {
         min-width: unset;
+        width: 100%;
 
         .cycleButtons {
-          justify-content: center;
+          // 移动端保持 2 列
+          grid-template-columns: repeat(2, 1fr);
+          max-width: 100%;
 
           .cycleButton {
-            width: 40%;
-            padding-left: 0;
+            width: 100%;
             padding: 5px 10px;
+            height: 70px;
+            font-size: 13px;
           }
         }
       }

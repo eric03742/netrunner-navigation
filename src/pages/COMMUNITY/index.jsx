@@ -1,5 +1,5 @@
 import './style.less';
-import { QqOutlined, WechatOutlined, TeamOutlined, FileDoneOutlined, WalletOutlined, SaveOutlined } from '@ant-design/icons'
+import { QqOutlined, WechatOutlined, TeamOutlined, FileDoneOutlined, WalletOutlined, SaveOutlined, MobileOutlined } from '@ant-design/icons'
 import { useState } from 'react';
 import { Modal, message } from 'antd'
 import { useModel } from 'umi'
@@ -35,22 +35,27 @@ const COMMUNITY = () => {
   const { isSmallScreen } = useModel('mobile');
   const iconStyle = { fontSize: isSmallScreen ? 32 : 64 }
   // 按钮配置数据
+  // 配色方案：宝石色调（jewel tones）—— 按各按钮语义分配色相，
+  // 统一 S=65% L=48%，饱和度与明度一致，整体协调不花，
+  // 深色背景上既能看清又有质感。
   const sciFiButtons = [
-    { id: 1, label: 'Null Signal Games', icon: favicon0, isImg: true, color: '#00f3ff' },
-    { id: 2, label: 'NetrunnerDB', icon: favicon1, isImg: true, color: '#ff00c8' },
-    { id: 3, label: 'Always be Running', icon: favicon2, isImg: true, color: '#00ff9d' },
-    { id: 4, label: 'Cobra', icon: favicon3, isImg: true, color: '#ff9d00' },
-    { id: 6, label: `The Maker's Eye`, icon: favicon5, isImg: true, color: '#ff3864' },
-    { id: 5, label: 'Near Earth Hub', icon: favicon4, isImg: true, color: '#9d00ff' },
-    { id: 7, label: '矩阵潜袭QQ群', icon: <QqOutlined style={iconStyle} />, color: '#00aaff' },
-    { id: 13, label: '微信公众号', icon: <i className='icon icon-click' style={iconStyle}></i>, color: '#8269c7' },
-    { id: 8, label: '矩阵潜袭微信群', icon: <WechatOutlined style={iconStyle} />, color: '#00ff6a' },
-    { id: 9, label: '微信小程序', icon: <img src={weixinMiniProgram} style={iconStyle} />, color: '#ffcc00' },
-    { id: 14, label: '约局联系人', icon: <TeamOutlined style={iconStyle} />, color: '#cfee5e' },
-    { id: 10, label: '深网补给池', icon: <img src={shenwangIcon} style={iconStyle} />, color: '#ff0058' },
-    { id: 11, label: '组织比赛原则', icon: <WalletOutlined style={iconStyle} />, color: '#58ff00' },
-    { id: 12, label: '社群行为准则', icon: <FileDoneOutlined style={iconStyle} />, color: '#aa00ff' },
-    { id: 15, label: 'Stack存储栈', icon: <SaveOutlined style={iconStyle} />, color: '#bb4678' },
+    { id: 1, label: 'Null Signal Games', icon: favicon0, isImg: true, color: '#2bcaca' },
+    { id: 2, label: 'NetrunnerDB', icon: favicon1, isImg: true, color: '#ca2bca' },
+    { id: 3, label: 'Always be Running', icon: favicon2, isImg: true, color: '#2bca60' },
+    { id: 4, label: 'Cobra', icon: favicon3, isImg: true, color: '#ca7a2b' },
+    { id: 16, label: '国服 Cobra', icon: favicon3, isImg: true, color: '#caa22b' },
+    { id: 6, label: `The Maker's Eye`, icon: favicon5, isImg: true, color: '#ca2b2b' },
+    { id: 5, label: 'Near Earth Hub', icon: favicon4, isImg: true, color: '#6d2bca' },
+    { id: 7, label: '矩阵潜袭QQ群', icon: <QqOutlined style={iconStyle} />, color: '#2b7aca' },
+    { id: 13, label: '微信公众号', icon: <i className='icon icon-click' style={iconStyle}></i>, color: '#452bca' },
+    { id: 8, label: '矩阵潜袭微信群', icon: <WechatOutlined style={iconStyle} />, color: '#2bca95' },
+    { id: 9, label: '微信小程序', icon: <img src={weixinMiniProgram} style={iconStyle} />, color: '#caaf2b' },
+    { id: 14, label: '约局联系人', icon: <TeamOutlined style={iconStyle} />, color: '#7aca2b' },
+    { id: 10, label: '深网补给池', icon: <img src={shenwangIcon} style={iconStyle} />, color: '#ca2b60' },
+    { id: 11, label: '组织比赛原则', icon: <WalletOutlined style={iconStyle} />, color: '#2bca2b' },
+    { id: 12, label: '社群行为准则', icon: <FileDoneOutlined style={iconStyle} />, color: '#952bca' },
+    { id: 15, label: 'Stack存储栈', icon: <SaveOutlined style={iconStyle} />, color: '#ca2b88' },
+    { id: 17, label: 'Jinteki移动端插件', icon: <MobileOutlined style={iconStyle} />, color: '#2b6dca' },
   ];
 
   // 按钮点击处理函数
@@ -70,6 +75,19 @@ const COMMUNITY = () => {
       case 4:
         window.open('https://tournaments.nullsignal.games/', '_blank')
         break;
+      case 16:
+        window.open('https://cobra.sneakdoorbeta.net', '_blank')
+        break;
+      case 17: {
+        const a = document.createElement('a');
+        a.href = '/jinteki-mobile.user.js';
+        a.download = 'Jinteki Mobile.user.js';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        message.success('开始下载 Jinteki 移动端插件');
+        break;
+      }
       case 5:
         window.open('https://www.nearearthhub.net/', '_blank')
         break;
@@ -184,7 +202,10 @@ const COMMUNITY = () => {
           <div
             key={button.id}
             className="sci-fi-button"
-            style={{ background: `linear-gradient(180deg, ${button.color}, #ffffff00)` }}
+            style={{
+              '--button-color': button.color,
+              background: `linear-gradient(180deg, ${button.color}cc, rgba(20, 25, 35, 0.9))`,
+            }}
             onClick={() => handleSciFiButtonClick(button.id)}
           >
             <div className="button-content">

@@ -1,5 +1,5 @@
 import './style.less';
-import { VideoCameraOutlined, RobotOutlined, ReadOutlined, HddOutlined, BuildOutlined, WalletOutlined } from '@ant-design/icons'
+import { VideoCameraOutlined, RobotOutlined, ReadOutlined, HddOutlined, BuildOutlined, WalletOutlined, FundProjectionScreenOutlined } from '@ant-design/icons'
 import { history } from 'umi';
 
 const BASICSLANDING = () => {
@@ -22,6 +22,9 @@ const BASICSLANDING = () => {
         break;
       case 5:
         history.push('/#DECK');
+        break;
+      case 6:
+        history.push('/#ENTRY');
         break;
       default:
         history.push('/#BEGINNER');
@@ -72,6 +75,13 @@ const BASICSLANDING = () => {
         >
           <WalletOutlined />
           <span>新手预组</span>
+        </button>
+        <button
+          className="tech-button tech-button-6"
+          onClick={() => handleButtonClick(6)}
+        >
+          <FundProjectionScreenOutlined />
+          <span>潜袭入门</span>
         </button>
       </div>
     </div>
